@@ -1,0 +1,69 @@
+header{
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #00ff00;
+    box-sizing: border-box;
+    padding: 20px 0;
+    z-index: 1;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+}
+
+header li {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header a{
+    display: inline-block;
+    text-decoration: none;
+}
+header a:link, header a:visited {
+    color: white;
+}
+header a:hover{
+    color: yellow;
+}
+
+.contents{
+    margin-top: 250px;
+}
+
+.sum{
+    text-align: center;
+    font-size: 70px;
+}
+
+.days table{
+    text-align: center;
+    margin: auto;
+}
+
+tbody:nth-child(2n){
+    background-color: #c0c0c0;
+}
+
+tbody:nth-child(2n+1){
+    background-color: #ffffff;
+}
+
+/* table td, th{ */
+    /* border: 2px solid black; */
+/* } */
+
+.diary{
+    border-top: solid blue;
+    border-bottom: solid blue;
+}
+
+.section{
+    border-top: solid #32a1ce;
+}
