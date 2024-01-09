@@ -45,6 +45,7 @@ header a:hover{
 .days table{
     text-align: center;
     margin: auto;
+    margin-bottom: 50px;
 }
 
 tbody:nth-child(2n){
