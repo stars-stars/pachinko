@@ -1,10 +1,15 @@
+body{
+    background-image: url(background/gold.png);
+}
+
 header{
     text-align: center;
     position: fixed;
     width: 100%;
     left: 0;
     top: 0;
-    background-color: #00ff00;
+    /*background-color: #00dd00;*/
+    background: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783);
     box-sizing: border-box;
     padding: 20px 0;
     z-index: 1;
@@ -37,6 +42,18 @@ header a:hover{
     margin-top: 250px;
 }
 
+.home{
+    text-align: center;
+}
+
+.home h1{
+    font-size: 50px;
+}
+
+.home p{
+    font-size: 25px;
+}
+
 .sum{
     text-align: center;
     font-size: 70px;
@@ -56,15 +73,32 @@ tbody:nth-child(2n+1){
     background-color: #ffffff;
 }
 
-/* table td, th{ */
-    /* border: 2px solid black; */
-/* } */
-
 .diary{
     border-top: solid blue;
     border-bottom: solid blue;
 }
 
+.diary h2{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+}
+
 .section{
-    border-top: solid #32a1ce;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid #32a1ce;
+}
+
+.profile{
+    text-align: center;
+}
+
+.profile h1{
+    font-size: 70px;
+}
+
+.profile p{
+    font-size: 35px;
 }
