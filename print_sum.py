@@ -22,5 +22,5 @@ returns = [float(temp.replace("k", "")) for temp in returns]
 soup = BeautifulSoup(open("sum.html", encoding="utf-8"), "html.parser")
 past = soup.find("h1")
 past = past.text
-print(past)
-print(f"総合収支: {sum(returns) - sum(pays)}k")
+print(f"今までの総合収支: {past}k")
+print(f"現在の総合収支: {sum(returns) - sum(pays)}k")
