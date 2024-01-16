@@ -56,7 +56,19 @@ header a:hover{
 
 .sum{
     text-align: center;
-    font-size: 70px;
+}
+
+.sum h1{
+    font-size: 150px;
+    margin: 0px;
+}
+
+.sum h2{
+    font-size: 60px;
+}
+
+.sum h3{
+    font-size: 30px;
 }
 
 .days table{
