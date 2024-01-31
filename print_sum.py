@@ -7,7 +7,7 @@ import datetime
 soup = BeautifulSoup(open("days.html", encoding="utf-8"), "html.parser")
 td_list = soup.find_all("td")
 pays = []
-returns = []
+payback = []
 for element in td_list:
     if("k" in element.text):
         if("合計" in element.text):
@@ -16,10 +16,10 @@ for element in td_list:
         else:
             front, back = element.text.split("/")
         pays.append(front)
-        returns.append(back)
+        payback.append(back)
 
 pays = [float(pay.replace("k", "")) for pay in pays]
-returns = [float(temp.replace("k", "")) for temp in returns]
+payback = [float(temp.replace("k", "")) for temp in payback]
 
 # 今までの収支を調べる
 soup = BeautifulSoup(open("sum.html", encoding="utf-8"), "html.parser")
@@ -30,13 +30,15 @@ pastday = re.search(r"\d+/\d+/\d+", pastday.text)
 today = str(datetime.date.today())
 today = today.replace("-", "/")
 print(f"{pastday.group()}までの総合収支: {past}k")
-print(f"{today}現在の総合収支: {sum(returns) - sum(pays)}k")
+print(f"{today}現在の総合収支: {sum(payback) - sum(pays)}k")
 
+# 文字列から日付型への変換
 pastday = datetime.datetime.strptime(pastday.group(), "%Y/%m/%d")
 today = datetime.datetime.strptime(today, "%Y/%m/%d")
 
-diff_day = re.search(r"\d+ days", str(today - pastday)).group()
-diff_day = str(diff_day).replace(" days", "")
-diff_money = sum(returns)-sum(pays) - float(past)
+#日付の差分を計算
+diff_day = re.search(r"\d+ day", str(today - pastday)).group()
+diff_day = str(diff_day).replace(" day", "").replace("s", "")
+diff_money = sum(payback)-sum(pays) - float(past)
 diff_money = "+" + str(diff_money) if diff_money > 0 else str(diff_money)
 print(f"{diff_day}日間で収支{diff_money}k")
