@@ -41,5 +41,5 @@ today = datetime.datetime.strptime(today, "%Y/%m/%d")
 diff_day = re.search(r"\d+ day", str(today - pastday)).group()
 diff_day = str(diff_day).replace(" day", "").replace("s", "")
 diff_money = sum(payback)-sum(pays) - float(past)*10 # 丸め誤差対策として10倍する
-diff_money = "+" + str(diff_money/10) if diff_money > 0 else str(diff_money)
+diff_money = "+" + str(diff_money/10) if diff_money >= 0 else str(diff_money/10)
 print(f"{diff_day}日間で収支{diff_money}k")
