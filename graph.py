@@ -54,6 +54,7 @@ for group in day_list:
             group_list.append(temp_list)
 
 # 日付と日毎収支をグラフにする
+# 2023/12が最初で、2024/1, 2024/2, ...の順になるように順位付けを変更する
 month_order = dict(zip(range(1, 13), [i%12 + 1 for i in range(1, 13)]))
 group_list.sort(key=lambda x:(month_order[x[0]], x[1]))
 group_list.pop(0)
