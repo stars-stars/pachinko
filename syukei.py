@@ -40,6 +40,9 @@ for day in new_day_list:
             pay, payback = value.replace("k", "").split("/")
             group_list.append([name, float(pay), float(payback)])
 days = pd.DataFrame(data=group_list, columns=["機種", "投資額", "回収額"])
+group = days.groupby("機種").sum()
+group["収支"] = group["回収額"] - group["投資額"]
+days = group
 
 # 機種情報を削除し、日毎収支をまとめる
 group_list = []
@@ -69,7 +72,8 @@ for group in group_list:
     data.append([group[0], group[2]])
 month = pd.DataFrame(data=data, columns=["月", "収支"])
 
+days.to_html("temp.html")
 print("機種ごとに集計\n")
-print(days.groupby("機種").sum())
+print(days)
 print("\n月ごとに集計\n")
 print(month.groupby("月").sum())
