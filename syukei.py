@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas as pd
+import matplotlib.pyplot as plt
+import japanize_matplotlib
 
 def is_date(text):
     flag = True
@@ -41,7 +43,8 @@ for day in new_day_list:
             group_list.append([name, float(pay), float(payback)])
 days = pd.DataFrame(data=group_list, columns=["機種", "投資額", "回収額"])
 group = days.groupby("機種").sum()
-group["収支"] = group["回収額"] - group["投資額"]
+# group["収支"] = group["回収額"] - group["投資額"]
+group["収支"] = [round(kaisyu - toushi, 1) for kaisyu, toushi in zip(group["回収額"], group["投資額"])]
 days = group
 
 # 機種情報を削除し、日毎収支をまとめる
@@ -77,3 +80,15 @@ print("機種ごとに集計\n")
 print(days)
 print("\n月ごとに集計\n")
 print(month.groupby("月").sum())
+
+fig = plt.figure(figsize=(12, 4))
+ax = fig.add_subplot(1,1,1)
+ax.axis("off")
+ax.table(
+    cellText = days.values,
+    rowLabels= list(days.groupby("機種").groups.keys()),
+    colLabels = days.columns,
+    loc = "center"
+)
+plt.savefig("sample.png")
+plt.show()
