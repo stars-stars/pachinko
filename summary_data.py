@@ -16,24 +16,39 @@ df['profit'] = df['return'] - df['investment']
 total_profit = df['profit'].sum()
 
 # 機種ごと収支の計算
-machine_profits = df.groupby('machine_name')['profit'].sum().reset_index()
-# JSONに変換しやすいように辞書型に変換: {'machine_name': profit, ...}
-machine_profits_dict = machine_profits.set_index('machine_name')['profit'].apply(int).to_dict()
+machine_summary = df.groupby('machine_name')[['investment', 'return', 'profit']].sum()
 
 # 月ごと収支の計算
 df['year_month'] = df['date'].dt.to_period('M') # 例: '2024-09' のような形式
-monthly_profit_series = df.groupby('year_month')['profit'].sum()
+monthly_summary = df.groupby('year_month')[['investment', 'return', 'profit']].sum()
 
 # JSON出力用のデータを作成
-# PandasのPeriodIndexを文字列に変換してから辞書に変換します
-monthly_profit_dict = monthly_profit_series.rename(index=lambda x: str(x)).to_dict()
+# 月別サマリーをJSONフレンドリーなリスト形式に変換
+monthly_data_list = []
+for month, row in monthly_summary.iterrows():
+    monthly_data_list.append({
+        'month': str(month),
+        'investment': int(row['investment']),
+        'return': int(row['return']),
+        'profit': int(row['profit'])
+    })
+    
+# 機種別サマリーをJSONフレンドリーなリスト形式に変換
+machine_data_list = []
+for machine, row in machine_summary.iterrows():
+    machine_data_list.append({
+        'machine': machine,
+        'investment': int(row['investment']),
+        'return': int(row['return']),
+        'profit': int(row['profit'])
+    })
 
 # 集計結果をJSONファイルとして出力 (Webページで読み込む用)
 summary_data = {
     'total_profit': int(total_profit),
     'num_of_sessions': len(df),
-    'machine_profits': machine_profits_dict,
-    'monthly_profits': monthly_profit_dict
+    'machine_profits': machine_data_list,
+    'monthly_profits': monthly_data_list
 }
 
 with open('data/summary.json', 'w', encoding='utf-8') as f:
@@ -92,7 +107,8 @@ plt.close()
 
 # 機種ごとの収支の棒グラフを生成
 # 収支の大きい順にソート
-machine_profits_df = machine_profits.sort_values(by='profit', ascending=False)
+machine_summary = machine_summary.reset_index()
+machine_profits_df = machine_summary.sort_values(by='profit', ascending=False)
 fig_bar, ax_bar = plt.subplots(figsize=(10, 6))
 # 収益がプラスかマイナスかで色分け
 colors = ['green' if p >= 0 else 'red' for p in machine_profits_df['profit']]
@@ -118,6 +134,7 @@ for bar in bars:
                     ha='center', 
                     fontsize=9, 
                     color='black')
+plt.tight_layout()
 plt.savefig('data/machine_profit_bar.png')
 plt.close()
 
@@ -127,9 +144,9 @@ plt.figure(figsize=(12, 7))
 
 # 月別収支データを棒グラフとしてプロット
 # monthly_profit_seriesは既に上の手順で計算済みと仮定
-monthly_profit_series.plot(
+monthly_summary['profit'].plot(
     kind='bar',
-    color=[ 'green' if p >= 0 else 'red' for p in monthly_profit_series.values ], # 収益がプラスかマイナスかで色分け
+    color=[ 'green' if p >= 0 else 'red' for p in monthly_summary['profit'].values ], # 収益がプラスかマイナスかで色分け
     title='Total Profit per Month'
 )
 
@@ -142,7 +159,7 @@ plt.ylabel('Profit (Thousands of Yen)')
 plt.grid(axis='y') # 横線のみ表示
 plt.xticks(rotation=45, ha='right') # 月名が重ならないように傾ける
 plt.tight_layout()
-plt.savefig('dist/monthly_bar_graph.png')
+plt.savefig('data/monthly_bar_graph.png')
 plt.close()
 
 print("Data processing complete.")

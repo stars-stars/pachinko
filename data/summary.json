@@ -1,25 +1,110 @@
 {
     "total_profit": -638200,
     "num_of_sessions": 136,
-    "machine_profits": {
-        "インデックス": -1000,
-        "エヴァ": -28000,
-        "カバネリ": -28000,
-        "ジャグラー": -269400,
-        "リゼロ強欲": -130000,
-        "リゼロ鬼がかり": -99000,
-        "ヴァルヴレイヴ": -800,
-        "南国育ち": -82000,
-        "海物語": 0
-    },
-    "monthly_profits": {
-        "2023-12": -162500,
-        "2024-01": -14500,
-        "2024-02": -95100,
-        "2024-03": -100300,
-        "2024-05": -119000,
-        "2024-06": -64800,
-        "2024-07": -47000,
-        "2024-08": -35000
-    }
+    "machine_profits": [
+        {
+            "machine": "インデックス",
+            "investment": 1000,
+            "return": 0,
+            "profit": -1000
+        },
+        {
+            "machine": "エヴァ",
+            "investment": 28000,
+            "return": 0,
+            "profit": -28000
+        },
+        {
+            "machine": "カバネリ",
+            "investment": 28000,
+            "return": 0,
+            "profit": -28000
+        },
+        {
+            "machine": "ジャグラー",
+            "investment": 922500,
+            "return": 653100,
+            "profit": -269400
+        },
+        {
+            "machine": "リゼロ強欲",
+            "investment": 130000,
+            "return": 0,
+            "profit": -130000
+        },
+        {
+            "machine": "リゼロ鬼がかり",
+            "investment": 146000,
+            "return": 47000,
+            "profit": -99000
+        },
+        {
+            "machine": "ヴァルヴレイヴ",
+            "investment": 106000,
+            "return": 105200,
+            "profit": -800
+        },
+        {
+            "machine": "南国育ち",
+            "investment": 108000,
+            "return": 26000,
+            "profit": -82000
+        },
+        {
+            "machine": "海物語",
+            "investment": 2000,
+            "return": 2000,
+            "profit": 0
+        }
+    ],
+    "monthly_profits": [
+        {
+            "month": "2023-12",
+            "investment": 223500,
+            "return": 61000,
+            "profit": -162500
+        },
+        {
+            "month": "2024-01",
+            "investment": 149000,
+            "return": 134500,
+            "profit": -14500
+        },
+        {
+            "month": "2024-02",
+            "investment": 380000,
+            "return": 284900,
+            "profit": -95100
+        },
+        {
+            "month": "2024-03",
+            "investment": 185000,
+            "return": 84700,
+            "profit": -100300
+        },
+        {
+            "month": "2024-05",
+            "investment": 219000,
+            "return": 100000,
+            "profit": -119000
+        },
+        {
+            "month": "2024-06",
+            "investment": 167000,
+            "return": 102200,
+            "profit": -64800
+        },
+        {
+            "month": "2024-07",
+            "investment": 99000,
+            "return": 52000,
+            "profit": -47000
+        },
+        {
+            "month": "2024-08",
+            "investment": 49000,
+            "return": 14000,
+            "profit": -35000
+        }
+    ]
 }
