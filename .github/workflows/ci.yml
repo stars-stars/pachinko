@@ -1,0 +1,62 @@
+name: Data Processing and Deploy
+
+# ワークフローを実行するトリガーを定義
+on:
+  # mainブランチにプッシュがあった時に実行
+  push:
+    branches:
+      - main
+    # 特に収支データファイルが変更された場合に限定（効率化のため）
+    paths:
+      - 'data/day_datas.csv'
+      - '**.py' # Pythonスクリプトの変更も含む
+      
+  # 任意のタイミングで手動実行を可能にする
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      # 2. Python環境をセットアップ (3.11を使用)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      # 3. 必要なライブラリをインストール
+      # (PandasやMatplotlibなど、スクリプトで使うライブラリを記述)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # ここはあなたのPythonスクリプトに必要なライブラリに置き換えてください
+          pip install pandas matplotlib
+          
+      # 4. 収支データを処理・集計するPythonスクリプトを実行
+      - name: Run data aggregation scripts
+        run: |
+          # distディレクトリを作成 (出力先)
+          mkdir -p dist
+          # ここであなたの集計スクリプトを実行
+          # 例: syukei.pyがdist/summary.jsonやdist/graph.pngを生成すると仮定
+          python syukei.py
+          
+      # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
+      # (pagesブランチを使用する標準的なデプロイ設定を想定)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
+          # あなたのリポジトリ構成に合わせて 'main' か 'dist' などを指定
+          publish_dir: ./
+          # デプロイ先のブランチ名
+          publish_branch: gh-pages
+          
+      # 【補足】もしPagesの設定が異なる場合は、actions/upload-pages-artifactとactions/deploy-pagesを使う
+      # 詳細はGitHub Pagesのドキュメントを参照してください。

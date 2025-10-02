@@ -92,3 +92,4 @@ ax.table(
 )
 plt.savefig("sample.png")
 plt.show()
+print(days.values)
