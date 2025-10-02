@@ -35,7 +35,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           # ここはあなたのPythonスクリプトに必要なライブラリに置き換えてください
-          pip install pandas matplotlib
+          pip install pandas matplotlib japanize_matplotlib
           
       # 4. 収支データを処理・集計するPythonスクリプトを実行
       - name: Run data aggregation scripts
@@ -52,7 +52,7 @@ jobs:
           # あなたのリポジトリ構成に合わせて 'main' か 'dist' などを指定
           publish_dir: ./
           # デプロイ先のブランチ名
-          publish_branch: gh-pages
+          publish_branch: main
           
       # 【補足】もしPagesの設定が異なる場合は、actions/upload-pages-artifactとactions/deploy-pagesを使う
       # 詳細はGitHub Pagesのドキュメントを参照してください。
