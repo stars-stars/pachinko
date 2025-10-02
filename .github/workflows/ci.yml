@@ -40,11 +40,7 @@ jobs:
       # 4. 収支データを処理・集計するPythonスクリプトを実行
       - name: Run data aggregation scripts
         run: |
-          # distディレクトリを作成 (出力先)
-          mkdir -p dist
-          # ここであなたの集計スクリプトを実行
-          # 例: syukei.pyがdist/summary.jsonやdist/graph.pngを生成すると仮定
-          python syukei.py
+          python summary_data.py
           
       # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
       # (pagesブランチを使用する標準的なデプロイ設定を想定)
