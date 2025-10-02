@@ -19,135 +19,44 @@
             <div class="contents">
                 <div class="sum">
                     <h2>パチンコ・パチスロ総合収支</h2>
-                    <h1>-638.2k!!!</h1>
-                    <h3>(2024/08/13時点)</h3>
+                    <h1><span id="total-profit">...</span>k!!!</h1>
+                    <h3><span id="today">...</span></h3>
                     <img src="data/daily_cumulative_graph.png" alt="総合収支の推移">
                     <div class="days">
                         <!--機種ごと収支-->
-                        <table width="1200" border="3">
-                            <caption>機種ごと収支</caption>
-                            <thead>
-                                <tr>
-                                    <th>機種</th>
-                                    <th>投資</th>
-                                    <th>回収</th>
-                                    <th>収支</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>インデックス</th>
-                                    <td>1.0k</td>
-                                    <td>0.0k</td>
-                                    <td>-1.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>エヴァ</th>
-                                    <td>28.0k</td>
-                                    <td>0.0k</td>
-                                    <td>-28.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>リゼロ鬼がかり</th>
-                                    <td>146.0k</td>
-                                    <td>47.0k</td>
-                                    <td>-99.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>リゼロ強欲</th>
-                                    <td>130.0k</td>
-                                    <td>0.0k</td>
-                                    <td>-130.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>ジャグラー</th>
-                                    <td>839.5k</td>
-                                    <td>630.1k</td>
-                                    <td>-209.4k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>南国育ち</th>
-                                    <td>108.0k</td>
-                                    <td>23.0k</td>
-                                    <td>-82.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>カバネリ</th>
-                                    <td>28.0k</td>
-                                    <td>0.0k</td>
-                                    <td>-28.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>ヴァルヴレイヴ</th>
-                                    <td>43.0k</td>
-                                    <td>64.2k</td>
-                                    <td>+21.2k</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="machine-summary">
+                            <table width="1200" border="3">
+                                <caption>機種ごと収支</caption>
+                                <thead>
+                                    <tr>
+                                        <th>機種</th>
+                                        <th>投資</th>
+                                        <th>回収</th>
+                                        <th>収支</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <img src="data/machine_profit_bar.png" alt="機種別収支">
                         <!--月ごと収支-->
-                        <table width="1200" border="3">
-                            <caption>月ごと収支</caption>
-                            <thead>
-                                <tr>
-                                    <th>年/月</th>
-                                    <th>収支</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2023/12</td>
-                                    <td>-162.5k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>2024/1</td>
-                                    <td>-14.5k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>2024/2</td>
-                                    <td>-95.1k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>2024/3</td>
-                                    <td>-100.3k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>2024/5</td>
-                                    <td>-119.0k</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td>2024/6</td>
-                                    <td>-64.8</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="monthly-summary">
+                            <table width="1200" border="3">
+                                <caption>月ごと収支</caption>
+                                <thead>
+                                    <tr>
+                                        <th>年/月</th>
+                                        <th>収支</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <img src="data/monthly_bar_graph.png" alt="月別収支">
                     </div>
                 </div>
             </div>
         </div>
+        <script src="update_data.js"></script>
     </body>
 </html>
