@@ -82,6 +82,7 @@ header a:hover{
     margin: auto;
     margin-bottom: 50px;
     table-layout: fixed;
+    background-color: transparent;
 }
 
 tbody:nth-child(2n){
@@ -90,6 +91,14 @@ tbody:nth-child(2n){
 
 tbody:nth-child(2n+1){
     background-color: #ffffff;
+}
+
+.odd-group{
+    background-color: red !important;
+}
+
+.even-group{
+    background-color: green;/*#c0c0c0 !important;*/
 }
 
 .diary{

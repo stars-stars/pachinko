@@ -49,10 +49,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
-          # あなたのリポジトリ構成に合わせて 'main' か 'dist' などを指定
           publish_dir: ./
           # デプロイ先のブランチ名
           publish_branch: main
-          
-      # 【補足】もしPagesの設定が異なる場合は、actions/upload-pages-artifactとactions/deploy-pagesを使う
-      # 詳細はGitHub Pagesのドキュメントを参照してください。

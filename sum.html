@@ -24,34 +24,28 @@
                     <img src="data/daily_cumulative_graph.png" alt="総合収支の推移">
                     <div class="days">
                         <!--機種ごと収支-->
-                        <div id="machine-summary">
-                            <table width="1200" border="3">
-                                <caption>機種ごと収支</caption>
-                                <thead>
-                                    <tr>
-                                        <th>機種</th>
-                                        <th>投資</th>
-                                        <th>回収</th>
-                                        <th>収支</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
+                        <table width="1200" border="3">
+                            <caption>機種ごと収支</caption>
+                            <thead>
+                                <tr>
+                                    <th>機種</th>
+                                    <th>収支</th>
+                                </tr>
+                            </thead>
+                            <tbody id="machine-summary-body"></tbody>
+                        </table>
                         <img src="data/machine_profit_bar.png" alt="機種別収支">
                         <!--月ごと収支-->
-                        <div id="monthly-summary">
-                            <table width="1200" border="3">
-                                <caption>月ごと収支</caption>
-                                <thead>
-                                    <tr>
-                                        <th>年/月</th>
-                                        <th>収支</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
+                        <table width="1200" border="3">
+                            <caption>月ごと収支</caption>
+                            <thead>
+                                <tr>
+                                    <th>年/月</th>
+                                    <th>収支</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monthly-summary-body"></tbody>
+                        </table>
                         <img src="data/monthly_bar_graph.png" alt="月別収支">
                     </div>
                 </div>
