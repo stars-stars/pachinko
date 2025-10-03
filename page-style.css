@@ -82,22 +82,17 @@ header a:hover{
     margin: auto;
     margin-bottom: 50px;
     table-layout: fixed;
+}
+
+td{
     background-color: transparent;
 }
 
-tbody:nth-child(2n){
-    background-color: #c0c0c0;
-}
-
-tbody:nth-child(2n+1){
-    background-color: #ffffff;
-}
-
-.odd-group{
+.odd-row{
     background-color: red !important;
 }
 
-.even-group{
+.even-row{
     background-color: green;/*#c0c0c0 !important;*/
 }
 

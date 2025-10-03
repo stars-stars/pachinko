@@ -66,7 +66,7 @@ function embedTableData(summaryArray, tableSelector, type, formatter){
 
         // 奇数、偶数のグループに分ける
         const isOddGroup = (index + 1) % 2 !== 0;
-        row.classList.add(isOddGroup ? 'odd-group' : 'even-group');
+        row.classList.add(isOddGroup ? 'odd-row' : 'even-row');
 
         // 機種名・年月のどちらかを埋め込み
         let primaryCell = row.insertCell();
