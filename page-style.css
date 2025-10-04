@@ -89,11 +89,11 @@ td{
 }
 
 .odd-row{
-    background-color: red !important;
+    background-color: white !important;
 }
 
 .even-row{
-    background-color: green;/*#c0c0c0 !important;*/
+    background-color: #c0c0c0 !important;
 }
 
 .diary{

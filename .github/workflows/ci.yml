@@ -9,7 +9,10 @@ on:
     # 特に収支データファイルが変更された場合に限定（効率化のため）
     paths:
       - 'data/day_datas.csv'
-      - '**.py' # Pythonスクリプトの変更も含む
+      - '**.py' 
+      - '**.js'
+      - '**.html'
+      - '**.css'
       
   # 任意のタイミングで手動実行を可能にする
   workflow_dispatch:
@@ -51,4 +54,4 @@ jobs:
           # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
           publish_dir: ./
           # デプロイ先のブランチ名
-          publish_branch: main
+          publish_branch: gh-pages
