@@ -10,6 +10,7 @@ on:
     paths:
       - 'data/day_datas.csv'
       - '**.py' # Pythonスクリプトの変更も含む
+      - '**.js'
       
   # 任意のタイミングで手動実行を可能にする
   workflow_dispatch:
