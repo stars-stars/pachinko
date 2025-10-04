@@ -51,4 +51,4 @@ jobs:
           # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
           publish_dir: ./
           # デプロイ先のブランチ名
-          publish_branch: main
+          publish_branch: gh-pages
