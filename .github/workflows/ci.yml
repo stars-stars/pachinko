@@ -47,11 +47,11 @@ jobs:
           
       # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
       # (pagesブランチを使用する標準的なデプロイ設定を想定)
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
-          publish_dir: ./
-          # デプロイ先のブランチ名
-          publish_branch: gh-pages
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
+      #     publish_dir: ./
+      #     # デプロイ先のブランチ名
+      #     publish_branch: gh-pages
