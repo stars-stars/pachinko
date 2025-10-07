@@ -109,7 +109,8 @@ function groupAndRenderTables(records) {
                 const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
 
                 // 行の開始
-                htmlOutput += `<tr>`;
+                const rowClasses = isFirstRow ? 'day day-group-start' : 'day';
+                htmlOutput += `<tr class="${rowClasses}">`;
 
                 if (isFirstRow) {
                     // 最初の行のみ日付セルを挿入
@@ -127,7 +128,7 @@ function groupAndRenderTables(records) {
                 htmlOutput += `<td style="color: ${profitColor}; font-weight: bold; text-align: right">${profit.toFixed(1)}k</td>`;
 
                 htmlOutput += `</tr>`;
-            });
+            }); 
         });
 
         htmlOutput += `</tbody></table></div>`;
@@ -144,13 +145,19 @@ function applyZebraStriping() {
     const tbodies = document.querySelectorAll('#data-container table tbody');
 
     tbodies.forEach(tbody => {
-        // tbody内のすべての <tr> 行を取得
-        const rows = tbody.querySelectorAll('tr');
+        let groupIndex = 0; // 日付グループのカウンター
 
-        rows.forEach((row, index) => {
-            // 偶数行/奇数行でクラスを付与
-            const isOddRow = (index + 1) % 2 !== 0; // 1行目, 3行目...を奇数行とする
-            row.classList.add(isOddRow ? 'odd-row' : 'even-row');
+        const allRows = tbody.querySelectorAll('tr');
+
+        allRows.forEach(row => {
+            // 'day-group-start' クラスが付与されている行（日付グループの最初の行）でのみ、グループインデックスをインクリメント
+            if (row.classList.contains('day-group-start')) {
+                groupIndex++;
+            }
+
+            // グループインデックスに基づいて偶数/奇数クラスを適用
+            const isOddGroup = (groupIndex) % 2 !== 0; // 1番目, 3番目...のグループを奇数とする
+            row.classList.add(isOddGroup ? 'odd-row' : 'even-row');
         });
     });
 }
