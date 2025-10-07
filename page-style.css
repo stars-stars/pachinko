@@ -84,6 +84,10 @@ header a:hover{
     table-layout: fixed;
 }
 
+.days h2{
+    text-align: center;
+}
+
 td{
     background-color: transparent;
 }
