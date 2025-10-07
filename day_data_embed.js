@@ -144,13 +144,8 @@ function applyZebraStriping() {
     const tbodies = document.querySelectorAll('#data-container table tbody');
 
     tbodies.forEach(tbody => {
-        // tbody内のすべての <tr> 行を取得
-        const rows = tbody.querySelectorAll('tr');
-
-        rows.forEach((row, index) => {
-            // 偶数行/奇数行でクラスを付与
-            const isOddRow = (index + 1) % 2 !== 0; // 1行目, 3行目...を奇数行とする
-            row.classList.add(isOddRow ? 'odd-row' : 'even-row');
-        });
+        // 偶数行/奇数行でクラスを付与
+        const isOddRow = (index + 1) % 2 !== 0; // 1行目, 3行目...を奇数行とする
+        tbody.classList.add(isOddRow ? 'odd-row' : 'even-row');
     });
 }
