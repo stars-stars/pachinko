@@ -43,6 +43,7 @@ jobs:
       # 4. 収支データを処理・集計するPythonスクリプトを実行
       - name: Run data aggregation scripts
         run: |
+          python sorting.py
           python summary_data.py
           
       # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
