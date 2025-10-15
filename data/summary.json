@@ -1,6 +1,6 @@
 {
-    "total_profit": -638200,
-    "num_of_sessions": 136,
+    "total_profit": -621700,
+    "num_of_sessions": 151,
     "machine_profits": [
         {
             "machine": "インデックス",
@@ -9,10 +9,10 @@
             "profit": -1000
         },
         {
-            "machine": "エヴァ",
-            "investment": 28000,
+            "machine": "エヴァンゲリオン",
+            "investment": 35000,
             "return": 0,
-            "profit": -28000
+            "profit": -35000
         },
         {
             "machine": "カバネリ",
@@ -22,21 +22,21 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 922500,
-            "return": 653100,
-            "profit": -269400
+            "investment": 977500,
+            "return": 680100,
+            "profit": -297400
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 130000,
-            "return": 0,
-            "profit": -130000
+            "investment": 134000,
+            "return": 18000,
+            "profit": -116000
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 146000,
-            "return": 47000,
-            "profit": -99000
+            "investment": 195500,
+            "return": 134000,
+            "profit": -61500
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -105,6 +105,18 @@
             "investment": 49000,
             "return": 14000,
             "profit": -35000
+        },
+        {
+            "month": "2025-09",
+            "investment": 17500,
+            "return": 83000,
+            "profit": 65500
+        },
+        {
+            "month": "2025-10",
+            "investment": 98000,
+            "return": 49000,
+            "profit": -49000
         }
     ]
 }
