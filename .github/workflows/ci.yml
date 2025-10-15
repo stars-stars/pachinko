@@ -6,19 +6,22 @@ on:
   push:
     branches:
       - main
-    # 特に収支データファイルが変更された場合に限定（効率化のため）
     paths:
       - 'data/day_datas.csv'
       - '**.py' 
       - '**.js'
       - '**.html'
       - '**.css'
-      
   # 任意のタイミングで手動実行を可能にする
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -37,7 +40,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # ここはあなたのPythonスクリプトに必要なライブラリに置き換えてください
           pip install pandas matplotlib japanize_matplotlib
           
       # 4. 収支データを処理・集計するPythonスクリプトを実行
@@ -45,6 +47,22 @@ jobs:
         run: |
           python sorting.py
           python summary_data.py
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./"
+
+  # デプロイ
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
           
       # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
       # (pagesブランチを使用する標準的なデプロイ設定を想定)
