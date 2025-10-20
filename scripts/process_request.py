@@ -65,6 +65,57 @@ def parse_and_validate_issue_day_data(body):
     
     return parsed_requests, None
 
+def parse_and_validate_issue_diary(body):
+    # データの部分のみを使用
+    for i, item in enumerate(body):
+        print(f"{i}: {item}")
+    exit(1)
+    lines = body.split('\n')[2:]
+
+    parsed_requests = []
+    validation_errors = []
+    
+    for i, line in enumerate(lines, 1):
+        parts = [p.strip() for p in line.split(',')]
+
+        date = parts[0]
+        name = parts[1]
+        investment = parts[2]
+        returned = parts[3]
+
+        # --- 簡易的な検証 ---
+        # 日付の検証 (YYYY-MM-DD 形式)
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
+            validation_errors.append(f"行 {i} ({date}): 日付のフォーマットが 'YYYY-MM-DD' ではありません。")
+        else:
+            try:
+                datetime.strptime(date, '%Y-%m-%d')
+            except ValueError:
+                validation_errors.append(f"行 {i} ({date}): 無効な日付です。")
+
+        # 投資額の検証
+        if not re.search(r'^\d', investment):
+            validation_errors.append(f"行 {i} ({investment}): 投資額のフォーマットが数値形式ではありません。")
+        # 回収額の検証
+        if not re.search(r'^\d', returned):
+            validation_errors.append(f"行 {i} ({returned}): 投資額のフォーマットが数値形式ではありません。")
+
+        # 検証を通過した場合、データに追加
+        if not validation_errors:
+            parsed_requests.append({
+                'date': date.replace(',', ' '), # CSVのためにカンマを置換
+                'name': name.replace(',', ''), # CSVのためにカンマを削除
+                'investment': investment,
+                'returned': returned,
+                'issue_number': ISSUE_NUMBER
+            })
+            
+    if validation_errors:
+        return None, validation_errors
+    
+    return parsed_requests, None
+
+
 # 検証失敗時のIssueコメント処理
 def comment_on_issue(errors):
     if not GITHUB_TOKEN:
@@ -102,7 +153,7 @@ def main():
             # GitHub Actionsの出力変数 is-valid に 'false' を設定
             print("::set-output name=is-valid::false")
             print("Issueの検証に失敗しました。")
-            exit(1) # ワークフローの続行を許可する（後続のコミットステップをスキップさせるため）
+            exit(1) # ワークフローの続行を禁止する
 
         # 検証成功時の処理: CSVファイルへの追記
         with open(CSV_PATH, 'a', encoding='utf-8') as f:
@@ -112,8 +163,16 @@ def main():
         # 成功
         print(f"::set-output name=is-valid::true")
         print("Issue情報をCSVに追加し、コミットを準備します。")
-    # elif ISSUE_TITLE == 'Add diary-data':
-    #     requests, errors = parse_and_validate_issue_day_data(ISSUE_BODY)
+    elif ISSUE_TITLE == 'Add diary-data':
+        requests, errors = parse_and_validate_issue_diary(ISSUE_BODY)
+
+        if errors:
+            # 検証失敗時の処理: Issueにコメント
+            comment_on_issue(errors)
+            # GitHub Actionsの出力変数 is-valid に 'false' を設定
+            print("::set-output name=is-valid::false")
+            print("Issueの検証に失敗しました。")
+            exit(1) # ワークフローの続行を禁止する
 
 
 if __name__ == "__main__":
