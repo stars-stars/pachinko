@@ -1,7 +1,5 @@
 import pandas as pd
 import json
-from datetime import datetime
-from collections import OrderedDict
 
 day_data_path = 'data/day_datas.csv'
 diary_data_path = 'data/diaries.jsonl'
