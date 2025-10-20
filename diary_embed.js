@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return response.text();
         })
-        .then(data => {
+        .then(text => {
             statusElement.textContent = ''; // 読み込みメッセージをクリア
 
             // 文字列を改行で分割し、各行をJSONオブジェクトにパースする
