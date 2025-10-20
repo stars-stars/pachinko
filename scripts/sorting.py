@@ -1,7 +1,8 @@
 import pandas as pd
 
+filepath = '../data/day_datas.csv'
 # CSVファイルを読み込みます
-df = pd.read_csv('data/day_datas.csv')
+df = pd.read_csv(filepath)
 
 # 'date' 列を日付型に変換します (ソートを正確に行うため)
 df['date'] = pd.to_datetime(df['date'])
@@ -10,5 +11,4 @@ df['date'] = pd.to_datetime(df['date'])
 df_sorted = df.sort_values(by='date', ascending=True)
 
 # 並び替えたデータを新しいCSVファイルに保存します
-output_file = 'data/day_datas.csv'
-df_sorted.to_csv(output_file, index=False)
+df_sorted.to_csv(filepath, index=False)

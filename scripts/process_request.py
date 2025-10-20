@@ -10,7 +10,7 @@ ISSUE_BODY = os.environ.get('ISSUE_BODY')
 ISSUE_NUMBER = os.environ.get('ISSUE_NUMBER')
 REPO_OWNER = os.environ.get('REPO_OWNER')
 REPO_NAME = os.environ.get('REPO_NAME')
-CSV_PATH = os.environ.get('CSV_PATH')
+CSV_PATH = '../data/day_datas.csv'
 
 # Issueの本文から機材リストのセクションを抽出し、パースする
 def parse_and_validate_issue(body):

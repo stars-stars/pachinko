@@ -44,14 +44,13 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           REPO_OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.event.repository.name }}
-          CSV_PATH: 'data/day_datas.csv'
-        run: python process_request.py
+        run: python scripts/process_request.py
           
       # 収支データを処理・集計するPythonスクリプトを実行
       - name: Run data aggregation scripts
         run: |
-          python sorting.py
-          python summary_data.py
+          python scripts/sorting.py
+          python scripts/summary_data.py
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
