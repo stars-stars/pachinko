@@ -4,7 +4,7 @@ from datetime import datetime
 from collections import OrderedDict
 
 day_data_path = 'data/day_datas.csv'
-diary_data_path = 'data/diaries.json'
+diary_data_path = 'data/diaries.jsonl'
 # CSVファイルを読み込みます
 df = pd.read_csv(day_data_path)
 
@@ -19,14 +19,20 @@ df_sorted = df.sort_values(by=['date', 'machine_name'], ascending=[True, True])
 df_sorted.to_csv(day_data_path, index=False)
 
 # 日記データのソート
+datas = []
 with open(diary_data_path, 'r', encoding='utf-8') as f:
-    data = json.load(f)
-# キーをソートする
-sorted_keys = sorted(data.keys(), key=lambda x: datetime.strptime(x, "%Y-%m-%d"))
-# ソートされたキー順に新しい辞書を作成
-sorted_data = OrderedDict()
-for key in sorted_keys:
-    sorted_data[key] = data[key]
+    for line_number, line in enumerate(f):
+        # 空行やホワイトスペースのみの行をスキップ
+        stripped_line = line.strip()
+        if not stripped_line:
+            continue
+
+        entry = json.loads(stripped_line)
+        datas.append(entry)
+# 日付でソートする
+datas.sort(key=lambda x: x['date'])
 # 並び替えたデータを上書き保存
 with open(diary_data_path, 'w', encoding='utf-8') as f:
-    json.dump(sorted_data, f, ensure_ascii=False, indent=4)
+    for data in datas:
+        json_line = json.dumps(data, ensure_ascii=False)
+        f.write(json_line + "\n")
