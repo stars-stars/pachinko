@@ -99,7 +99,7 @@ def main():
         # GitHub Actionsの出力変数 is-valid に 'false' を設定
         print("::set-output name=is-valid::false")
         print("Issueの検証に失敗しました。")
-        exit(0) # ワークフローの続行を許可する（後続のコミットステップをスキップさせるため）
+        exit(1) # ワークフローの続行を許可する（後続のコミットステップをスキップさせるため）
 
     # 4. 検証成功時の処理: CSVファイルへの追記
     with open(CSV_PATH, 'a', encoding='utf-8') as f:

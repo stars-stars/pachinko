@@ -56,13 +56,25 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './'
-      # 変更内容をブランチに反映する
-      - name: commit change
+      # 変更内容をブランチに反映する(Issue以外からのトリガー)
+      - name: commit change(not issue trigger)
+        if: ${{ github.event_name != 'issues' }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "update all with GitHub Actions close #$ISSUE_NUMBER"
+          git commit -m "update all with GitHub Actions"
+          git push
+      # 変更内容をブランチに反映する(Issueからのトリガー)
+      - name: commit change(issue trigger)
+        if: ${{ github.event_name == 'issues' }}
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "update all with GitHub Actions close #${ISSUE_NUMBER}"
           git push
 
   # デプロイ
