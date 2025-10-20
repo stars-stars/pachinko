@@ -2,10 +2,6 @@ name: Data Processing and Deploy
 
 # ワークフローを実行するトリガーを定義
 on:
-  # mainブランチにプッシュがあった時に実行
-  push:
-    branches:
-      - main
   # イシューに投稿された時に実行
   issues:
     types: [opened]
@@ -36,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas matplotlib japanize_matplotlib
+          pip install pandas matplotlib japanize_matplotlib pygithub
 
       # Issueからデータを読み取り、csvへ保存する
       - name: Extract Issue message
