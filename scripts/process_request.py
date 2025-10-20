@@ -5,14 +5,16 @@ from github import Github
 
 # 環境変数から必要な情報を取得
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
+ISSUE_TITLE = os.environ.get('ISSUE_TITLE')
 ISSUE_BODY = os.environ.get('ISSUE_BODY')
 ISSUE_NUMBER = os.environ.get('ISSUE_NUMBER')
 REPO_OWNER = os.environ.get('REPO_OWNER')
 REPO_NAME = os.environ.get('REPO_NAME')
 CSV_PATH = 'data/day_datas.csv'
+JSON_PATH = 'data/diaries.json'
 
 # Issueの本文から機材リストのセクションを抽出し、パースする
-def parse_and_validate_issue(body):
+def parse_and_validate_issue_day_data(body):
     # データの部分のみを使用
     lines = body.split('\n')[2:]
 
@@ -91,24 +93,27 @@ def comment_on_issue(errors):
 
 # メイン処理
 def main():
-    requests, errors = parse_and_validate_issue(ISSUE_BODY)
-    
-    if errors:
-        # 3. 検証失敗時の処理: Issueにコメント
-        comment_on_issue(errors)
-        # GitHub Actionsの出力変数 is-valid に 'false' を設定
-        print("::set-output name=is-valid::false")
-        print("Issueの検証に失敗しました。")
-        exit(1) # ワークフローの続行を許可する（後続のコミットステップをスキップさせるため）
+    if ISSUE_TITLE == 'Add day-data':
+        requests, errors = parse_and_validate_issue_day_data(ISSUE_BODY)
+        
+        if errors:
+            # 検証失敗時の処理: Issueにコメント
+            comment_on_issue(errors)
+            # GitHub Actionsの出力変数 is-valid に 'false' を設定
+            print("::set-output name=is-valid::false")
+            print("Issueの検証に失敗しました。")
+            exit(1) # ワークフローの続行を許可する（後続のコミットステップをスキップさせるため）
 
-    # 4. 検証成功時の処理: CSVファイルへの追記
-    with open(CSV_PATH, 'a', encoding='utf-8') as f:
-        for req in requests:
-            f.write(f"{req['date']},{req['name']},{req['investment']},{req['returned']}\n")
+        # 検証成功時の処理: CSVファイルへの追記
+        with open(CSV_PATH, 'a', encoding='utf-8') as f:
+            for req in requests:
+                f.write(f"{req['date']},{req['name']},{req['investment']},{req['returned']}\n")
 
-    # 成功
-    print(f"::set-output name=is-valid::true")
-    print("Issue情報をCSVに追加し、コミットを準備します。")
+        # 成功
+        print(f"::set-output name=is-valid::true")
+        print("Issue情報をCSVに追加し、コミットを準備します。")
+    # elif ISSUE_TITLE == 'Add diary-data':
+    #     requests, errors = parse_and_validate_issue_day_data(ISSUE_BODY)
 
 
 if __name__ == "__main__":

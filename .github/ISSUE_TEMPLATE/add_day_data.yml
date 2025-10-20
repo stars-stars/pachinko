@@ -1,7 +1,7 @@
 name: データの追加
 description: データを追加する際に使用するテンプレートです。
-title: "Add Data"
-labels: "AddData"
+title: "Add day-data"
+labels: "AddDayData"
 
 body:
   - type: markdown
