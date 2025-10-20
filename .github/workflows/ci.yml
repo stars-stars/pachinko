@@ -14,7 +14,7 @@ on:
       - '**.css'
   # イシューに投稿された時に実行
   issues:
-    types: opened
+    types: [opened]
   # 任意のタイミングで手動実行を可能にする
   workflow_dispatch:
 
@@ -22,11 +22,15 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
       # Issueからデータを読み取り、csvへ保存する
       - name: Extract Issue message
         id: extract_message
@@ -34,16 +38,17 @@ jobs:
         run: |
           ISSUE_TITLE="${{ github.event.issue.title }}"
           ISSUE_BODY="${{ github.event.issue.body }}"
-          echo "title=$(echo "$ISSUE_TITLE" | sed 's/"/\\"/g')" >> $GITHUB_OUTPUT
-          echo "content=$(echo "$ISSUE_BODY" | sed 's/"/\\"/g')" >> $GITHUB_OUTPUT
+          echo "title=$(echo '$ISSUE_TITLE')" >> $GITHUB_OUTPUT
+          echo "content=$(echo '$ISSUE_BODY')" >> $GITHUB_OUTPUT
+      # 追加の処理
       - name: Add data process
         if: ${{ steps.extract_message.outputs.title == 'Add' }}
-        # 抽出した内容をファイルに書き込む
         run: |
           echo "${{ steps.extract_message.outputs.content }}" > content.txt
           echo "---追加データ---"
           cat content.txt
           echo "${{ steps.extract_message.outputs.content }}" >> data/day_datas.csv
+      # 削除の処理
       - name: Delete data process
         if: ${{ steps.extract_message.outputs.title == 'Delete' }}
         run: |
@@ -51,26 +56,20 @@ jobs:
           echo "${{ steps.extract_message.outputs.content }}" > content.txt
           # 変更を確認
           cat content.txt
-          
         
-      # 1. リポジトリをチェックアウト
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      # 2. Python環境をセットアップ (3.11を使用)
+      # Python環境をセットアップ (3.11を使用)
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           
-      # 3. 必要なライブラリをインストール
-      # (PandasやMatplotlibなど、スクリプトで使うライブラリを記述)
+      # 必要なライブラリをインストール
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pandas matplotlib japanize_matplotlib
           
-      # 4. 収支データを処理・集計するPythonスクリプトを実行
+      # 収支データを処理・集計するPythonスクリプトを実行
       - name: Run data aggregation scripts
         run: |
           python sorting.py
@@ -79,6 +78,14 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './'
+      # 変更内容をブランチに反映する
+      - name: commit change
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "update all with GitHub Actions"
+          git push
 
   # デプロイ
   deploy:
