@@ -1,5 +1,5 @@
 name: 日記データの追加
-description: データを追加する際に使用するテンプレートです。
+description: 日記データを追加する際に使用するテンプレートです。
 title: "Add diary-data"
 labels: "AddDiaryData"
 

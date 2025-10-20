@@ -67,7 +67,7 @@ def parse_and_validate_issue_day_data(body):
 
 def parse_and_validate_issue_diary(body):
     # データの部分のみを使用
-    for i, item in enumerate(body):
+    for i, item in enumerate(body.split('\n')):
         print(f"{i}: {item}")
     exit(1)
     lines = body.split('\n')[2:]

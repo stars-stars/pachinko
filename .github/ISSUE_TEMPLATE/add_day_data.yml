@@ -1,5 +1,5 @@
 name: 日毎データの追加
-description: データを追加する際に使用するテンプレートです。
+description: 日毎データを追加する際に使用するテンプレートです。
 title: "Add day-data"
 labels: "AddDayData"
 
