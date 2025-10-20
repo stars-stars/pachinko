@@ -1,6 +1,6 @@
 import pandas as pd
 
-filepath = '../data/day_datas.csv'
+filepath = 'data/day_datas.csv'
 # CSVファイルを読み込みます
 df = pd.read_csv(filepath)
 
@@ -8,7 +8,7 @@ df = pd.read_csv(filepath)
 df['date'] = pd.to_datetime(df['date'])
 
 # 'date' 列を基準に昇順 (古い日付から新しい日付へ) に並び替えます
-df_sorted = df.sort_values(by='date', ascending=True)
+df_sorted = df.sort_values(by=['date', 'machine_name'], ascending=[True, True])
 
 # 並び替えたデータを新しいCSVファイルに保存します
 df_sorted.to_csv(filepath, index=False)

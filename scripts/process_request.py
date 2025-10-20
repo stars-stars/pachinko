@@ -5,34 +5,21 @@ from github import Github
 
 # 環境変数から必要な情報を取得
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
-ISSUE_TITLE = os.environ.get('ISSUE_TITLE')
 ISSUE_BODY = os.environ.get('ISSUE_BODY')
 ISSUE_NUMBER = os.environ.get('ISSUE_NUMBER')
 REPO_OWNER = os.environ.get('REPO_OWNER')
 REPO_NAME = os.environ.get('REPO_NAME')
-CSV_PATH = '../data/day_datas.csv'
+CSV_PATH = 'data/day_datas.csv'
 
 # Issueの本文から機材リストのセクションを抽出し、パースする
 def parse_and_validate_issue(body):
-    # '【記入例】' の後から次のセクション（またはファイルの終わり）までの行を抽出する簡易的なロジック
-    lines = body.split('\n')
-    start_parsing = False
-    raw_list_lines = []
-    
-    # 簡易的なパース処理: '【記入例】'の後の行をリストとして取得
-    for line in lines:
-        if '【記入例】' in line:
-            start_parsing = False # 記入例そのものは無視
-            continue
-        if start_parsing and line.strip() and not line.startswith('---'):
-             raw_list_lines.append(line.strip())
-        if '[機材名] | [金額] | [日付] | [URL]' in line:
-             start_parsing = True
+    # データの部分のみを使用
+    lines = body.split('\n')[2:]
 
     parsed_requests = []
     validation_errors = []
     
-    for i, line in enumerate(raw_list_lines, 1):
+    for i, line in enumerate(lines, 1):
         parts = [p.strip() for p in line.split(',')]
         
         if len(parts) < 3: # 必須項目（日付, 機種名, 投資額, 回収額）が4つあることを確認

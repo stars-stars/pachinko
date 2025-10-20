@@ -5,7 +5,7 @@ from matplotlib.ticker import FuncFormatter
 import japanize_matplotlib
 
 # データの読み込み
-df = pd.read_csv('../data/day_datas.csv')
+df = pd.read_csv('data/day_datas.csv')
 # 日付型へ変換
 df['date'] = pd.to_datetime(df['date'])
 
@@ -51,7 +51,7 @@ summary_data = {
     'monthly_profits': monthly_data_list
 }
 
-with open('../data/summary.json', 'w', encoding='utf-8') as f:
+with open('data/summary.json', 'w', encoding='utf-8') as f:
     json.dump(summary_data, f, ensure_ascii=False, indent=4)
 
 # 'date'列を日付型に変換し、ソートする (累積計算には順序が重要)
@@ -102,7 +102,7 @@ plt.xlabel('Date')
 plt.ylabel('Cumulative Profit (Yen)')
 plt.grid(True)
 plt.tight_layout() # レイアウトの調整
-plt.savefig('../data/daily_cumulative_graph.png')
+plt.savefig('data/daily_cumulative_graph.png')
 plt.close()
 
 # 機種ごとの収支の棒グラフを生成
@@ -135,7 +135,7 @@ for bar in bars:
                     fontsize=9, 
                     color='black')
 plt.tight_layout()
-plt.savefig('../data/machine_profit_bar.png')
+plt.savefig('data/machine_profit_bar.png')
 plt.close()
 
 
@@ -159,7 +159,7 @@ plt.ylabel('Profit (Thousands of Yen)')
 plt.grid(axis='y') # 横線のみ表示
 plt.xticks(rotation=45, ha='right') # 月名が重ならないように傾ける
 plt.tight_layout()
-plt.savefig('../data/monthly_bar_graph.png')
+plt.savefig('data/monthly_bar_graph.png')
 plt.close()
 
 print("Data processing complete.")
