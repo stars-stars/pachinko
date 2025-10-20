@@ -1,7 +1,7 @@
 name: データの追加
-about: データを追加する際に使用するテンプレートです。
-title: 'Add'
-labels: 'AddData'
+description: データを追加する際に使用するテンプレートです。
+title: "Add"
+labels: "AddData"
 
 body:
   - type: markdown
@@ -9,7 +9,7 @@ body:
       value: |
         ## データの追加
         以下のフォーマットで日付、機種、投資額、回収額を入力してください。
-        YYYY-MM-DD,name,investment,return
+        [日付(YYYY-MM-DD)],[機種名],[投資額(数値)],[回収額(数値)]
         ### 例
         2025-01-01,ジャグラー,1000,1000
 
@@ -18,6 +18,6 @@ body:
     attributes:
       label: 追加データリスト
       placeholder: |
-        [日付],機種名,投資額,回収額
+        [日付(YYYY-MM-DD)],[機種名],[投資額(数値)],[回収額(数値)]
     validations:
       required: true
