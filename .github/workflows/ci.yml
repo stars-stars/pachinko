@@ -12,19 +12,47 @@ on:
       - '**.js'
       - '**.html'
       - '**.css'
+  # イシューに投稿された時に実行
+  issues:
+    types: opened
   # 任意のタイミングで手動実行を可能にする
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
+      # Issueからデータを読み取り、csvへ保存する
+      - name: Extract Issue message
+        id: extract_message
+        if: ${{ github.event_name == 'issues' }}
+        run: |
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          ISSUE_BODY="${{ github.event.issue.body }}"
+          echo "title=$(echo "$ISSUE_TITLE" | sed 's/"/\\"/g')" >> $GITHUB_OUTPUT
+          echo "content=$(echo "$ISSUE_BODY" | sed 's/"/\\"/g')" >> $GITHUB_OUTPUT
+      - name: Add data process
+        if: ${{ steps.extract_message.outputs.title == 'Add' }}
+        # 抽出した内容をファイルに書き込む
+        run: |
+          echo "${{ steps.extract_message.outputs.content }}" > content.txt
+          echo "---追加データ---"
+          cat content.txt
+          echo "${{ steps.extract_message.outputs.content }}" >> data/day_datas.csv
+      - name: Delete data process
+        if: ${{ steps.extract_message.outputs.title == 'Delete' }}
+        run: |
+          # 抽出した内容をファイルに書き込む（例: content.txt）
+          echo "${{ steps.extract_message.outputs.content }}" > content.txt
+          # 変更を確認
+          cat content.txt
+          
+        
       # 1. リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -50,7 +78,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./"
+          path: './'
 
   # デプロイ
   deploy:
@@ -63,14 +91,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-          
-      # 5. 生成された静的ファイルをGitHub Pagesにデプロイ
-      # (pagesブランチを使用する標準的なデプロイ設定を想定)
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v4
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     # デプロイするフォルダを指定 (HTMLファイルや処理結果の静的ファイルがある場所)
-      #     publish_dir: ./
-      #     # デプロイ先のブランチ名
-      #     publish_branch: gh-pages
