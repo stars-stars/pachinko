@@ -1,0 +1,29 @@
+name: 機能の追加リクエスト
+description: 機能の追加を提案する際に使用するテンプレートです。
+title: "Add function request"
+labels: "AddFunctionRequest"
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 機能の追加提案
+        機能の追加を提案するフォームです
+
+  - type: input
+    id: summary
+    attributes:
+      label: 概要
+      placeholder: |
+        提案する機能を完結に記述してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 詳細
+      placeholder: |
+        提案内容について詳細に記述してください。
+    validations:
+      required: true
