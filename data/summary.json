@@ -1,6 +1,6 @@
 {
-    "total_profit": -741700,
-    "num_of_sessions": 180,
+    "total_profit": -743500,
+    "num_of_sessions": 181,
     "machine_profits": [
         {
             "machine": "インデックス",
@@ -22,9 +22,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1030500,
-            "return": 703100,
-            "profit": -327400
+            "investment": 1035500,
+            "return": 706300,
+            "profit": -329200
         },
         {
             "machine": "ブルーロック",
@@ -138,9 +138,9 @@
         },
         {
             "month": "2025-11",
-            "investment": 49000,
-            "return": 7000,
-            "profit": -42000
+            "investment": 54000,
+            "return": 10200,
+            "profit": -43800
         }
     ]
 }
