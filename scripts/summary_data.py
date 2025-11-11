@@ -19,7 +19,7 @@ total_profit = df['profit'].sum()
 machine_summary = df.groupby('machine_name')[['investment', 'return', 'profit']].sum()
 
 # 月ごと収支の計算
-df['year_month'] = df['date'].dt.to_period('M') # 例: '2024-09' のような形式
+df['year_month'] = df['date'].dt.to_period('M')
 monthly_summary = df.groupby('year_month')[['investment', 'return', 'profit']].sum()
 
 # JSON出力用のデータを作成
@@ -43,7 +43,7 @@ for machine, row in machine_summary.iterrows():
         'profit': int(row['profit'])
     })
 
-# 集計結果をJSONファイルとして出力 (Webページで読み込む用)
+# 集計結果をJSONファイルとして出力
 summary_data = {
     'total_profit': int(total_profit),
     'num_of_sessions': len(df),
@@ -54,18 +54,15 @@ summary_data = {
 with open('data/summary.json', 'w', encoding='utf-8') as f:
     json.dump(summary_data, f, ensure_ascii=False, indent=4)
 
-# 'date'列を日付型に変換し、ソートする (累積計算には順序が重要)
-df['date'] = pd.to_datetime(df['date'])
+# date列を日付型に変換し、ソートする
 df = df.sort_values(by='date')
 
 # 日付ごとに収支を合計
-# 同じ日付で複数回プレイしている場合を考慮し、日ごとの合計を計算します
 daily_profit = df.groupby(df['date'].dt.date)['profit'].sum().reset_index()
 daily_profit['date'] = pd.to_datetime(daily_profit['date'])
 daily_profit = daily_profit.set_index('date')
 
 # 累積和を計算
-# これが「累計収支の推移」になります
 daily_profit['cumulative_profit'] = daily_profit['profit'].cumsum()
 
 # --- Y軸のカスタムフォーマッターを定義 ---
@@ -84,13 +81,11 @@ def k_formatter(x, pos):
 plt.figure(figsize=(12, 7)) # グラフのサイズを少し大きくして見やすく調整
 daily_profit['cumulative_profit'].plot(
     kind='line', 
-    #marker='o', 
     linestyle='-', 
     title='Cumulative Profit Trend (Daily)'
 )
 
 # グラフのX軸（日付）の表示を自動的に調整
-# レコード数に応じて最適な表示幅となるよう、pandas/matplotlibが自動で処理します。
 # Y軸にカスタムフォーマッターを適用
 plt.gca().yaxis.set_major_formatter(FuncFormatter(k_formatter))
 plt.gcf().autofmt_xdate() # 日付が重ならないようにX軸のラベルを斜めにする
@@ -143,15 +138,13 @@ plt.close()
 plt.figure(figsize=(12, 7))
 
 # 月別収支データを棒グラフとしてプロット
-# monthly_profit_seriesは既に上の手順で計算済みと仮定
 monthly_summary['profit'].plot(
     kind='bar',
     color=[ 'green' if p >= 0 else 'red' for p in monthly_summary['profit'].values ], # 収益がプラスかマイナスかで色分け
     title='Total Profit per Month'
 )
 
-# Y軸の表示を「k」（千円）に設定 (以前のロジックを再利用)
-# k_formatter関数は、元のスクリプトで定義済みと仮定します。
+# Y軸の表示を「k」（千円）に設定
 plt.gca().yaxis.set_major_formatter(FuncFormatter(k_formatter))
 
 plt.xlabel('Month')
