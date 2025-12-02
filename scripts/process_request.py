@@ -103,7 +103,7 @@ def comment_on_issue(errors):
         return
 
     try:
-        g = Github(GITHUB_TOKEN)
+        g = Github(auth=GITHUB_TOKEN)
         repo = g.get_user(REPO_OWNER).get_repo(REPO_NAME)
         issue = repo.get_issue(number=int(ISSUE_NUMBER))
         
