@@ -129,8 +129,7 @@ def main():
         if errors:
             # 検証失敗時の処理: Issueにコメント
             comment_on_issue(errors)
-            # GitHub Actionsの出力変数 is-valid に 'false' を設定
-            print("::set-output name=is-valid::false")
+            print("is_valid=false >> $GITHUB_OUTPUT")
             print("Issueの検証に失敗しました。")
             exit(1) # ワークフローの続行を禁止する
 
@@ -140,7 +139,7 @@ def main():
                 f.write(f"{req['date']},{req['name']},{req['investment']},{req['returned']}\n")
 
         # 成功
-        print(f"::set-output name=is-valid::true")
+        print(f"is_valid=true >> $GITHUB_OUTPUT")
         print("Issue情報をCSVに追加し、コミットを準備します。")
     elif ISSUE_TITLE == 'Add diary-data':
         requests, errors = parse_and_validate_issue_diary(ISSUE_BODY)
