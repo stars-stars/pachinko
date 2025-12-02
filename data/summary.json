@@ -1,6 +1,6 @@
 {
-    "total_profit": -826600,
-    "num_of_sessions": 215,
+    "total_profit": -858600,
+    "num_of_sessions": 219,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -28,9 +28,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1100500,
+            "investment": 1119500,
             "return": 777300,
-            "profit": -323200
+            "profit": -342200
         },
         {
             "machine": "ブルーロック",
@@ -40,15 +40,15 @@
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 295500,
+            "investment": 300500,
             "return": 174800,
-            "profit": -120700
+            "profit": -125700
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 304500,
+            "investment": 309500,
             "return": 168500,
-            "profit": -136000
+            "profit": -141000
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -88,9 +88,9 @@
         },
         {
             "machine": "海物語",
-            "investment": 45500,
+            "investment": 48500,
             "return": 13000,
-            "profit": -32500
+            "profit": -35500
         },
         {
             "machine": "牙狼",
@@ -168,9 +168,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 1000,
+            "investment": 33000,
             "return": 6000,
-            "profit": 5000
+            "profit": -27000
         }
     ]
 }
