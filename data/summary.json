@@ -1,6 +1,6 @@
 {
-    "total_profit": -858600,
-    "num_of_sessions": 219,
+    "total_profit": -854100,
+    "num_of_sessions": 225,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -28,9 +28,15 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1119500,
-            "return": 777300,
-            "profit": -342200
+            "investment": 1123500,
+            "return": 789300,
+            "profit": -334200
+        },
+        {
+            "machine": "ノリ打ち収支",
+            "investment": 0,
+            "return": 4500,
+            "profit": 4500
         },
         {
             "machine": "ブルーロック",
@@ -40,15 +46,15 @@
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 300500,
+            "investment": 306500,
             "return": 174800,
-            "profit": -125700
+            "profit": -131700
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 309500,
+            "investment": 319500,
             "return": 168500,
-            "profit": -141000
+            "profit": -151000
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -58,9 +64,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 12400,
-            "return": 0,
-            "profit": -12400
+            "investment": 25400,
+            "return": 24000,
+            "profit": -1400
         },
         {
             "machine": "南国育ち",
@@ -88,9 +94,9 @@
         },
         {
             "machine": "海物語",
-            "investment": 48500,
+            "investment": 51500,
             "return": 13000,
-            "profit": -35500
+            "profit": -38500
         },
         {
             "machine": "牙狼",
@@ -168,9 +174,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 33000,
-            "return": 6000,
-            "profit": -27000
+            "investment": 69000,
+            "return": 46500,
+            "profit": -22500
         }
     ]
 }
