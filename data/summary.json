@@ -1,6 +1,6 @@
 {
-    "total_profit": -724600,
-    "num_of_sessions": 244,
+    "total_profit": -722800,
+    "num_of_sessions": 245,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -28,9 +28,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1163500,
-            "return": 823700,
-            "profit": -339800
+            "investment": 1168500,
+            "return": 830500,
+            "profit": -338000
         },
         {
             "machine": "ノリ打ち収支",
@@ -174,9 +174,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 224500,
-            "return": 331500,
-            "profit": 107000
+            "investment": 229500,
+            "return": 338300,
+            "profit": 108800
         }
     ]
 }
