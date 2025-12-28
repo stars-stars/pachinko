@@ -1,6 +1,6 @@
 {
-    "total_profit": -722800,
-    "num_of_sessions": 245,
+    "total_profit": -742800,
+    "num_of_sessions": 251,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -28,15 +28,15 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1168500,
+            "investment": 1174500,
             "return": 830500,
-            "profit": -338000
+            "profit": -344000
         },
         {
             "machine": "ノリ打ち収支",
             "investment": 32500,
-            "return": 4500,
-            "profit": -28000
+            "return": 6500,
+            "profit": -26000
         },
         {
             "machine": "ブルーロック",
@@ -52,9 +52,9 @@
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 336500,
-            "return": 173500,
-            "profit": -163000
+            "investment": 337500,
+            "return": 214500,
+            "profit": -123000
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -64,9 +64,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 56400,
+            "investment": 112400,
             "return": 232600,
-            "profit": 176200
+            "profit": 120200
+        },
+        {
+            "machine": "北斗の拳",
+            "investment": 11000,
+            "return": 11000,
+            "profit": 0
         },
         {
             "machine": "南国育ち",
@@ -106,6 +112,12 @@
         }
     ],
     "monthly_profits": [
+        {
+            "month": "2005-12",
+            "investment": 1000,
+            "return": 41000,
+            "profit": 40000
+        },
         {
             "month": "2023-12",
             "investment": 223500,
@@ -174,9 +186,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 229500,
-            "return": 338300,
-            "profit": 108800
+            "investment": 302500,
+            "return": 351300,
+            "profit": 48800
         }
     ]
 }
