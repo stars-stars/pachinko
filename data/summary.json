@@ -119,12 +119,6 @@
     ],
     "monthly_profits": [
         {
-            "month": "2005-12",
-            "investment": 1000,
-            "return": 41000,
-            "profit": 40000
-        },
-        {
             "month": "2023-12",
             "investment": 223500,
             "return": 61000,
@@ -192,9 +186,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 349500,
-            "return": 351300,
-            "profit": 1800
+            "investment": 350500,
+            "return": 392300,
+            "profit": 41800
         }
     ]
 }
