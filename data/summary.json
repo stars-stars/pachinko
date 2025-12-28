@@ -1,7 +1,13 @@
 {
-    "total_profit": -742800,
-    "num_of_sessions": 251,
+    "total_profit": -789800,
+    "num_of_sessions": 253,
     "machine_profits": [
+        {
+            "machine": "ToLOVEる",
+            "investment": 43000,
+            "return": 0,
+            "profit": -43000
+        },
         {
             "machine": "eからくりサーカス2",
             "investment": 17000,
@@ -34,9 +40,9 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 32500,
+            "investment": 36500,
             "return": 6500,
-            "profit": -26000
+            "profit": -30000
         },
         {
             "machine": "ブルーロック",
@@ -186,9 +192,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 302500,
+            "investment": 349500,
             "return": 351300,
-            "profit": 48800
+            "profit": 1800
         }
     ]
 }
