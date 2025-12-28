@@ -1,6 +1,6 @@
 {
-    "total_profit": -789800,
-    "num_of_sessions": 253,
+    "total_profit": -809800,
+    "num_of_sessions": 255,
     "machine_profits": [
         {
             "machine": "ToLOVEる",
@@ -52,9 +52,9 @@
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 321500,
+            "investment": 331500,
             "return": 204800,
-            "profit": -116700
+            "profit": -126700
         },
         {
             "machine": "リゼロ鬼がかり",
@@ -82,9 +82,9 @@
         },
         {
             "machine": "南国育ち",
-            "investment": 108000,
+            "investment": 118000,
             "return": 26000,
-            "profit": -82000
+            "profit": -92000
         },
         {
             "machine": "東京リベンジャーズ",
@@ -186,9 +186,9 @@
         },
         {
             "month": "2025-12",
-            "investment": 350500,
+            "investment": 370500,
             "return": 392300,
-            "profit": 41800
+            "profit": 21800
         }
     ]
 }
