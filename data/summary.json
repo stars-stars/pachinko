@@ -1,6 +1,6 @@
 {
-    "total_profit": -783000,
-    "num_of_sessions": 256,
+    "total_profit": -793000,
+    "num_of_sessions": 258,
     "machine_profits": [
         {
             "machine": "ToLOVEる",
@@ -22,9 +22,9 @@
         },
         {
             "machine": "エヴァンゲリオン",
-            "investment": 35000,
+            "investment": 40000,
             "return": 0,
-            "profit": -35000
+            "profit": -40000
         },
         {
             "machine": "カバネリ",
@@ -34,9 +34,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1175500,
+            "investment": 1180500,
             "return": 834300,
-            "profit": -341200
+            "profit": -346200
         },
         {
             "machine": "ノリ打ち収支",
@@ -192,9 +192,9 @@
         },
         {
             "month": "2026-01",
-            "investment": 1000,
+            "investment": 11000,
             "return": 3800,
-            "profit": 2800
+            "profit": -7200
         }
     ]
 }
