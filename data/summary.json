@@ -1,12 +1,12 @@
 {
-    "total_profit": -793000,
-    "num_of_sessions": 258,
+    "total_profit": -834000,
+    "num_of_sessions": 260,
     "machine_profits": [
         {
             "machine": "ToLOVEる",
-            "investment": 47000,
-            "return": 28000,
-            "profit": -19000
+            "investment": 97000,
+            "return": 35000,
+            "profit": -62000
         },
         {
             "machine": "eからくりサーカス2",
@@ -70,9 +70,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 112400,
-            "return": 232600,
-            "profit": 120200
+            "investment": 127400,
+            "return": 249600,
+            "profit": 122200
         },
         {
             "machine": "北斗の拳",
@@ -192,9 +192,9 @@
         },
         {
             "month": "2026-01",
-            "investment": 11000,
-            "return": 3800,
-            "profit": -7200
+            "investment": 76000,
+            "return": 27800,
+            "profit": -48200
         }
     ]
 }
