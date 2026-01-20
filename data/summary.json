@@ -1,6 +1,6 @@
 {
-    "total_profit": -893300,
-    "num_of_sessions": 273,
+    "total_profit": -859900,
+    "num_of_sessions": 279,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -28,21 +28,21 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1202300,
-            "return": 854900,
+            "investment": 1208300,
+            "return": 860900,
             "profit": -347400
         },
         {
             "machine": "トラブル",
-            "investment": 162000,
-            "return": 72000,
-            "profit": -90000
+            "investment": 185000,
+            "return": 82000,
+            "profit": -103000
         },
         {
             "machine": "ノリ打ち収支",
             "investment": 44500,
-            "return": 6500,
-            "profit": -38000
+            "return": 67100,
+            "profit": 22600
         },
         {
             "machine": "ブルーロック",
@@ -64,15 +64,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ",
-            "investment": 143000,
-            "return": 119200,
-            "profit": -23800
+            "investment": 156000,
+            "return": 146000,
+            "profit": -10000
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 263400,
-            "return": 336600,
-            "profit": 73200
+            "investment": 295400,
+            "return": 344600,
+            "profit": 49200
         },
         {
             "machine": "北斗の拳",
@@ -94,9 +94,9 @@
         },
         {
             "machine": "東京喰種",
-            "investment": 10000,
+            "investment": 14000,
             "return": 0,
-            "profit": -10000
+            "profit": -14000
         },
         {
             "machine": "沖ドキ",
@@ -192,9 +192,9 @@
         },
         {
             "month": "2026-01",
-            "investment": 311300,
-            "return": 203800,
-            "profit": -107500
+            "investment": 389300,
+            "return": 315200,
+            "profit": -74100
         }
     ]
 }
