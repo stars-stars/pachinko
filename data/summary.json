@@ -1,12 +1,18 @@
 {
-    "total_profit": -859900,
-    "num_of_sessions": 279,
+    "total_profit": -752900,
+    "num_of_sessions": 284,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
             "investment": 17000,
             "return": 0,
             "profit": -17000
+        },
+        {
+            "machine": "かぐや様",
+            "investment": 10000,
+            "return": 0,
+            "profit": -10000
         },
         {
             "machine": "インデックス",
@@ -28,15 +34,15 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1208300,
-            "return": 860900,
-            "profit": -347400
+            "investment": 1213300,
+            "return": 878900,
+            "profit": -334400
         },
         {
             "machine": "トラブル",
-            "investment": 185000,
+            "investment": 191000,
             "return": 82000,
-            "profit": -103000
+            "profit": -109000
         },
         {
             "machine": "ノリ打ち収支",
@@ -70,9 +76,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 295400,
-            "return": 344600,
-            "profit": 49200
+            "investment": 300400,
+            "return": 460600,
+            "profit": 160200
         },
         {
             "machine": "北斗の拳",
@@ -106,9 +112,9 @@
         },
         {
             "machine": "海物語",
-            "investment": 51500,
+            "investment": 52500,
             "return": 13000,
-            "profit": -38500
+            "profit": -39500
         },
         {
             "machine": "牙狼",
@@ -192,9 +198,9 @@
         },
         {
             "month": "2026-01",
-            "investment": 389300,
-            "return": 315200,
-            "profit": -74100
+            "investment": 416300,
+            "return": 449200,
+            "profit": 32900
         }
     ]
 }
