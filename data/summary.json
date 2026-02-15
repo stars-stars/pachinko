@@ -1,6 +1,6 @@
 {
-    "total_profit": -884700,
-    "num_of_sessions": 302,
+    "total_profit": -859400,
+    "num_of_sessions": 307,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -10,9 +10,9 @@
         },
         {
             "machine": "かぐや様",
-            "investment": 30000,
+            "investment": 42000,
             "return": 26000,
-            "profit": -4000
+            "profit": -16000
         },
         {
             "machine": "アズールレーン",
@@ -69,6 +69,12 @@
             "profit": 23000
         },
         {
+            "machine": "マギアレコード",
+            "investment": 13000,
+            "return": 52000,
+            "profit": 39000
+        },
+        {
             "machine": "リゼロ強欲",
             "investment": 331500,
             "return": 204800,
@@ -88,9 +94,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 415400,
-            "return": 550600,
-            "profit": 135200
+            "investment": 494400,
+            "return": 627400,
+            "profit": 133000
         },
         {
             "machine": "北斗の拳",
@@ -127,6 +133,12 @@
             "investment": 52500,
             "return": 13000,
             "profit": -39500
+        },
+        {
+            "machine": "無職転生",
+            "investment": 7000,
+            "return": 7500,
+            "profit": 500
         },
         {
             "machine": "牙狼",
@@ -216,9 +228,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 191000,
-            "return": 144000,
-            "profit": -47000
+            "investment": 302000,
+            "return": 280300,
+            "profit": -21700
         }
     ]
 }
