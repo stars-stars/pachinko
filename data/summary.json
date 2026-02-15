@@ -1,6 +1,6 @@
 {
-    "total_profit": -900700,
-    "num_of_sessions": 301,
+    "total_profit": -884700,
+    "num_of_sessions": 302,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -59,8 +59,8 @@
         {
             "machine": "ノリ打ち収支",
             "investment": 163000,
-            "return": 84100,
-            "profit": -78900
+            "return": 100100,
+            "profit": -62900
         },
         {
             "machine": "ブルーロック",
@@ -217,8 +217,8 @@
         {
             "month": "2026-02",
             "investment": 191000,
-            "return": 128000,
-            "profit": -63000
+            "return": 144000,
+            "profit": -47000
         }
     ]
 }
