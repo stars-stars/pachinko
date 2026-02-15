@@ -1,6 +1,6 @@
 {
-    "total_profit": -859400,
-    "num_of_sessions": 307,
+    "total_profit": -838400,
+    "num_of_sessions": 308,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -82,9 +82,9 @@
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 347000,
-            "return": 245900,
-            "profit": -101100
+            "investment": 350000,
+            "return": 269900,
+            "profit": -80100
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -228,9 +228,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 302000,
-            "return": 280300,
-            "profit": -21700
+            "investment": 305000,
+            "return": 304300,
+            "profit": -700
         }
     ]
 }
