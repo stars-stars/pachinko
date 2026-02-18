@@ -1,6 +1,6 @@
 {
-    "total_profit": -859900,
-    "num_of_sessions": 308,
+    "total_profit": -941900,
+    "num_of_sessions": 315,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -10,15 +10,15 @@
         },
         {
             "machine": "かぐや様",
-            "investment": 42000,
+            "investment": 53000,
             "return": 26000,
-            "profit": -16000
+            "profit": -27000
         },
         {
             "machine": "アズールレーン",
-            "investment": 8500,
+            "investment": 18500,
             "return": 48000,
-            "profit": 39500
+            "profit": 29500
         },
         {
             "machine": "インデックス",
@@ -40,9 +40,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1221300,
+            "investment": 1227300,
             "return": 890900,
-            "profit": -330400
+            "profit": -336400
         },
         {
             "machine": "チバリヨ2",
@@ -82,9 +82,9 @@
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 350000,
+            "investment": 352000,
             "return": 269900,
-            "profit": -80100
+            "profit": -82100
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -94,9 +94,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 494400,
-            "return": 627400,
-            "profit": 133000
+            "investment": 530400,
+            "return": 632400,
+            "profit": 102000
+        },
+        {
+            "machine": "化物語",
+            "investment": 17000,
+            "return": 0,
+            "profit": -17000
         },
         {
             "machine": "北斗の拳",
@@ -118,9 +124,9 @@
         },
         {
             "machine": "東京喰種",
-            "investment": 14000,
+            "investment": 19000,
             "return": 0,
-            "profit": -14000
+            "profit": -19000
         },
         {
             "machine": "沖ドキ",
@@ -228,9 +234,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 310500,
-            "return": 288300,
-            "profit": -22200
+            "investment": 397500,
+            "return": 293300,
+            "profit": -104200
         }
     ]
 }
