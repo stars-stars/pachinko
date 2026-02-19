@@ -1,6 +1,6 @@
 {
-    "total_profit": -941900,
-    "num_of_sessions": 315,
+    "total_profit": -1061300,
+    "num_of_sessions": 321,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -16,9 +16,9 @@
         },
         {
             "machine": "アズールレーン",
-            "investment": 18500,
+            "investment": 28500,
             "return": 48000,
-            "profit": 29500
+            "profit": 19500
         },
         {
             "machine": "インデックス",
@@ -52,9 +52,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 304000,
+            "investment": 331000,
             "return": 164200,
-            "profit": -139800
+            "profit": -166800
         },
         {
             "machine": "ノリ打ち収支",
@@ -73,6 +73,12 @@
             "investment": 13000,
             "return": 52000,
             "profit": 39000
+        },
+        {
+            "machine": "モンハン",
+            "investment": 5000,
+            "return": 0,
+            "profit": -5000
         },
         {
             "machine": "リゼロ強欲",
@@ -94,9 +100,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 530400,
+            "investment": 595400,
             "return": 632400,
-            "profit": 102000
+            "profit": 37000
         },
         {
             "machine": "化物語",
@@ -124,9 +130,9 @@
         },
         {
             "machine": "東京喰種",
-            "investment": 19000,
+            "investment": 23000,
             "return": 0,
-            "profit": -19000
+            "profit": -23000
         },
         {
             "machine": "沖ドキ",
@@ -151,6 +157,12 @@
             "investment": 23000,
             "return": 0,
             "profit": -23000
+        },
+        {
+            "machine": "秘宝伝",
+            "investment": 12000,
+            "return": 3600,
+            "profit": -8400
         }
     ],
     "monthly_profits": [
@@ -234,9 +246,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 397500,
-            "return": 293300,
-            "profit": -104200
+            "investment": 520500,
+            "return": 296900,
+            "profit": -223600
         }
     ]
 }
