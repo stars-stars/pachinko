@@ -1,6 +1,6 @@
 {
-    "total_profit": -953300,
-    "num_of_sessions": 328,
+    "total_profit": -961300,
+    "num_of_sessions": 338,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -10,9 +10,9 @@
         },
         {
             "machine": "かぐや様",
-            "investment": 53000,
-            "return": 26000,
-            "profit": -27000
+            "investment": 67000,
+            "return": 30000,
+            "profit": -37000
         },
         {
             "machine": "アズールレーン",
@@ -40,9 +40,15 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1234300,
-            "return": 894900,
+            "investment": 1238300,
+            "return": 898900,
             "profit": -339400
+        },
+        {
+            "machine": "ゾンビランドサガ",
+            "investment": 37000,
+            "return": 15000,
+            "profit": -22000
         },
         {
             "machine": "チバリヨ2",
@@ -52,15 +58,15 @@
         },
         {
             "machine": "トラブル",
-            "investment": 371000,
-            "return": 225200,
-            "profit": -145800
+            "investment": 422000,
+            "return": 263200,
+            "profit": -158800
         },
         {
             "machine": "ノリ打ち収支",
             "investment": 168500,
-            "return": 84100,
-            "profit": -84400
+            "return": 143100,
+            "profit": -25400
         },
         {
             "machine": "ブルーロック",
@@ -151,6 +157,12 @@
             "investment": 52500,
             "return": 13000,
             "profit": -39500
+        },
+        {
+            "machine": "炎炎ノ消防隊",
+            "investment": 22000,
+            "return": 0,
+            "profit": -22000
         },
         {
             "machine": "無職転生",
@@ -258,9 +270,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 543500,
-            "return": 439900,
-            "profit": -103600
+            "investment": 671500,
+            "return": 559900,
+            "profit": -111600
         }
     ]
 }
