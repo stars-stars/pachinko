@@ -1,6 +1,6 @@
 {
-    "total_profit": -1073300,
-    "num_of_sessions": 323,
+    "total_profit": -953300,
+    "num_of_sessions": 328,
     "machine_profits": [
         {
             "machine": "eからくりサーカス2",
@@ -40,9 +40,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1229300,
+            "investment": 1234300,
             "return": 894900,
-            "profit": -334400
+            "profit": -339400
         },
         {
             "machine": "チバリヨ2",
@@ -52,9 +52,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 369000,
-            "return": 188200,
-            "profit": -180800
+            "investment": 371000,
+            "return": 225200,
+            "profit": -145800
         },
         {
             "machine": "ノリ打ち収支",
@@ -73,6 +73,12 @@
             "investment": 13000,
             "return": 52000,
             "profit": 39000
+        },
+        {
+            "machine": "マギレコ",
+            "investment": 7000,
+            "return": 0,
+            "profit": -7000
         },
         {
             "machine": "モンハン",
@@ -94,15 +100,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ",
-            "investment": 156000,
+            "investment": 161000,
             "return": 146000,
-            "profit": -10000
+            "profit": -15000
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 595400,
-            "return": 632400,
-            "profit": 37000
+            "investment": 599400,
+            "return": 738400,
+            "profit": 139000
         },
         {
             "machine": "化物語",
@@ -252,9 +258,9 @@
         },
         {
             "month": "2026-02",
-            "investment": 520500,
-            "return": 296900,
-            "profit": -223600
+            "investment": 543500,
+            "return": 439900,
+            "profit": -103600
         }
     ]
 }
