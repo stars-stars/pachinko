@@ -1,12 +1,36 @@
 {
-    "total_profit": -961300,
-    "num_of_sessions": 338,
+    "total_profit": -1073300,
+    "num_of_sessions": 346,
     "machine_profits": [
+        {
+            "machine": "Lアズールレーン",
+            "investment": 30000,
+            "return": 0,
+            "profit": -30000
+        },
+        {
+            "machine": "L東京喰種",
+            "investment": 14000,
+            "return": 0,
+            "profit": -14000
+        },
         {
             "machine": "eからくりサーカス2",
             "investment": 17000,
             "return": 0,
             "profit": -17000
+        },
+        {
+            "machine": "eアズールレーン",
+            "investment": 5000,
+            "return": 0,
+            "profit": -5000
+        },
+        {
+            "machine": "eエヴァンゲリオン",
+            "investment": 10000,
+            "return": 0,
+            "profit": -10000
         },
         {
             "machine": "かぐや様",
@@ -40,9 +64,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1238300,
-            "return": 898900,
-            "profit": -339400
+            "investment": 1241300,
+            "return": 906900,
+            "profit": -334400
         },
         {
             "machine": "ゾンビランドサガ",
@@ -58,9 +82,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 422000,
+            "investment": 452000,
             "return": 263200,
-            "profit": -158800
+            "profit": -188800
         },
         {
             "machine": "ノリ打ち収支",
@@ -112,9 +136,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 599400,
-            "return": 738400,
-            "profit": 139000
+            "investment": 642400,
+            "return": 760400,
+            "profit": 118000
+        },
+        {
+            "machine": "乗り打ち収支",
+            "investment": 7000,
+            "return": 0,
+            "profit": -7000
         },
         {
             "machine": "化物語",
@@ -273,6 +303,12 @@
             "investment": 671500,
             "return": 559900,
             "profit": -111600
+        },
+        {
+            "month": "2026-03",
+            "investment": 142000,
+            "return": 30000,
+            "profit": -112000
         }
     ]
 }
