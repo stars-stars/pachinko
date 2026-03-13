@@ -1,6 +1,6 @@
 {
-    "total_profit": -1009100,
-    "num_of_sessions": 352,
+    "total_profit": -997100,
+    "num_of_sessions": 350,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -58,9 +58,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1241300,
-            "return": 906900,
-            "profit": -334400
+            "investment": 1239300,
+            "return": 902900,
+            "profit": -336400
         },
         {
             "machine": "ゾンビランドサガ",
@@ -76,9 +76,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 462000,
-            "return": 298200,
-            "profit": -163800
+            "investment": 424000,
+            "return": 274200,
+            "profit": -149800
         },
         {
             "machine": "ノリ打ち収支",
@@ -255,12 +255,6 @@
             "investment": 49000,
             "return": 14000,
             "profit": -35000
-        },
-        {
-            "month": "2025-02",
-            "investment": 40000,
-            "return": 28000,
-            "profit": -12000
         },
         {
             "month": "2025-09",
