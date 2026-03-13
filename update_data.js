@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch(jsonPath)
         .then(response => {
-            if (!response.ok){
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-function embedOverallSummary(data, numberFormatter){
+function embedOverallSummary(data, numberFormatter) {
     // 合計収支の埋め込み
     const totalProfit = data.total_profit / 1000;
     // 収支をカンマ区切りにし、[+]または[-]を付けて表示
@@ -49,14 +49,14 @@ function embedOverallSummary(data, numberFormatter){
     // 日付の埋め込み
     const today = new Date();
     const dateOnly = today.toLocaleDateString('ja-JP');
-    if(document.getElementById('today')){
+    if (document.getElementById('today')) {
         document.getElementById('today').textContent = `${dateOnly}更新`;
     }
 }
 
-function embedTableData(summaryArray, tableSelector, type, formatter){
+function embedTableData(summaryArray, tableSelector, type, formatter) {
     const tableBody = document.querySelector(tableSelector);
-    if(!tableBody) return;
+    if (!tableBody) return;
 
     // 既存の行をクリア
     tableBody.innerHTML = '';
@@ -70,14 +70,20 @@ function embedTableData(summaryArray, tableSelector, type, formatter){
 
         // 機種名・年月のどちらかを埋め込み
         let primaryCell = row.insertCell();
-        if(type == 'machine'){
+        if (type == 'machine') {
             primaryCell.textContent = item.machine;
-        }else if(type == 'monthly'){
+        } else if (type == 'monthly') {
             primaryCell.textContent = item.month.replace('-', '年') + '月';
         }
 
+        // 収支の計算と色の判定
+        const profitWithK = item.profit / 1000;
+        const profitColor = profitWithK > 0 ? 'blue' : (profitWithK < 0 ? 'red' : 'black');
+
         // 収支の埋め込み
         let cellProfit = row.insertCell();
-        cellProfit.textContent = `${formatter.format(item.profit / 1000)}k`;
+        cellProfit.style.color = profitColor;
+        cellProfit.style.fontWeight = 'bold';
+        cellProfit.textContent = `${formatter.format(profitWithK)}k`;
     });
 }
