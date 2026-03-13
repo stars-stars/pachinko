@@ -104,7 +104,7 @@ plt.close()
 # 収支の大きい順にソート
 machine_summary = machine_summary.reset_index()
 machine_profits_df = machine_summary.sort_values(by='profit', ascending=False)
-fig_bar, ax_bar = plt.subplots(figsize=(10, 6))
+fig_bar, ax_bar = plt.subplots(figsize=(12, 7))
 # 収益がプラスかマイナスかで色分け
 colors = ['green' if p >= 0 else 'red' for p in machine_profits_df['profit']]
 bars = ax_bar.bar(machine_profits_df['machine_name'], machine_profits_df['profit'], color=colors)

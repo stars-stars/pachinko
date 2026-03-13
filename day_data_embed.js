@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // YYYY/MM/DD形式から YYYY/MM を抽出し、月の情報を取得するヘルパー関数
-function getYearMonth(dateString){
+function getYearMonth(dateString) {
     // 例: '2024-07-07' から '2024-07' を取得
     return dateString.substring(0, 7);
 }
@@ -87,7 +87,7 @@ function groupAndRenderTables(records) {
         htmlOutput += `<div class="${yearMonth.replace('-', '/')}">`;
         htmlOutput += `<h2 style="text-align: center">${yearMonth.replace('-', '年')}月</h2>`;
         htmlOutput += `<table width="1200" border="3">`;
-        htmlOutput += `<thead><tr><th>日付</th><th>機種</th><th>投資額</th><th>回収額</th><th>収支</th></tr></thead>`;
+        htmlOutput += `<thead><tr><th>日付</th><th>機種</th><th>投資額</th><th>回収額</th><th>収支</th><th>日別合計</th></tr></thead>`;
         htmlOutput += `<tbody>`;
 
         // 3. 行を構築し、rowspanを計算
@@ -103,6 +103,13 @@ function groupAndRenderTables(records) {
         sortedDays.forEach(day => {
             const dayRecords = recordsByDay[day];
             const rowSpanCount = dayRecords.length;
+
+            // 日別合計収支を事前に計算
+            let dailyTotalProfit = 0;
+            dayRecords.forEach(record => {
+                const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
+                dailyTotalProfit += profit;
+            })
 
             dayRecords.forEach((record, index) => {
                 const isFirstRow = index === 0;
@@ -124,11 +131,17 @@ function groupAndRenderTables(records) {
                 htmlOutput += `<td style="text-align: right">${(parseInt(record.return) / 1000).toFixed(1)}k</td>`;
 
                 // 収支セル (色付け対応)
-                const profitColor = profit < 0 ? 'red' : 'blue';
+                const profitColor = profit < 0 ? 'red' : (profit > 0 ? 'blue' : 'black');
                 htmlOutput += `<td style="color: ${profitColor}; font-weight: bold; text-align: right">${profit.toFixed(1)}k</td>`;
 
+                // 日別合計収支セル
+                if (isFirstRow) {
+                    const dailyTotalColor = dailyTotalProfit < 0 ? 'red' : (dailyTotalProfit > 0 ? 'blue' : 'black');
+                    htmlOutput += `<td rowspan="${rowSpanCount}" style="color: ${dailyTotalColor}; font-weight: bold; text-align: right; vertical-align: middle;">${dailyTotalProfit.toFixed(1)}k</td>`;
+                }
+
                 htmlOutput += `</tr>`;
-            }); 
+            });
         });
 
         htmlOutput += `</tbody></table></div>`;
