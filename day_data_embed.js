@@ -137,7 +137,7 @@ function groupAndRenderTables(records) {
                 // 日別合計収支セル
                 if (isFirstRow) {
                     const dailyTotalColor = dailyTotalProfit < 0 ? 'red' : (dailyTotalProfit > 0 ? 'blue' : 'black');
-                    htmlOutput += `<td rowspan="${rowSpanCount}" style="color: ${dailyTotalColor}; font-weight: bold; text-align: right; vertical-align: middle;">${dailyTotalProfit.toFixed(1)}k</td>`;
+                    htmlOutput += `<td rowspan="${rowSpanCount}" style="color: ${dailyTotalColor}; font-weight: bold; text-align: center; vertical-align: middle;">${dailyTotalProfit.toFixed(1)}k</td>`;
                 }
 
                 htmlOutput += `</tr>`;
