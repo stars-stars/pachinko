@@ -22,9 +22,9 @@
         },
         {
             "machine": "eアズールレーン",
-            "investment": 5000,
-            "return": 0,
-            "profit": -5000
+            "investment": 33500,
+            "return": 48000,
+            "profit": 14500
         },
         {
             "machine": "eエヴァンゲリオン",
@@ -37,12 +37,6 @@
             "investment": 93000,
             "return": 30000,
             "profit": -63000
-        },
-        {
-            "machine": "アズールレーン",
-            "investment": 28500,
-            "return": 48000,
-            "profit": 19500
         },
         {
             "machine": "インデックス",
