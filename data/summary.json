@@ -1,6 +1,6 @@
 {
-    "total_profit": -997100,
-    "num_of_sessions": 350,
+    "total_profit": -1000400,
+    "num_of_sessions": 357,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -58,9 +58,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1239300,
-            "return": 902900,
-            "profit": -336400
+            "investment": 1243300,
+            "return": 907900,
+            "profit": -335400
         },
         {
             "machine": "ゾンビランドサガ",
@@ -82,9 +82,9 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 168500,
+            "investment": 189800,
             "return": 143100,
-            "profit": -25400
+            "profit": -46700
         },
         {
             "machine": "ブルーロック",
@@ -117,6 +117,18 @@
             "profit": -126700
         },
         {
+            "machine": "リゼロ強欲129",
+            "investment": 10000,
+            "return": 0,
+            "profit": -10000
+        },
+        {
+            "machine": "リゼロ強欲249",
+            "investment": 10000,
+            "return": 0,
+            "profit": -10000
+        },
+        {
             "machine": "リゼロ鬼がかり",
             "investment": 352000,
             "return": 269900,
@@ -130,9 +142,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 651400,
-            "return": 921600,
-            "profit": 270200
+            "investment": 674400,
+            "return": 981600,
+            "profit": 307200
         },
         {
             "machine": "乗り打ち収支",
@@ -294,9 +306,9 @@
         },
         {
             "month": "2026-03",
-            "investment": 274000,
-            "return": 226200,
-            "profit": -47800
+            "investment": 342300,
+            "return": 291200,
+            "profit": -51100
         }
     ]
 }
