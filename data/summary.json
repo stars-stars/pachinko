@@ -1,6 +1,6 @@
 {
-    "total_profit": -1000400,
-    "num_of_sessions": 357,
+    "total_profit": -969400,
+    "num_of_sessions": 361,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -58,9 +58,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1243300,
-            "return": 907900,
-            "profit": -335400
+            "investment": 1244300,
+            "return": 912900,
+            "profit": -331400
         },
         {
             "machine": "ゾンビランドサガ",
@@ -76,9 +76,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 424000,
-            "return": 274200,
-            "profit": -149800
+            "investment": 430000,
+            "return": 288200,
+            "profit": -141800
         },
         {
             "machine": "ノリ打ち収支",
@@ -100,9 +100,9 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 7000,
-            "return": 0,
-            "profit": -7000
+            "investment": 8000,
+            "return": 20000,
+            "profit": 12000
         },
         {
             "machine": "モンハン",
@@ -142,8 +142,8 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 674400,
-            "return": 981600,
+            "investment": 683400,
+            "return": 990600,
             "profit": 307200
         },
         {
@@ -306,9 +306,9 @@
         },
         {
             "month": "2026-03",
-            "investment": 342300,
-            "return": 291200,
-            "profit": -51100
+            "investment": 359300,
+            "return": 339200,
+            "profit": -20100
         }
     ]
 }
