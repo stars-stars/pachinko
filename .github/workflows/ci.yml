@@ -53,6 +53,7 @@ jobs:
           python scripts/create_namelist.py
           python scripts/sorting.py
           python scripts/summary_data.py
+          python scripts/insert_namelist.py
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
