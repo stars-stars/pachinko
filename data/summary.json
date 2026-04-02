@@ -99,16 +99,10 @@
             "profit": 23000
         },
         {
-            "machine": "マギアレコード",
-            "investment": 13000,
-            "return": 52000,
-            "profit": 39000
-        },
-        {
             "machine": "マギレコ",
-            "investment": 19000,
-            "return": 117600,
-            "profit": 98600
+            "investment": 32000,
+            "return": 169600,
+            "profit": 137600
         },
         {
             "machine": "モンハン",
