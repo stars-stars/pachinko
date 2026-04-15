@@ -1,5 +1,5 @@
 {
-    "total_profit": -812900,
+    "total_profit": -1071200,
     "num_of_sessions": 382,
     "machine_profits": [
         {
@@ -131,8 +131,8 @@
         {
             "machine": "ヴァルヴレイヴ2",
             "investment": 852400,
-            "return": 1408600,
-            "profit": 556200
+            "return": 1150300,
+            "profit": 297900
         },
         {
             "machine": "乗り打ち収支",
@@ -301,8 +301,8 @@
         {
             "month": "2026-04",
             "investment": 328000,
-            "return": 473800,
-            "profit": 145800
+            "return": 215500,
+            "profit": -112500
         }
     ]
 }
