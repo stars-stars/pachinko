@@ -1,5 +1,5 @@
 {
-    "total_profit": -1036400,
+    "total_profit": -1068400,
     "num_of_sessions": 389,
     "machine_profits": [
         {
@@ -82,9 +82,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 451000,
-            "return": 331200,
-            "profit": -119800
+            "investment": 473000,
+            "return": 321200,
+            "profit": -151800
         },
         {
             "machine": "ノリ打ち収支",
@@ -300,9 +300,9 @@
         },
         {
             "month": "2026-04",
-            "investment": 363000,
-            "return": 285300,
-            "profit": -77700
+            "investment": 385000,
+            "return": 275300,
+            "profit": -109700
         }
     ]
 }
