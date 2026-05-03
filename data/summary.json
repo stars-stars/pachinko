@@ -1,6 +1,6 @@
 {
-    "total_profit": -1051400,
-    "num_of_sessions": 396,
+    "total_profit": -999900,
+    "num_of_sessions": 400,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -10,9 +10,9 @@
         },
         {
             "machine": "L東京喰種",
-            "investment": 14000,
+            "investment": 18000,
             "return": 0,
-            "profit": -14000
+            "profit": -18000
         },
         {
             "machine": "eからくりサーカス2",
@@ -82,9 +82,9 @@
         },
         {
             "machine": "トラブル",
-            "investment": 482000,
-            "return": 344200,
-            "profit": -137800
+            "investment": 550000,
+            "return": 414200,
+            "profit": -135800
         },
         {
             "machine": "ノリ打ち収支",
@@ -118,9 +118,9 @@
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 361000,
-            "return": 269900,
-            "profit": -91100
+            "investment": 370000,
+            "return": 270900,
+            "profit": -99100
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -130,9 +130,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 882400,
-            "return": 1160300,
-            "profit": 277900
+            "investment": 890400,
+            "return": 1229800,
+            "profit": 339400
         },
         {
             "machine": "乗り打ち収支",
@@ -300,9 +300,9 @@
         },
         {
             "month": "2026-04",
-            "investment": 461000,
-            "return": 368300,
-            "profit": -92700
+            "investment": 550000,
+            "return": 508800,
+            "profit": -41200
         }
     ]
 }
