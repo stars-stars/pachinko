@@ -1,6 +1,6 @@
 {
-    "total_profit": -896700,
-    "num_of_sessions": 419,
+    "total_profit": -914700,
+    "num_of_sessions": 420,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -88,9 +88,9 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 278500,
+            "investment": 296500,
             "return": 161100,
-            "profit": -117400
+            "profit": -135400
         },
         {
             "machine": "ブルーロック",
@@ -318,9 +318,9 @@
         },
         {
             "month": "2026-05",
-            "investment": 268000,
+            "investment": 286000,
             "return": 371200,
-            "profit": 103200
+            "profit": 85200
         }
     ]
 }
