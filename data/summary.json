@@ -1,6 +1,6 @@
 {
-    "total_profit": -907400,
-    "num_of_sessions": 411,
+    "total_profit": -896700,
+    "num_of_sessions": 419,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -10,9 +10,9 @@
         },
         {
             "machine": "L東京喰種",
-            "investment": 18000,
-            "return": 0,
-            "profit": -18000
+            "investment": 57000,
+            "return": 10000,
+            "profit": -47000
         },
         {
             "machine": "eからくりサーカス2",
@@ -64,9 +64,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1269300,
-            "return": 931700,
-            "profit": -337600
+            "investment": 1272300,
+            "return": 935300,
+            "profit": -337000
         },
         {
             "machine": "ゾンビランドサガ",
@@ -88,9 +88,9 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 271500,
+            "investment": 278500,
             "return": 161100,
-            "profit": -110400
+            "profit": -117400
         },
         {
             "machine": "ブルーロック",
@@ -100,9 +100,9 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 233000,
-            "return": 385200,
-            "profit": 152200
+            "investment": 238000,
+            "return": 440800,
+            "profit": 202800
         },
         {
             "machine": "モンハン",
@@ -112,9 +112,9 @@
         },
         {
             "machine": "リコリコ",
-            "investment": 14500,
-            "return": 117000,
-            "profit": 102500
+            "investment": 25000,
+            "return": 153800,
+            "profit": 128800
         },
         {
             "machine": "リゼロ強欲",
@@ -136,15 +136,15 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 927400,
-            "return": 1261800,
-            "profit": 334400
+            "investment": 986400,
+            "return": 1283000,
+            "profit": 296600
         },
         {
             "machine": "乗り打ち収支",
-            "investment": 88000,
+            "investment": 81000,
             "return": 0,
-            "profit": -88000
+            "profit": -81000
         },
         {
             "machine": "化物語",
@@ -318,9 +318,9 @@
         },
         {
             "month": "2026-05",
-            "investment": 151500,
-            "return": 244000,
-            "profit": 92500
+            "investment": 268000,
+            "return": 371200,
+            "profit": 103200
         }
     ]
 }
