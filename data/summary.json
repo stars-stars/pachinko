@@ -1,6 +1,6 @@
 {
-    "total_profit": -914700,
-    "num_of_sessions": 420,
+    "total_profit": -854700,
+    "num_of_sessions": 423,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -89,8 +89,8 @@
         {
             "machine": "ノリ打ち収支",
             "investment": 296500,
-            "return": 161100,
-            "profit": -135400
+            "return": 195700,
+            "profit": -100800
         },
         {
             "machine": "ブルーロック",
@@ -136,9 +136,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 986400,
-            "return": 1283000,
-            "profit": 296600
+            "investment": 1001400,
+            "return": 1292400,
+            "profit": 291000
         },
         {
             "machine": "乗り打ち収支",
@@ -190,9 +190,9 @@
         },
         {
             "machine": "炎炎ノ消防隊",
-            "investment": 22000,
-            "return": 0,
-            "profit": -22000
+            "investment": 27000,
+            "return": 36000,
+            "profit": 9000
         },
         {
             "machine": "無職転生",
@@ -318,9 +318,9 @@
         },
         {
             "month": "2026-05",
-            "investment": 286000,
-            "return": 371200,
-            "profit": 85200
+            "investment": 306000,
+            "return": 451200,
+            "profit": 145200
         }
     ]
 }
