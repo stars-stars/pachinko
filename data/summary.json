@@ -1,6 +1,6 @@
 {
-    "total_profit": -706500,
-    "num_of_sessions": 430,
+    "total_profit": -737900,
+    "num_of_sessions": 432,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -118,9 +118,9 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 238000,
-            "return": 440800,
-            "profit": 202800
+            "investment": 289000,
+            "return": 462400,
+            "profit": 173400
         },
         {
             "machine": "モンハン",
@@ -130,9 +130,9 @@
         },
         {
             "machine": "リコリコ",
-            "investment": 25000,
+            "investment": 27000,
             "return": 153800,
-            "profit": 128800
+            "profit": 126800
         },
         {
             "machine": "リゼロ強欲",
@@ -336,9 +336,9 @@
         },
         {
             "month": "2026-05",
-            "investment": 306000,
-            "return": 451200,
-            "profit": 145200
+            "investment": 359000,
+            "return": 472800,
+            "profit": 113800
         },
         {
             "month": "2026-06",
