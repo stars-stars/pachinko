@@ -1,6 +1,6 @@
 {
-    "total_profit": -854700,
-    "num_of_sessions": 423,
+    "total_profit": -808700,
+    "num_of_sessions": 426,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -37,6 +37,12 @@
             "investment": 93000,
             "return": 30000,
             "profit": -63000
+        },
+        {
+            "machine": "もののがたり",
+            "investment": 9000,
+            "return": 18000,
+            "profit": 9000
         },
         {
             "machine": "インデックス",
@@ -89,8 +95,8 @@
         {
             "machine": "ノリ打ち収支",
             "investment": 296500,
-            "return": 195700,
-            "profit": -100800
+            "return": 210200,
+            "profit": -86300
         },
         {
             "machine": "ブルーロック",
@@ -124,9 +130,9 @@
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 370000,
-            "return": 270900,
-            "profit": -99100
+            "investment": 371500,
+            "return": 294900,
+            "profit": -76600
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -321,6 +327,12 @@
             "investment": 306000,
             "return": 451200,
             "profit": 145200
+        },
+        {
+            "month": "2026-06",
+            "investment": 10500,
+            "return": 56500,
+            "profit": 46000
         }
     ]
 }
