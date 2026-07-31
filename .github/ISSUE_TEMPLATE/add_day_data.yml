@@ -22,7 +22,7 @@ body:
   id: machine_1
   attributes:
     label: '[1行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_1
   attributes:
@@ -45,7 +45,7 @@ body:
   id: machine_2
   attributes:
     label: '[2行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_2
   attributes:
@@ -68,7 +68,7 @@ body:
   id: machine_3
   attributes:
     label: '[3行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_3
   attributes:
@@ -91,7 +91,7 @@ body:
   id: machine_4
   attributes:
     label: '[4行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_4
   attributes:
@@ -114,7 +114,7 @@ body:
   id: machine_5
   attributes:
     label: '[5行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_5
   attributes:
@@ -137,7 +137,7 @@ body:
   id: machine_6
   attributes:
     label: '[6行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_6
   attributes:
@@ -160,7 +160,7 @@ body:
   id: machine_7
   attributes:
     label: '[7行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_7
   attributes:
@@ -183,7 +183,7 @@ body:
   id: machine_8
   attributes:
     label: '[8行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_8
   attributes:
@@ -206,7 +206,7 @@ body:
   id: machine_9
   attributes:
     label: '[9行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_9
   attributes:
@@ -229,7 +229,7 @@ body:
   id: machine_10
   attributes:
     label: '[10行目] 機種名'
-    placeholder: '例: ジャグラー (新しい機種も入力可能)'
+    placeholder: '例: ジャグラー'
 - type: input
   id: inv_10
   attributes:
@@ -243,10 +243,54 @@ body:
 - type: markdown
   attributes:
     value: '---'
+# --- AUTO GENERATED MACHINE LIST ---
 - type: markdown
   attributes:
-    value: "### 機種名一覧\n`\text\nリゼロ強欲\nリゼロ鬼がかり\nジャグラー\npエヴァンゲリオン\nインデックス\nカバネリ\nヴァルヴレイヴ\n\
-      南国育ち\n海物語\nブルーロック\n東京リベンジャーズ\n沖ドキ\neからくりサーカス2\n東京喰種\n牙狼\nヴァルヴレイヴ2\nノリ打ち収支\n\
-      北斗の拳\nトラブル\neエヴァンゲリオン\nかぐや様\nチバリヨ2\neアズールレーン\nマギレコ\n無職転生\n化物語\nモンハン\n秘宝伝\n炎炎ノ消防隊\n\
-      ゾンビランドサガ\nLアズールレーン\nL東京喰種\nLカバネリ\nゴッドイーター\nリコリコ\n真打吉宗\nもののがたり\nビッグドリーム\nミリオンゴッド\n\
-      モンキーターン\nL南国育ちスペシャル\nリオエース2\nブラックジャック\n戦国乙女5\n`"
+    value: |
+      ### 機種名一覧
+      ```text
+      リゼロ強欲
+      リゼロ鬼がかり
+      ジャグラー
+      pエヴァンゲリオン
+      インデックス
+      カバネリ
+      ヴァルヴレイヴ
+      南国育ち
+      海物語
+      ブルーロック
+      東京リベンジャーズ
+      沖ドキ
+      eからくりサーカス2
+      東京喰種
+      牙狼
+      ヴァルヴレイヴ2
+      ノリ打ち収支
+      北斗の拳
+      トラブル
+      eエヴァンゲリオン
+      かぐや様
+      チバリヨ2
+      eアズールレーン
+      マギレコ
+      無職転生
+      化物語
+      モンハン
+      秘宝伝
+      炎炎ノ消防隊
+      ゾンビランドサガ
+      Lアズールレーン
+      L東京喰種
+      Lカバネリ
+      ゴッドイーター
+      リコリコ
+      真打吉宗
+      もののがたり
+      ビッグドリーム
+      ミリオンゴッド
+      モンキーターン
+      L南国育ちスペシャル
+      リオエース2
+      ブラックジャック
+      戦国乙女5
+      ```

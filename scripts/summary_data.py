@@ -43,6 +43,9 @@ for machine, row in machine_summary.iterrows():
         'profit': int(row['profit'])
     })
 
+# 収支(profit)の大きい順（降順）にソート
+machine_data_list.sort(key=lambda x: x['profit'], reverse=True)
+
 # 集計結果をJSONファイルとして出力
 summary_data = {
     'total_profit': int(total_profit),

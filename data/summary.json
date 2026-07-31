@@ -3,112 +3,10 @@
     "num_of_sessions": 459,
     "machine_profits": [
         {
-            "machine": "Lアズールレーン",
-            "investment": 30000,
-            "return": 0,
-            "profit": -30000
-        },
-        {
-            "machine": "Lカバネリ",
-            "investment": 16000,
-            "return": 0,
-            "profit": -16000
-        },
-        {
-            "machine": "L南国育ちスペシャル",
-            "investment": 48000,
-            "return": 140000,
-            "profit": 92000
-        },
-        {
-            "machine": "L東京喰種",
-            "investment": 57000,
-            "return": 10000,
-            "profit": -47000
-        },
-        {
-            "machine": "eからくりサーカス2",
-            "investment": 17000,
-            "return": 0,
-            "profit": -17000
-        },
-        {
-            "machine": "eアズールレーン",
-            "investment": 51500,
-            "return": 48000,
-            "profit": -3500
-        },
-        {
-            "machine": "eエヴァンゲリオン",
-            "investment": 15000,
-            "return": 0,
-            "profit": -15000
-        },
-        {
-            "machine": "pエヴァンゲリオン",
-            "investment": 35000,
-            "return": 0,
-            "profit": -35000
-        },
-        {
-            "machine": "かぐや様",
-            "investment": 93000,
-            "return": 30000,
-            "profit": -63000
-        },
-        {
-            "machine": "もののがたり",
-            "investment": 14000,
-            "return": 18000,
-            "profit": 4000
-        },
-        {
-            "machine": "インデックス",
-            "investment": 1000,
-            "return": 0,
-            "profit": -1000
-        },
-        {
-            "machine": "カバネリ",
-            "investment": 28000,
-            "return": 0,
-            "profit": -28000
-        },
-        {
-            "machine": "ゴッドイーター",
-            "investment": 33000,
-            "return": 0,
-            "profit": -33000
-        },
-        {
-            "machine": "ジャグラー",
-            "investment": 1289300,
-            "return": 946300,
-            "profit": -343000
-        },
-        {
-            "machine": "ゾンビランドサガ",
-            "investment": 37000,
-            "return": 15000,
-            "profit": -22000
-        },
-        {
-            "machine": "チバリヨ2",
-            "investment": 35000,
-            "return": 0,
-            "profit": -35000
-        },
-        {
-            "machine": "トラブル",
-            "investment": 562000,
-            "return": 414200,
-            "profit": -147800
-        },
-        {
-            "machine": "ノリ打ち収支",
-            "investment": 395500,
-            "return": 210200,
-            "profit": -185300
+            "machine": "ヴァルヴレイヴ2",
+            "investment": 1041400,
+            "return": 1365900,
+            "profit": 324500
         },
         {
             "machine": "ビッグドリーム",
@@ -117,40 +15,16 @@
             "profit": 113200
         },
         {
-            "machine": "ブラックジャック",
-            "investment": 8000,
-            "return": 1500,
-            "profit": -6500
+            "machine": "リコリコ",
+            "investment": 50000,
+            "return": 153800,
+            "profit": 103800
         },
         {
-            "machine": "ブルーロック",
-            "investment": 28000,
-            "return": 51000,
-            "profit": 23000
-        },
-        {
-            "machine": "マギレコ",
-            "investment": 434000,
-            "return": 472400,
-            "profit": 38400
-        },
-        {
-            "machine": "ミリオンゴッド",
-            "investment": 33000,
-            "return": 0,
-            "profit": -33000
-        },
-        {
-            "machine": "モンキーターン",
-            "investment": 6000,
-            "return": 13000,
-            "profit": 7000
-        },
-        {
-            "machine": "モンハン",
-            "investment": 5000,
-            "return": 0,
-            "profit": -5000
+            "machine": "L南国育ちスペシャル",
+            "investment": 48000,
+            "return": 140000,
+            "profit": 92000
         },
         {
             "machine": "リオエース2",
@@ -159,82 +33,16 @@
             "profit": 45000
         },
         {
-            "machine": "リコリコ",
-            "investment": 50000,
-            "return": 153800,
-            "profit": 103800
+            "machine": "マギレコ",
+            "investment": 434000,
+            "return": 472400,
+            "profit": 38400
         },
         {
-            "machine": "リゼロ強欲",
-            "investment": 371500,
-            "return": 204800,
-            "profit": -166700
-        },
-        {
-            "machine": "リゼロ鬼がかり",
-            "investment": 375500,
-            "return": 294900,
-            "profit": -80600
-        },
-        {
-            "machine": "ヴァルヴレイヴ",
-            "investment": 161000,
-            "return": 146000,
-            "profit": -15000
-        },
-        {
-            "machine": "ヴァルヴレイヴ2",
-            "investment": 1041400,
-            "return": 1365900,
-            "profit": 324500
-        },
-        {
-            "machine": "化物語",
-            "investment": 17000,
-            "return": 0,
-            "profit": -17000
-        },
-        {
-            "machine": "北斗の拳",
-            "investment": 11000,
-            "return": 11000,
-            "profit": 0
-        },
-        {
-            "machine": "南国育ち",
-            "investment": 118000,
-            "return": 26000,
-            "profit": -92000
-        },
-        {
-            "machine": "戦国乙女5",
-            "investment": 56500,
-            "return": 0,
-            "profit": -56500
-        },
-        {
-            "machine": "東京リベンジャーズ",
-            "investment": 8000,
-            "return": 0,
-            "profit": -8000
-        },
-        {
-            "machine": "東京喰種",
-            "investment": 23000,
-            "return": 0,
-            "profit": -23000
-        },
-        {
-            "machine": "沖ドキ",
-            "investment": 10000,
-            "return": 0,
-            "profit": -10000
-        },
-        {
-            "machine": "海物語",
-            "investment": 52500,
-            "return": 13000,
-            "profit": -39500
+            "machine": "ブルーロック",
+            "investment": 28000,
+            "return": 51000,
+            "profit": 23000
         },
         {
             "machine": "炎炎ノ消防隊",
@@ -243,16 +51,34 @@
             "profit": 9000
         },
         {
+            "machine": "モンキーターン",
+            "investment": 6000,
+            "return": 13000,
+            "profit": 7000
+        },
+        {
+            "machine": "もののがたり",
+            "investment": 14000,
+            "return": 18000,
+            "profit": 4000
+        },
+        {
             "machine": "無職転生",
             "investment": 7000,
             "return": 7500,
             "profit": 500
         },
         {
-            "machine": "牙狼",
-            "investment": 23000,
+            "machine": "北斗の拳",
+            "investment": 11000,
+            "return": 11000,
+            "profit": 0
+        },
+        {
+            "machine": "インデックス",
+            "investment": 1000,
             "return": 0,
-            "profit": -23000
+            "profit": -1000
         },
         {
             "machine": "真打吉宗",
@@ -261,10 +87,184 @@
             "profit": -3000
         },
         {
+            "machine": "eアズールレーン",
+            "investment": 51500,
+            "return": 48000,
+            "profit": -3500
+        },
+        {
+            "machine": "モンハン",
+            "investment": 5000,
+            "return": 0,
+            "profit": -5000
+        },
+        {
+            "machine": "ブラックジャック",
+            "investment": 8000,
+            "return": 1500,
+            "profit": -6500
+        },
+        {
+            "machine": "東京リベンジャーズ",
+            "investment": 8000,
+            "return": 0,
+            "profit": -8000
+        },
+        {
             "machine": "秘宝伝",
             "investment": 12000,
             "return": 3600,
             "profit": -8400
+        },
+        {
+            "machine": "沖ドキ",
+            "investment": 10000,
+            "return": 0,
+            "profit": -10000
+        },
+        {
+            "machine": "eエヴァンゲリオン",
+            "investment": 15000,
+            "return": 0,
+            "profit": -15000
+        },
+        {
+            "machine": "ヴァルヴレイヴ",
+            "investment": 161000,
+            "return": 146000,
+            "profit": -15000
+        },
+        {
+            "machine": "Lカバネリ",
+            "investment": 16000,
+            "return": 0,
+            "profit": -16000
+        },
+        {
+            "machine": "eからくりサーカス2",
+            "investment": 17000,
+            "return": 0,
+            "profit": -17000
+        },
+        {
+            "machine": "化物語",
+            "investment": 17000,
+            "return": 0,
+            "profit": -17000
+        },
+        {
+            "machine": "ゾンビランドサガ",
+            "investment": 37000,
+            "return": 15000,
+            "profit": -22000
+        },
+        {
+            "machine": "東京喰種",
+            "investment": 23000,
+            "return": 0,
+            "profit": -23000
+        },
+        {
+            "machine": "牙狼",
+            "investment": 23000,
+            "return": 0,
+            "profit": -23000
+        },
+        {
+            "machine": "カバネリ",
+            "investment": 28000,
+            "return": 0,
+            "profit": -28000
+        },
+        {
+            "machine": "Lアズールレーン",
+            "investment": 30000,
+            "return": 0,
+            "profit": -30000
+        },
+        {
+            "machine": "ゴッドイーター",
+            "investment": 33000,
+            "return": 0,
+            "profit": -33000
+        },
+        {
+            "machine": "ミリオンゴッド",
+            "investment": 33000,
+            "return": 0,
+            "profit": -33000
+        },
+        {
+            "machine": "pエヴァンゲリオン",
+            "investment": 35000,
+            "return": 0,
+            "profit": -35000
+        },
+        {
+            "machine": "チバリヨ2",
+            "investment": 35000,
+            "return": 0,
+            "profit": -35000
+        },
+        {
+            "machine": "海物語",
+            "investment": 52500,
+            "return": 13000,
+            "profit": -39500
+        },
+        {
+            "machine": "L東京喰種",
+            "investment": 57000,
+            "return": 10000,
+            "profit": -47000
+        },
+        {
+            "machine": "戦国乙女5",
+            "investment": 56500,
+            "return": 0,
+            "profit": -56500
+        },
+        {
+            "machine": "かぐや様",
+            "investment": 93000,
+            "return": 30000,
+            "profit": -63000
+        },
+        {
+            "machine": "リゼロ鬼がかり",
+            "investment": 375500,
+            "return": 294900,
+            "profit": -80600
+        },
+        {
+            "machine": "南国育ち",
+            "investment": 118000,
+            "return": 26000,
+            "profit": -92000
+        },
+        {
+            "machine": "トラブル",
+            "investment": 562000,
+            "return": 414200,
+            "profit": -147800
+        },
+        {
+            "machine": "リゼロ強欲",
+            "investment": 371500,
+            "return": 204800,
+            "profit": -166700
+        },
+        {
+            "machine": "ノリ打ち収支",
+            "investment": 395500,
+            "return": 210200,
+            "profit": -185300
+        },
+        {
+            "machine": "ジャグラー",
+            "investment": 1289300,
+            "return": 946300,
+            "profit": -343000
         }
     ],
     "monthly_profits": [
