@@ -1,86 +1,296 @@
-name: 日毎データの追加 (表形式)
-description: 表（テーブル）形式で日毎データを追加する際に使用するテンプレートです。
-title: "Add day-data"
-labels: "AddDayData"
-
+name: 日毎データの追加 (個別入力)
+description: 入力項目が独立しており、Tabキーで次へ移動できるテンプレートです。
+title: Add day-data
+labels:
+- AddDayData
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## データの追加
-        以下の表の各セルに日付、機種、投資額、回収額を入力してください。
-        **Tabキー** を押すと次のセルへスムーズに移動できます。
-        入力のない行（空の行）は無視されるため、10行すべて埋める必要はありません。
+- type: markdown
+  attributes:
+    value: '## データの追加
 
-  - type: textarea
-    id: additional_datas
-    attributes:
-      label: 追加データリスト
-      description: "※ 日付は YYYY-MM-DD の形式で入力してください"
-      value: |
-        | 日付 | 機種名 | 投資額 | 回収額 |
-        |---|---|---|---|
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-        | | | | |
-    validations:
-      required: true
+      GitHubの仕様上、入力欄は横ではなく縦に並びますが、**Tabキー**で次の項目へ素早く移動できます。
 
+      不要な行（空欄）は無視されるため、入力データ分だけ埋めてください。
+
+      ※機種名について、新しい機種はそのまま手入力してください。既存の機種はページ下部の一覧を参考にしてください。'
+- type: input
+  id: date_1
+  attributes:
+    label: '[1行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_1
+  attributes:
+    label: '[1行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_1
+  attributes:
+    label: '[1行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_1
+  attributes:
+    label: '[1行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_2
+  attributes:
+    label: '[2行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_2
+  attributes:
+    label: '[2行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_2
+  attributes:
+    label: '[2行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_2
+  attributes:
+    label: '[2行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_3
+  attributes:
+    label: '[3行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_3
+  attributes:
+    label: '[3行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_3
+  attributes:
+    label: '[3行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_3
+  attributes:
+    label: '[3行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_4
+  attributes:
+    label: '[4行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_4
+  attributes:
+    label: '[4行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_4
+  attributes:
+    label: '[4行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_4
+  attributes:
+    label: '[4行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_5
+  attributes:
+    label: '[5行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_5
+  attributes:
+    label: '[5行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_5
+  attributes:
+    label: '[5行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_5
+  attributes:
+    label: '[5行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_6
+  attributes:
+    label: '[6行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_6
+  attributes:
+    label: '[6行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_6
+  attributes:
+    label: '[6行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_6
+  attributes:
+    label: '[6行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_7
+  attributes:
+    label: '[7行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_7
+  attributes:
+    label: '[7行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_7
+  attributes:
+    label: '[7行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_7
+  attributes:
+    label: '[7行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_8
+  attributes:
+    label: '[8行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_8
+  attributes:
+    label: '[8行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_8
+  attributes:
+    label: '[8行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_8
+  attributes:
+    label: '[8行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_9
+  attributes:
+    label: '[9行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_9
+  attributes:
+    label: '[9行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_9
+  attributes:
+    label: '[9行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_9
+  attributes:
+    label: '[9行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
+- type: input
+  id: date_10
+  attributes:
+    label: '[10行目] 日付'
+    placeholder: YYYY-MM-DD
+- type: input
+  id: machine_10
+  attributes:
+    label: '[10行目] 機種名'
+    placeholder: '例: ジャグラー'
+- type: input
+  id: inv_10
+  attributes:
+    label: '[10行目] 投資額'
+    placeholder: '例: 1000'
+- type: input
+  id: ret_10
+  attributes:
+    label: '[10行目] 回収額'
+    placeholder: '例: 1000'
+- type: markdown
+  attributes:
+    value: '---'
 # --- AUTO GENERATED MACHINE LIST ---
-  - type: markdown
-    attributes:
-      value: |
-        ### 機種名一覧
-        ```text
-        リゼロ強欲
-        リゼロ鬼がかり
-        ジャグラー
-        pエヴァンゲリオン
-        インデックス
-        カバネリ
-        ヴァルヴレイヴ
-        南国育ち
-        海物語
-        ブルーロック
-        東京リベンジャーズ
-        沖ドキ
-        eからくりサーカス2
-        東京喰種
-        牙狼
-        ヴァルヴレイヴ2
-        ノリ打ち収支
-        北斗の拳
-        トラブル
-        eエヴァンゲリオン
-        かぐや様
-        チバリヨ2
-        eアズールレーン
-        マギレコ
-        無職転生
-        化物語
-        モンハン
-        秘宝伝
-        炎炎ノ消防隊
-        ゾンビランドサガ
-        Lアズールレーン
-        L東京喰種
-        Lカバネリ
-        ゴッドイーター
-        リコリコ
-        真打吉宗
-        もののがたり
-        ビッグドリーム
-        ミリオンゴッド
-        モンキーターン
-        L南国育ちスペシャル
-        リオエース2
-        ブラックジャック
-        戦国乙女5
-        ```
+- type: markdown
+  attributes:
+    value: |
+      ### 機種名一覧
+      ```text
+      リゼロ強欲
+      リゼロ鬼がかり
+      ジャグラー
+      pエヴァンゲリオン
+      インデックス
+      カバネリ
+      ヴァルヴレイヴ
+      南国育ち
+      海物語
+      ブルーロック
+      東京リベンジャーズ
+      沖ドキ
+      eからくりサーカス2
+      東京喰種
+      牙狼
+      ヴァルヴレイヴ2
+      ノリ打ち収支
+      北斗の拳
+      トラブル
+      eエヴァンゲリオン
+      かぐや様
+      チバリヨ2
+      eアズールレーン
+      マギレコ
+      無職転生
+      化物語
+      モンハン
+      秘宝伝
+      炎炎ノ消防隊
+      ゾンビランドサガ
+      Lアズールレーン
+      L東京喰種
+      Lカバネリ
+      ゴッドイーター
+      リコリコ
+      真打吉宗
+      もののがたり
+      ビッグドリーム
+      ミリオンゴッド
+      モンキーターン
+      L南国育ちスペシャル
+      リオエース2
+      ブラックジャック
+      戦国乙女5
+      ```

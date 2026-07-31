@@ -32,17 +32,17 @@ def main():
     # 追記するMarkdownブロックの作成
     # GitHubのIssue作成画面で見やすくするため、Markdownのコードブロックとしてリストを表示させます
     added_section = f"\n\n{MARKER}\n"
-    added_section += "  - type: markdown\n"
-    added_section += "    attributes:\n"
-    added_section += "      value: |\n"
-    added_section += "        ### 機種名一覧\n"
-    added_section += "        ```text\n"
+    added_section += "- type: markdown\n"
+    added_section += "  attributes:\n"
+    added_section += "    value: |\n"
+    added_section += "      ### 機種名一覧\n"
+    added_section += "      ```text\n"
     
     # 機種名をインデントを合わせて追加
     for machine in machines:
-        added_section += f"        {machine}\n"
+        added_section += f"      {machine}\n"
     
-    added_section += "        ```\n"
+    added_section += "      ```\n"
 
     # 5. 結合してファイルに書き込み
     new_content = base_content + added_section
