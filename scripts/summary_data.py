@@ -104,34 +104,39 @@ plt.close()
 # 収支の大きい順にソート
 machine_summary = machine_summary.reset_index()
 machine_profits_df = machine_summary.sort_values(by='profit', ascending=False)
-fig_bar, ax_bar = plt.subplots(figsize=(12, 7))
-# 収益がプラスかマイナスかで色分け
-colors = ['green' if p >= 0 else 'red' for p in machine_profits_df['profit']]
-bars = ax_bar.bar(machine_profits_df['machine_name'], machine_profits_df['profit'], color=colors)
+# 2つに分割
+mid_idx = (len(machine_profits_df) + 1) // 2
+dfs = [machine_profits_df.iloc[:mid_idx], machine_profits_df.iloc[mid_idx:]]
 
-# Y軸のフォーマッターを設定
-ax_bar.yaxis.set_major_formatter(FuncFormatter(k_formatter))
+for i, df_part in enumerate(dfs, 1):
+    fig_bar, ax_bar = plt.subplots(figsize=(12, 7))
+    # 収益がプラスかマイナスかで色分け
+    colors = ['green' if p >= 0 else 'red' for p in df_part['profit']]
+    bars = ax_bar.bar(df_part['machine_name'], df_part['profit'], color=colors)
 
-ax_bar.set_title('Total Profit per Machine', fontsize=16)
-ax_bar.set_xlabel('Machine Name', fontsize=12)
-ax_bar.set_ylabel('Total Profit (k)', fontsize=12)
-plt.xticks(rotation=45, ha='right')
-plt.grid(axis='y')
+    # Y軸のフォーマッターを設定
+    ax_bar.yaxis.set_major_formatter(FuncFormatter(k_formatter))
 
-# バーの上に値を表示
-for bar in bars:
-    yval = bar.get_height()
-    # 収支が0の場合はラベルを表示しない
-    if yval != 0:
-        ax_bar.text(bar.get_x() + bar.get_width()/2, yval, 
-                    k_formatter(yval, None), 
-                    va='bottom' if yval > 0 else 'top', 
-                    ha='center', 
-                    fontsize=9, 
-                    color='black')
-plt.tight_layout()
-plt.savefig('data/machine_profit_bar.png')
-plt.close()
+    ax_bar.set_title(f'Total Profit per Machine ({i}/2)', fontsize=16)
+    ax_bar.set_xlabel('Machine Name', fontsize=12)
+    ax_bar.set_ylabel('Total Profit (k)', fontsize=12)
+    plt.xticks(rotation=45, ha='right')
+    plt.grid(axis='y')
+
+    # バーの上に値を表示
+    for bar in bars:
+        yval = bar.get_height()
+        # 収支が0の場合はラベルを表示しない
+        if yval != 0:
+            ax_bar.text(bar.get_x() + bar.get_width()/2, yval, 
+                        k_formatter(yval, None), 
+                        va='bottom' if yval > 0 else 'top', 
+                        ha='center', 
+                        fontsize=9, 
+                        color='black')
+    plt.tight_layout()
+    plt.savefig(f'data/machine_profit_bar_{i}.png')
+    plt.close()
 
 
 # 月別収支の棒グラフを生成
