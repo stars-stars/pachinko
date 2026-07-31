@@ -18,76 +18,99 @@ def parse_and_validate_issue_day_data(body):
     parsed_requests = []
     validation_errors = []
     
-    lines = body.split('\n')
+    # 新しい複数フィールドのフォーム形式をパース
+    # 形式例:
+    # ### [1行目] 日付
+    # 2026-01-01
+    # ### [1行目] 機種名
+    # ジャグラー
     
-    for i, line in enumerate(lines, 1):
+    current_row = {}
+    row_idx = 0
+    current_key = None
+    
+    lines = body.split('\n')
+    for line in lines:
         line = line.strip()
         if not line:
             continue
             
-        if line.startswith('|'):
-            # テーブルのヘッダやセパレータ行をスキップ
-            if '日付' in line and '機種名' in line:
-                continue
-            if re.match(r'^\|\s*[-:]+\s*\|', line):
-                continue
-            parts = [p.strip() for p in line.strip('|').split('|')]
-        else:
-            if line.startswith('#'):
-                continue
-            parts = [p.strip() for p in line.split(',')]
+        # ヘッダーを検出
+        match = re.match(r'^###\s*\[(\d+)行目\]\s*(.*)$', line)
+        if match:
+            new_row_idx = int(match.group(1))
+            key_name = match.group(2)
             
-        if len(parts) < 4:
-            # 無視すべき行（見出しなど）はエラーにしない
-            if len(parts) > 1:
-                validation_errors.append(f"行 {i}: 必須項目（日付, 機種名, 投資額, 回収額）が不足しています。")
-            continue
-
-        date = parts[0]
-        name = parts[1]
-        investment = parts[2]
-        returned = parts[3]
-
-        # 空の行（入力なし）は無視する
-        if not date and not name and not investment and not returned:
-            continue
-        
-        # どれか一つでも欠けている場合はエラー
-        if not date or not name or not investment or not returned:
-            validation_errors.append(f"行 {i}: 入力されていない項目があります。")
-            continue
-
-        # --- 簡易的な検証 ---
-        # 日付の検証 (YYYY-MM-DD 形式)
-        if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
-            validation_errors.append(f"行 {i} ({date}): 日付のフォーマットが 'YYYY-MM-DD' ではありません。")
-        else:
-            try:
-                datetime.strptime(date, '%Y-%m-%d')
-            except ValueError:
-                validation_errors.append(f"行 {i} ({date}): 無効な日付です。")
-
-        # 投資額の検証
-        if not re.search(r'^\d', investment):
-            validation_errors.append(f"行 {i} ({investment}): 投資額のフォーマットが数値形式ではありません。")
-        # 回収額の検証
-        if not re.search(r'^\d', returned):
-            validation_errors.append(f"行 {i} ({returned}): 回収額のフォーマットが数値形式ではありません。")
-
-        # 検証を通過した場合、データに追加
-        if not validation_errors:
-            parsed_requests.append({
-                'date': date.replace(',', ' '), # CSVのためにカンマを置換
-                'name': name.replace(',', ''), # CSVのためにカンマを削除
-                'investment': investment,
-                'returned': returned,
-                'issue_number': ISSUE_NUMBER
-            })
+            # 行が変わった場合、前の行を保存
+            if new_row_idx != row_idx and row_idx != 0:
+                _process_row(row_idx, current_row, parsed_requests, validation_errors)
+                current_row = {}
+                
+            row_idx = new_row_idx
+            
+            if '日付' in key_name:
+                current_key = 'date'
+            elif '機種名' in key_name:
+                current_key = 'name'
+            elif '投資額' in key_name:
+                current_key = 'investment'
+            elif '回収額' in key_name:
+                current_key = 'returned'
+            else:
+                current_key = None
+        elif current_key:
+            # ヘッダーの下の値
+            if line != '_No response_':
+                current_row[current_key] = line
+            current_key = None
+            
+    # 最後の行を処理
+    if row_idx != 0:
+        _process_row(row_idx, current_row, parsed_requests, validation_errors)
             
     if validation_errors:
         return None, validation_errors
     
     return parsed_requests, None
+
+def _process_row(row_idx, row_data, parsed_requests, validation_errors):
+    date = row_data.get('date', '').strip()
+    name = row_data.get('name', '').strip()
+    investment = row_data.get('investment', '').strip()
+    returned = row_data.get('returned', '').strip()
+    
+    # 全て空なら無視
+    if not date and not name and not investment and not returned:
+        return
+        
+    # 一部だけ入力されている場合はエラー
+    if not date or not name or not investment or not returned:
+        validation_errors.append(f"行 {row_idx}: 入力されていない項目があります。")
+        return
+
+    # --- 簡易的な検証 ---
+    if not re.match(r'^\d{4}-\d{2}-\d{2}$', date):
+        validation_errors.append(f"行 {row_idx} ({date}): 日付のフォーマットが 'YYYY-MM-DD' ではありません。")
+    else:
+        try:
+            datetime.strptime(date, '%Y-%m-%d')
+        except ValueError:
+            validation_errors.append(f"行 {row_idx} ({date}): 無効な日付です。")
+
+    if not re.search(r'^\d', investment):
+        validation_errors.append(f"行 {row_idx} ({investment}): 投資額のフォーマットが数値形式ではありません。")
+        
+    if not re.search(r'^\d', returned):
+        validation_errors.append(f"行 {row_idx} ({returned}): 回収額のフォーマットが数値形式ではありません。")
+
+    # エラーがなければ追加
+    parsed_requests.append({
+        'date': date.replace(',', ' '),
+        'name': name.replace(',', ''),
+        'investment': investment,
+        'returned': returned,
+        'issue_number': ISSUE_NUMBER
+    })
 
 def parse_and_validate_issue_diary(body):
     # データの部分のみを使用
