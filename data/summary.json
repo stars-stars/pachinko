@@ -1,6 +1,6 @@
 {
-    "total_profit": -737900,
-    "num_of_sessions": 432,
+    "total_profit": -848400,
+    "num_of_sessions": 459,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -13,6 +13,12 @@
             "investment": 16000,
             "return": 0,
             "profit": -16000
+        },
+        {
+            "machine": "L南国育ちスペシャル",
+            "investment": 48000,
+            "return": 140000,
+            "profit": 92000
         },
         {
             "machine": "L東京喰種",
@@ -28,9 +34,9 @@
         },
         {
             "machine": "eアズールレーン",
-            "investment": 49500,
+            "investment": 51500,
             "return": 48000,
-            "profit": -1500
+            "profit": -3500
         },
         {
             "machine": "eエヴァンゲリオン",
@@ -76,9 +82,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1273300,
-            "return": 941300,
-            "profit": -332000
+            "investment": 1289300,
+            "return": 946300,
+            "profit": -343000
         },
         {
             "machine": "ゾンビランドサガ",
@@ -100,15 +106,21 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 377500,
+            "investment": 395500,
             "return": 210200,
-            "profit": -167300
+            "profit": -185300
         },
         {
             "machine": "ビッグドリーム",
-            "investment": 95000,
-            "return": 201200,
-            "profit": 106200
+            "investment": 104000,
+            "return": 217200,
+            "profit": 113200
+        },
+        {
+            "machine": "ブラックジャック",
+            "investment": 8000,
+            "return": 1500,
+            "profit": -6500
         },
         {
             "machine": "ブルーロック",
@@ -118,9 +130,21 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 289000,
-            "return": 462400,
-            "profit": 173400
+            "investment": 434000,
+            "return": 472400,
+            "profit": 38400
+        },
+        {
+            "machine": "ミリオンゴッド",
+            "investment": 33000,
+            "return": 0,
+            "profit": -33000
+        },
+        {
+            "machine": "モンキーターン",
+            "investment": 6000,
+            "return": 13000,
+            "profit": 7000
         },
         {
             "machine": "モンハン",
@@ -129,22 +153,28 @@
             "profit": -5000
         },
         {
+            "machine": "リオエース2",
+            "investment": 12000,
+            "return": 57000,
+            "profit": 45000
+        },
+        {
             "machine": "リコリコ",
-            "investment": 27000,
+            "investment": 50000,
             "return": 153800,
-            "profit": 126800
+            "profit": 103800
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 361500,
+            "investment": 371500,
             "return": 204800,
-            "profit": -156700
+            "profit": -166700
         },
         {
             "machine": "リゼロ鬼がかり",
-            "investment": 371500,
+            "investment": 375500,
             "return": 294900,
-            "profit": -76600
+            "profit": -80600
         },
         {
             "machine": "ヴァルヴレイヴ",
@@ -154,9 +184,9 @@
         },
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 1017400,
-            "return": 1304400,
-            "profit": 287000
+            "investment": 1041400,
+            "return": 1365900,
+            "profit": 324500
         },
         {
             "machine": "化物語",
@@ -175,6 +205,12 @@
             "investment": 118000,
             "return": 26000,
             "profit": -92000
+        },
+        {
+            "machine": "戦国乙女5",
+            "investment": 56500,
+            "return": 0,
+            "profit": -56500
         },
         {
             "machine": "東京リベンジャーズ",
@@ -202,8 +238,8 @@
         },
         {
             "machine": "炎炎ノ消防隊",
-            "investment": 27000,
-            "return": 36000,
+            "investment": 37000,
+            "return": 46000,
             "profit": 9000
         },
         {
@@ -336,9 +372,15 @@
         },
         {
             "month": "2026-06",
-            "investment": 127500,
-            "return": 275700,
-            "profit": 148200
+            "investment": 416500,
+            "return": 363700,
+            "profit": -52800
+        },
+        {
+            "month": "2026-07",
+            "investment": 135500,
+            "return": 226000,
+            "profit": 90500
         }
     ]
 }
