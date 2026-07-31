@@ -9,6 +9,12 @@
             "profit": -30000
         },
         {
+            "machine": "Lカバネリ",
+            "investment": 16000,
+            "return": 0,
+            "profit": -16000
+        },
+        {
             "machine": "L東京喰種",
             "investment": 57000,
             "return": 10000,
@@ -28,15 +34,15 @@
         },
         {
             "machine": "eエヴァンゲリオン",
-            "investment": 10000,
+            "investment": 15000,
             "return": 0,
-            "profit": -10000
+            "profit": -15000
         },
         {
-            "machine": "いくたち",
-            "investment": 5000,
+            "machine": "pエヴァンゲリオン",
+            "investment": 35000,
             "return": 0,
-            "profit": -5000
+            "profit": -35000
         },
         {
             "machine": "かぐや様",
@@ -46,9 +52,9 @@
         },
         {
             "machine": "もののがたり",
-            "investment": 9000,
+            "investment": 14000,
             "return": 18000,
-            "profit": 9000
+            "profit": 4000
         },
         {
             "machine": "インデックス",
@@ -57,16 +63,10 @@
             "profit": -1000
         },
         {
-            "machine": "エヴァンゲリオン",
-            "investment": 40000,
-            "return": 0,
-            "profit": -40000
-        },
-        {
             "machine": "カバネリ",
-            "investment": 44000,
+            "investment": 28000,
             "return": 0,
-            "profit": -44000
+            "profit": -28000
         },
         {
             "machine": "ゴッドイーター",
@@ -100,9 +100,9 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 296500,
+            "investment": 377500,
             "return": 210200,
-            "profit": -86300
+            "profit": -167300
         },
         {
             "machine": "ビッグドリーム",
@@ -157,12 +157,6 @@
             "investment": 1017400,
             "return": 1304400,
             "profit": 287000
-        },
-        {
-            "machine": "乗り打ち収支",
-            "investment": 81000,
-            "return": 0,
-            "profit": -81000
         },
         {
             "machine": "化物語",
