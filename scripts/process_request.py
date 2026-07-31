@@ -22,9 +22,13 @@ def parse_and_validate_issue_day_data(body):
     validation_errors = []
     
     for i, line in enumerate(lines, 1):
+        line = line.strip()
+        if not line:
+            continue
+            
         parts = [p.strip() for p in line.split(',')]
         
-        if len(parts) < 3: # 必須項目（日付, 機種名, 投資額, 回収額）が4つあることを確認
+        if len(parts) < 4: # 必須項目（日付, 機種名, 投資額, 回収額）が4つあることを確認
             validation_errors.append(f"行 {i}: 必須項目（日付, 機種名, 投資額, 回収額）が不足しています。")
             continue
 
@@ -48,7 +52,7 @@ def parse_and_validate_issue_day_data(body):
             validation_errors.append(f"行 {i} ({investment}): 投資額のフォーマットが数値形式ではありません。")
         # 回収額の検証
         if not re.search(r'^\d', returned):
-            validation_errors.append(f"行 {i} ({returned}): 投資額のフォーマットが数値形式ではありません。")
+            validation_errors.append(f"行 {i} ({returned}): 回収額のフォーマットが数値形式ではありません。")
 
         # 検証を通過した場合、データに追加
         if not validation_errors:
@@ -103,8 +107,8 @@ def comment_on_issue(errors):
         return
 
     try:
-        g = Github(auth=GITHUB_TOKEN)
-        repo = g.get_user(REPO_OWNER).get_repo(REPO_NAME)
+        g = Github(GITHUB_TOKEN)
+        repo = g.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
         issue = repo.get_issue(number=int(ISSUE_NUMBER))
         
         error_message = "### 機材リクエストの検証エラー\n"
