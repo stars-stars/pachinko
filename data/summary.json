@@ -1,6 +1,6 @@
 {
-    "total_profit": -791900,
-    "num_of_sessions": 458,
+    "total_profit": -848400,
+    "num_of_sessions": 459,
     "machine_profits": [
         {
             "machine": "Lアズールレーン",
@@ -207,6 +207,12 @@
             "profit": -92000
         },
         {
+            "machine": "戦国乙女5",
+            "investment": 56500,
+            "return": 0,
+            "profit": -56500
+        },
+        {
             "machine": "東京リベンジャーズ",
             "investment": 8000,
             "return": 0,
@@ -372,9 +378,9 @@
         },
         {
             "month": "2026-07",
-            "investment": 79000,
+            "investment": 135500,
             "return": 226000,
-            "profit": 147000
+            "profit": 90500
         }
     ]
 }
