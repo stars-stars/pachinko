@@ -15,23 +15,47 @@ JSON_PATH = 'data/diaries.jsonl'
 
 # Issueの本文から機材リストのセクションを抽出し、パースする
 def parse_and_validate_issue_day_data(body):
-    # データの部分のみを使用
-    lines = body.split('\n')[2:]
-
     parsed_requests = []
     validation_errors = []
     
+    lines = body.split('\n')
+    
     for i, line in enumerate(lines, 1):
-        parts = [p.strip() for p in line.split(',')]
-        
-        if len(parts) < 3: # 必須項目（日付, 機種名, 投資額, 回収額）が4つあることを確認
-            validation_errors.append(f"行 {i}: 必須項目（日付, 機種名, 投資額, 回収額）が不足しています。")
+        line = line.strip()
+        if not line:
+            continue
+            
+        if line.startswith('|'):
+            # テーブルのヘッダやセパレータ行をスキップ
+            if '日付' in line and '機種名' in line:
+                continue
+            if re.match(r'^\|\s*[-:]+\s*\|', line):
+                continue
+            parts = [p.strip() for p in line.strip('|').split('|')]
+        else:
+            if line.startswith('#'):
+                continue
+            parts = [p.strip() for p in line.split(',')]
+            
+        if len(parts) < 4:
+            # 無視すべき行（見出しなど）はエラーにしない
+            if len(parts) > 1:
+                validation_errors.append(f"行 {i}: 必須項目（日付, 機種名, 投資額, 回収額）が不足しています。")
             continue
 
         date = parts[0]
         name = parts[1]
         investment = parts[2]
         returned = parts[3]
+
+        # 空の行（入力なし）は無視する
+        if not date and not name and not investment and not returned:
+            continue
+        
+        # どれか一つでも欠けている場合はエラー
+        if not date or not name or not investment or not returned:
+            validation_errors.append(f"行 {i}: 入力されていない項目があります。")
+            continue
 
         # --- 簡易的な検証 ---
         # 日付の検証 (YYYY-MM-DD 形式)
@@ -48,7 +72,7 @@ def parse_and_validate_issue_day_data(body):
             validation_errors.append(f"行 {i} ({investment}): 投資額のフォーマットが数値形式ではありません。")
         # 回収額の検証
         if not re.search(r'^\d', returned):
-            validation_errors.append(f"行 {i} ({returned}): 投資額のフォーマットが数値形式ではありません。")
+            validation_errors.append(f"行 {i} ({returned}): 回収額のフォーマットが数値形式ではありません。")
 
         # 検証を通過した場合、データに追加
         if not validation_errors:
