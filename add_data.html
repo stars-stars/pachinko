@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データ追加アプリ (Pachinko Tracker)</title>
+    <link rel="stylesheet" href="page-style.css">
+    <link rel="stylesheet" href="add_data.css">
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="home.html">ホーム</a></li>
+            <li><a href="sum.html">全体収支</a></li>
+            <li><a href="days.html">日ごと収支</a></li>
+            <li><a href="add_data.html" style="color: black;">データ追加</a></li>
+            <li><a href="diary.html">日記</a></li>
+            <li><a href="profile.html">プロフィール</a></li>
+        </ul>
+    </header>
+
+    <div class="container" style="margin-top: 150px;">
+        <h1>新規データ追加</h1>
+
+        <div class="settings-panel">
+            <label for="gh-token">GitHub API トークン (ブラウザにのみ保存されます)</label>
+            <div class="input-group">
+                <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+                <button type="button" id="save-token-btn" class="btn primary">保存</button>
+            </div>
+            <small>※ このトークンはリポジトリの Issue を作成するために使用され、外部へは送信されません。</small>
+        </div>
+
+        <form id="data-form">
+            <div id="rows-container">
+                <!-- Javascript will inject input rows here -->
+            </div>
+            <div class="actions">
+                <button type="button" id="add-row-btn" class="btn secondary">＋ 行を追加</button>
+                <button type="submit" id="submit-btn" class="btn submit-btn">Issueを作成して送信</button>
+            </div>
+        </form>
+
+        <div id="status-message"></div>
+    </div>
+
+    <!-- Datalist for autocomplete will be injected here -->
+    <div id="datalist-container"></div>
+
+    <script src="add_data.js"></script>
+</body>
+
+</html>
