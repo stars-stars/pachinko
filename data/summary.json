@@ -1,6 +1,6 @@
 {
-    "total_profit": -848400,
-    "num_of_sessions": 459,
+    "total_profit": -890400,
+    "num_of_sessions": 465,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -15,28 +15,28 @@
             "profit": 113200
         },
         {
-            "machine": "リコリコ",
-            "investment": 50000,
-            "return": 153800,
-            "profit": 103800
-        },
-        {
             "machine": "L南国育ちスペシャル",
             "investment": 48000,
             "return": 140000,
             "profit": 92000
         },
         {
+            "machine": "リコリコ",
+            "investment": 65000,
+            "return": 153800,
+            "profit": 88800
+        },
+        {
             "machine": "リオエース2",
-            "investment": 12000,
-            "return": 57000,
-            "profit": 45000
+            "investment": 13000,
+            "return": 86000,
+            "profit": 73000
         },
         {
             "machine": "マギレコ",
-            "investment": 434000,
-            "return": 472400,
-            "profit": 38400
+            "investment": 437000,
+            "return": 505400,
+            "profit": 68400
         },
         {
             "machine": "ブルーロック",
@@ -159,12 +159,6 @@
             "profit": -22000
         },
         {
-            "machine": "東京喰種",
-            "investment": 23000,
-            "return": 0,
-            "profit": -23000
-        },
-        {
             "machine": "牙狼",
             "investment": 23000,
             "return": 0,
@@ -219,10 +213,10 @@
             "profit": -47000
         },
         {
-            "machine": "戦国乙女5",
-            "investment": 56500,
-            "return": 0,
-            "profit": -56500
+            "machine": "東京喰種",
+            "investment": 54000,
+            "return": 2000,
+            "profit": -52000
         },
         {
             "machine": "かぐや様",
@@ -241,6 +235,12 @@
             "investment": 118000,
             "return": 26000,
             "profit": -92000
+        },
+        {
+            "machine": "戦国乙女5",
+            "investment": 116500,
+            "return": 0,
+            "profit": -116500
         },
         {
             "machine": "トラブル",
@@ -262,9 +262,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1289300,
-            "return": 946300,
-            "profit": -343000
+            "investment": 1290300,
+            "return": 951300,
+            "profit": -339000
         }
     ],
     "monthly_profits": [
@@ -381,6 +381,12 @@
             "investment": 135500,
             "return": 226000,
             "profit": 90500
+        },
+        {
+            "month": "2026-08",
+            "investment": 111000,
+            "return": 69000,
+            "profit": -42000
         }
     ]
 }
