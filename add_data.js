@@ -54,17 +54,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement('div');
         row.className = 'data-row';
 
-        // Get today's date adjusted for local timezone
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const dd = String(today.getDate()).padStart(2, '0');
-        const todayStr = `${yyyy}-${mm}-${dd}`;
+        let defaultDateStr = "";
+
+        if (rowsContainer.children.length > 0) {
+            // 直前の行が存在する場合はその日付を取得
+            const lastRow = rowsContainer.lastElementChild;
+            defaultDateStr = lastRow.querySelector('.input-date').value;
+        } else {
+            // 最初の行の場合は当日の日付
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            defaultDateStr = `${yyyy}-${mm}-${dd}`;
+        }
 
         row.innerHTML = `
             <div class="field">
                 <label>日付</label>
-                <input type="date" class="input-date" value="${todayStr}" required>
+                <input type="date" class="input-date" value="${defaultDateStr}" required>
             </div>
             <div class="field">
                 <label>機種名</label>
@@ -78,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <label>回収額</label>
                 <input type="number" class="input-return" placeholder="例: 1000" min="0" required>
             </div>
-            <button type="button" class="btn-remove" title="この行を削除">✕</button>
+            <button type="button" class="btn-remove" title="この行を削除" tabindex="-1">✕</button>
         `;
 
         row.querySelector('.btn-remove').addEventListener('click', () => {
@@ -99,11 +107,92 @@ document.addEventListener("DOMContentLoaded", () => {
             row.style.transform = 'translateY(0)';
         });
 
-        // Focus the first input (machine name) of the new row, except for the first row load
+        // Focus the first input (date) of the new row, except for the first row load
         if (rowsContainer.children.length > 1) {
-            row.querySelector('.input-machine').focus();
+            row.querySelector('.input-date').focus();
         }
     }
+
+    // 入力変更時にオートコンプリートの状態をリセット
+    dataForm.addEventListener('input', (e) => {
+        if (e.target.classList.contains('input-machine')) {
+            delete e.target.dataset.searchPrefix;
+            delete e.target.dataset.matchIndex;
+        }
+    });
+
+    dataForm.addEventListener('keydown', (e) => {
+        // Enterキーでの送信防止（Ctrl+Enterで送信）
+        if (e.key === 'Enter') {
+            e.preventDefault(); // デフォルトの送信をキャンセル
+            if (e.ctrlKey || e.metaKey) {
+                const submitBtn = document.getElementById('submit-btn');
+                if (!submitBtn.disabled) {
+                    dataForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+                }
+            } else if (e.target.classList.contains('input-machine')) {
+                // Enterキーでオートコンプリートを確定
+                if (e.target.dataset.searchPrefix !== undefined) {
+                    delete e.target.dataset.searchPrefix;
+                    delete e.target.dataset.matchIndex;
+                    e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+                }
+            }
+        }
+
+        if (e.key === 'Tab' && !e.shiftKey) {
+            if (e.target.classList.contains('input-date')) {
+                // カレンダーボタンへのフォーカスをスキップして直接機種名へ
+                e.preventDefault();
+                const currentRow = e.target.closest('.data-row');
+                currentRow.querySelector('.input-machine').focus();
+                return;
+            } else if (e.target.classList.contains('input-machine')) {
+                let prefix = e.target.dataset.searchPrefix;
+                let isCycling = true;
+                
+                if (prefix === undefined) {
+                    prefix = e.target.value;
+                    isCycling = false;
+                }
+                
+                if (prefix) {
+                    const matches = machineOptions.filter(m => m.startsWith(prefix));
+                    if (matches.length > 0) {
+                        // 完全に一致していて候補が1つだけなら通常のTab移動を許可
+                        if (!isCycling && matches.length === 1 && matches[0] === prefix) {
+                            return; 
+                        }
+                        
+                        e.preventDefault(); // デフォルトのTab移動をキャンセル
+                        
+                        let idx = 0;
+                        if (isCycling) {
+                            idx = parseInt(e.target.dataset.matchIndex, 10) + 1;
+                            if (idx >= matches.length) idx = 0; // ループ
+                        }
+                        
+                        const match = matches[idx];
+                        e.target.value = match;
+                        // 補完された部分をハイライト（選択状態）にする
+                        e.target.setSelectionRange(prefix.length, match.length);
+                        
+                        e.target.dataset.searchPrefix = prefix;
+                        e.target.dataset.matchIndex = idx;
+                        return;
+                    }
+                }
+            } 
+            // 最後の行の回収額でTabを押したときに行を追加
+            else if (e.target.classList.contains('input-return')) {
+                const currentRow = e.target.closest('.data-row');
+                if (currentRow === rowsContainer.lastElementChild) {
+                    e.preventDefault(); // デフォルトのフォーカス移動をキャンセル
+                    addRow(); // 行を追加し、自動的に次の行の日付にフォーカスが当たる
+                }
+            }
+        }
+    });
 
     dataForm.addEventListener('submit', async (e) => {
         e.preventDefault();
