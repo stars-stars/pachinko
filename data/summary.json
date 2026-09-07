@@ -1,12 +1,12 @@
 {
-    "total_profit": -850900,
+    "total_profit": -860900,
     "num_of_sessions": 469,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 1070400,
+            "investment": 1080400,
             "return": 1384900,
-            "profit": 314500
+            "profit": 304500
         },
         {
             "machine": "ビッグドリーム",
@@ -390,9 +390,9 @@
         },
         {
             "month": "2026-09",
-            "investment": 39000,
+            "investment": 49000,
             "return": 78500,
-            "profit": 39500
+            "profit": 29500
         }
     ]
 }
