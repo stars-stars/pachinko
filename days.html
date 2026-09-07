@@ -20,6 +20,28 @@
             <div class="contents">
                 <div class="days">
                     <h1>日別収支一覧</h1>
+                    
+                    <!-- 期間指定フィルター -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div class="filter-container" style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px; display: inline-block;">
+                            <div style="margin-bottom: 15px;">
+                                <label for="start-date">開始日:</label>
+                                <input type="date" id="start-date">
+                                <span style="margin: 0 10px;">〜</span>
+                                <label for="end-date">終了日:</label>
+                                <input type="date" id="end-date">
+                                <button id="clear-btn" style="margin-left: 15px; padding: 5px 15px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">クリア</button>
+                            </div>
+                            <div>
+                                <button id="filter-btn" style="padding: 8px 40px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1.1em;">絞り込み</button>
+                            </div>
+                            
+                            <div id="period-summary" style="margin-top: 15px; font-size: 1.2em; font-weight: bold; display: none;">
+                                期間合計収支: <span id="period-total">0.0</span>k
+                            </div>
+                        </div>
+                    </div>
+
                     <p id="loading-status">データを読み込み中...</p>
                     <div id="data-container"></div>
                 </div>
