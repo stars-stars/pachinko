@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataContainer = document.getElementById('data-container');
     const statusElement = document.getElementById('loading-status');
 
+    // フィルター用要素の取得
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const filterBtn = document.getElementById('filter-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const periodSummary = document.getElementById('period-summary');
+    const periodTotalSpan = document.getElementById('period-total');
+
+    let allRecords = []; // すべてのデータを保持する変数
+
     // ----------------------------------------------------
     // 【メイン処理】CSVデータの取得と処理
     // ----------------------------------------------------
@@ -37,20 +47,86 @@ document.addEventListener('DOMContentLoaded', () => {
                 records.push(record);
             }
 
-            // 日付でソート (新しい日付が上に来るように降順ソート)
-            records.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            // データを年月でグループ化し、表を生成
-            const groupedData = groupAndRenderTables(records);
-            dataContainer.innerHTML = groupedData;
-
-            // 縞模様のスタイルを適用
-            applyZebraStriping();
+            allRecords = records;
+            renderData(allRecords);
         })
         .catch(e => {
             console.error('CSVデータの読み込み中にエラーが発生しました:', e);
             statusElement.textContent = `データの読み込みに失敗しました (${e.message})`;
         });
+
+    // データを画面に描画する関数
+    function renderData(recordsToRender) {
+        if (recordsToRender.length === 0) {
+            dataContainer.innerHTML = '<p style="text-align:center;">指定された期間のデータはありません。</p>';
+            updatePeriodSummary(recordsToRender);
+            return;
+        }
+
+        // 日付でソート (新しい日付が上に来るように降順ソート)
+        recordsToRender.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // データを年月でグループ化し、表を生成
+        const groupedData = groupAndRenderTables(recordsToRender);
+        dataContainer.innerHTML = groupedData;
+
+        // 縞模様のスタイルを適用
+        applyZebraStriping();
+
+        // 期間合計の計算と表示
+        updatePeriodSummary(recordsToRender);
+    }
+
+    // 期間合計を計算して表示する関数
+    function updatePeriodSummary(recordsToRender) {
+        // フィルターが指定されている場合のみ合計を表示する
+        if (!startDateInput.value && !endDateInput.value) {
+            periodSummary.style.display = 'none';
+            return;
+        }
+
+        periodSummary.style.display = 'block';
+        let totalProfit = 0;
+        recordsToRender.forEach(record => {
+            const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
+            totalProfit += profit;
+        });
+
+        const color = totalProfit < 0 ? 'red' : (totalProfit > 0 ? 'blue' : 'black');
+        periodTotalSpan.textContent = totalProfit.toFixed(1);
+        periodTotalSpan.style.color = color;
+    }
+
+    // 開始日が入力されたら、終了日が空の場合は同じ日付を自動セットする（カレンダーを同じ月から開かせるためのUX向上）
+    startDateInput.addEventListener('change', () => {
+        if (startDateInput.value && !endDateInput.value) {
+            endDateInput.value = startDateInput.value;
+        }
+    });
+
+    // 「絞り込み」ボタンのイベント
+    filterBtn.addEventListener('click', () => {
+        const start = startDateInput.value;
+        const end = endDateInput.value;
+
+        let filtered = allRecords;
+
+        if (start) {
+            filtered = filtered.filter(r => r.date >= start);
+        }
+        if (end) {
+            filtered = filtered.filter(r => r.date <= end);
+        }
+
+        renderData(filtered);
+    });
+
+    // 「クリア」ボタンのイベント
+    clearBtn.addEventListener('click', () => {
+        startDateInput.value = '';
+        endDateInput.value = '';
+        renderData(allRecords);
+    });
 
 });
 
@@ -132,12 +208,12 @@ function groupAndRenderTables(records) {
 
                 // 収支セル (色付け対応)
                 const profitColor = profit < 0 ? 'red' : (profit > 0 ? 'blue' : 'black');
-                htmlOutput += `<td style="color: ${profitColor}; font-weight: bold; text-align: right">${profit.toFixed(1)}k</td>`;
+                htmlOutput += `<td style="font-weight: bold; text-align: right"><span style="color: ${profitColor};">${profit.toFixed(1)}k</span></td>`;
 
                 // 日別合計収支セル
                 if (isFirstRow) {
                     const dailyTotalColor = dailyTotalProfit < 0 ? 'red' : (dailyTotalProfit > 0 ? 'blue' : 'black');
-                    htmlOutput += `<td rowspan="${rowSpanCount}" style="color: ${dailyTotalColor}; font-weight: bold; text-align: center; vertical-align: middle;">${dailyTotalProfit.toFixed(1)}k</td>`;
+                    htmlOutput += `<td rowspan="${rowSpanCount}" style="font-weight: bold; text-align: center; vertical-align: middle;"><span style="color: ${dailyTotalColor};">${dailyTotalProfit.toFixed(1)}k</span></td>`;
                 }
 
                 htmlOutput += `</tr>`;
