@@ -2,6 +2,11 @@ name: Data Processing and Deploy
 
 # ワークフローを実行するトリガーを定義
 on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
   # イシューに投稿された時に実行
   issues:
     types: [opened]
@@ -16,6 +21,10 @@ permissions:
 
 jobs:
   build:
+    if: >
+      github.event_name == 'issues' || 
+      github.event_name == 'workflow_dispatch' || 
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
       # リポジトリをチェックアウト
