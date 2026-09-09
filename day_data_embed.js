@@ -162,7 +162,7 @@ function groupAndRenderTables(records) {
         // 年月タイトルとテーブルの開始
         htmlOutput += `<div class="${yearMonth.replace('-', '/')}">`;
         htmlOutput += `<h2 style="text-align: center">${yearMonth.replace('-', '年')}月</h2>`;
-        htmlOutput += `<table width="1200" border="3">`;
+        htmlOutput += `<div class="table-responsive"><table style="width: 100%; max-width: 1200px; margin: 0 auto;" border="3">`;
         htmlOutput += `<thead><tr><th>日付</th><th>機種</th><th>投資額</th><th>回収額</th><th>収支</th><th>日別合計</th></tr></thead>`;
         htmlOutput += `<tbody>`;
 
@@ -220,7 +220,7 @@ function groupAndRenderTables(records) {
             });
         });
 
-        htmlOutput += `</tbody></table></div>`;
+        htmlOutput += `</tbody></table></div></div>`;
     });
 
     return htmlOutput;
