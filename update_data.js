@@ -44,7 +44,25 @@ function embedOverallSummary(data, numberFormatter) {
     const totalProfit = data.total_profit / 1000;
     // 収支をカンマ区切りにし、[+]または[-]を付けて表示
     const profitText = numberFormatter.format(totalProfit);
-    document.getElementById('total-profit').textContent = `${profitText}k!!!`;
+    const profitStr = `${profitText}k!!!`;
+    
+    const profitSpan = document.getElementById('total-profit');
+    
+    // 実際の数値をデータ属性に保存し、初期表示は伏字にする
+    profitSpan.dataset.realProfit = profitStr;
+    profitSpan.textContent = '***k!!!';
+    profitSpan.style.cursor = 'pointer';
+    profitSpan.style.userSelect = 'none'; // テキスト選択を防ぐ
+    
+    // クリックイベントで伏字と実際の数値を切り替える
+    // 既存のイベントリスナーが重複しないように一旦クローンするか、単純に追加（通常は1回しか呼ばれない）
+    profitSpan.onclick = function() {
+        if (this.textContent.includes('***')) {
+            this.textContent = this.dataset.realProfit;
+        } else {
+            this.textContent = '***k!!!';
+        }
+    };
 
     // 日付の埋め込み
     const today = new Date();

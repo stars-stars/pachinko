@@ -137,3 +137,47 @@ td{
 .profile p{
     font-size: 35px;
 }
+
+/* =========================================
+   Mobile Responsive Adjustments
+   ========================================= */
+@media (max-width: 768px) {
+    header ul {
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+        gap: 10px;
+    }
+    header li {
+        font-size: 16px; /* 縮小 */
+        margin: 5px 10px;
+    }
+    header {
+        position: relative; /* 固定を解除してレイアウト崩れを防ぐ */
+        padding: 10px 0;
+    }
+    .contents {
+        margin-top: 20px; /* 固定解除に伴いマージン縮小 */
+    }
+    .sum h1 { font-size: 50px; }
+    .sum h2 { font-size: 30px; }
+    .sum h3 { font-size: 20px; padding-bottom: 30px; }
+    .sum img { max-width: 100%; height: auto; }
+    
+    .profile h1 { font-size: 40px; }
+    .profile p { font-size: 20px; }
+    
+    .home h1 { font-size: 30px; }
+    .home p { font-size: 16px; }
+
+    /* テーブルを横スクロール可能に */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    table {
+        min-width: 600px; /* 最小幅を確保 */
+    }
+}
