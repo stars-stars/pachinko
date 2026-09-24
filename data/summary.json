@@ -1,6 +1,6 @@
 {
-    "total_profit": -825100,
-    "num_of_sessions": 477,
+    "total_profit": -827100,
+    "num_of_sessions": 480,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -208,9 +208,9 @@
         },
         {
             "machine": "海物語",
-            "investment": 52500,
+            "investment": 53500,
             "return": 13000,
-            "profit": -39500
+            "profit": -40500
         },
         {
             "machine": "L東京喰種",
@@ -256,15 +256,15 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 475500,
+            "investment": 478500,
             "return": 269700,
-            "profit": -205800
+            "profit": -208800
         },
         {
             "machine": "ジャグラー",
-            "investment": 1298300,
-            "return": 951300,
-            "profit": -347000
+            "investment": 1302300,
+            "return": 957300,
+            "profit": -345000
         }
     ],
     "monthly_profits": [
@@ -390,9 +390,9 @@
         },
         {
             "month": "2026-09",
-            "investment": 178000,
-            "return": 243300,
-            "profit": 65300
+            "investment": 186000,
+            "return": 249300,
+            "profit": 63300
         }
     ]
 }
