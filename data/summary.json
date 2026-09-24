@@ -1,6 +1,6 @@
 {
-    "total_profit": -855100,
-    "num_of_sessions": 471,
+    "total_profit": -825100,
+    "num_of_sessions": 476,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -15,16 +15,16 @@
             "profit": 113200
         },
         {
+            "machine": "リコリコ",
+            "investment": 75000,
+            "return": 175800,
+            "profit": 100800
+        },
+        {
             "machine": "L南国育ちスペシャル",
             "investment": 48000,
             "return": 140000,
             "profit": 92000
-        },
-        {
-            "machine": "リコリコ",
-            "investment": 65000,
-            "return": 153800,
-            "profit": 88800
         },
         {
             "machine": "リオエース2",
@@ -34,9 +34,9 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 446000,
-            "return": 505400,
-            "profit": 59400
+            "investment": 451000,
+            "return": 507400,
+            "profit": 56400
         },
         {
             "machine": "ブルーロック",
@@ -61,6 +61,12 @@
             "investment": 14000,
             "return": 18000,
             "profit": 4000
+        },
+        {
+            "machine": "戦国乙女5",
+            "investment": 138500,
+            "return": 140800,
+            "profit": 2300
         },
         {
             "machine": "無職転生",
@@ -237,18 +243,6 @@
             "profit": -92000
         },
         {
-            "machine": "戦国乙女5",
-            "investment": 124500,
-            "return": 14800,
-            "profit": -109700
-        },
-        {
-            "machine": "ノリ打ち収支",
-            "investment": 395500,
-            "return": 269700,
-            "profit": -125800
-        },
-        {
             "machine": "トラブル",
             "investment": 562000,
             "return": 414200,
@@ -261,10 +255,16 @@
             "profit": -166700
         },
         {
+            "machine": "ノリ打ち収支",
+            "investment": 480500,
+            "return": 269700,
+            "profit": -210800
+        },
+        {
             "machine": "ジャグラー",
-            "investment": 1292300,
+            "investment": 1298300,
             "return": 951300,
-            "profit": -341000
+            "profit": -347000
         }
     ],
     "monthly_profits": [
@@ -390,9 +390,9 @@
         },
         {
             "month": "2026-09",
-            "investment": 58000,
-            "return": 93300,
-            "profit": 35300
+            "investment": 178000,
+            "return": 243300,
+            "profit": 65300
         }
     ]
 }
