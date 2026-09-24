@@ -1,6 +1,6 @@
 {
     "total_profit": -825100,
-    "num_of_sessions": 476,
+    "num_of_sessions": 477,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -250,15 +250,15 @@
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 371500,
+            "investment": 376500,
             "return": 204800,
-            "profit": -166700
+            "profit": -171700
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 480500,
+            "investment": 475500,
             "return": 269700,
-            "profit": -210800
+            "profit": -205800
         },
         {
             "machine": "ジャグラー",
