@@ -1,6 +1,6 @@
 {
-    "total_profit": -827100,
-    "num_of_sessions": 480,
+    "total_profit": -828100,
+    "num_of_sessions": 481,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -262,9 +262,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1302300,
+            "investment": 1303300,
             "return": 957300,
-            "profit": -345000
+            "profit": -346000
         }
     ],
     "monthly_profits": [
@@ -393,6 +393,12 @@
             "investment": 186000,
             "return": 249300,
             "profit": 63300
+        },
+        {
+            "month": "2026-10",
+            "investment": 1000,
+            "return": 0,
+            "profit": -1000
         }
     ]
 }
