@@ -1,6 +1,6 @@
 {
-    "total_profit": -828100,
-    "num_of_sessions": 481,
+    "total_profit": -878100,
+    "num_of_sessions": 488,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
@@ -63,12 +63,6 @@
             "profit": 4000
         },
         {
-            "machine": "戦国乙女5",
-            "investment": 138500,
-            "return": 140800,
-            "profit": 2300
-        },
-        {
             "machine": "無職転生",
             "investment": 7000,
             "return": 7500,
@@ -87,6 +81,12 @@
             "profit": -1000
         },
         {
+            "machine": "戦国乙女5",
+            "investment": 143500,
+            "return": 140800,
+            "profit": -2700
+        },
+        {
             "machine": "真打吉宗",
             "investment": 6000,
             "return": 3000,
@@ -97,6 +97,18 @@
             "investment": 51500,
             "return": 48000,
             "profit": -3500
+        },
+        {
+            "machine": "p戦国乙女",
+            "investment": 5000,
+            "return": 0,
+            "profit": -5000
+        },
+        {
+            "machine": "ガンダムSEED",
+            "investment": 5000,
+            "return": 0,
+            "profit": -5000
         },
         {
             "machine": "モンハン",
@@ -169,6 +181,12 @@
             "investment": 23000,
             "return": 0,
             "profit": -23000
+        },
+        {
+            "machine": "e無職転生",
+            "investment": 28000,
+            "return": 0,
+            "profit": -28000
         },
         {
             "machine": "カバネリ",
@@ -256,15 +274,15 @@
         },
         {
             "machine": "ノリ打ち収支",
-            "investment": 478500,
+            "investment": 483500,
             "return": 269700,
-            "profit": -208800
+            "profit": -213800
         },
         {
             "machine": "ジャグラー",
-            "investment": 1303300,
+            "investment": 1305300,
             "return": 957300,
-            "profit": -346000
+            "profit": -348000
         }
     ],
     "monthly_profits": [
@@ -396,9 +414,9 @@
         },
         {
             "month": "2026-10",
-            "investment": 1000,
+            "investment": 51000,
             "return": 0,
-            "profit": -1000
+            "profit": -51000
         }
     ]
 }
