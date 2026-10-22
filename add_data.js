@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveTokenBtn = document.getElementById('save-token-btn');
     const statusMessage = document.getElementById('status-message');
     const datalistContainer = document.getElementById('datalist-container');
+    const diaryForm = document.getElementById('diary-form');
+    const diaryDateInput = document.getElementById('diary-date');
+    const diaryTextInput = document.getElementById('diary-text');
 
     let machineOptions = [];
 
@@ -54,6 +57,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addRowBtn.addEventListener('click', addRow);
 
+    // 当日の日付を YYYY-MM-DD 形式で返す
+    function todayString() {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    // 「日別データ / 日記」タブの切り替え
+    document.querySelectorAll('.tab-btn').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(t => {
+                const isActive = t === tab;
+                t.classList.toggle('active', isActive);
+                t.setAttribute('aria-selected', String(isActive));
+                document.getElementById(t.dataset.tab).hidden = !isActive;
+            });
+        });
+    });
+
+    diaryDateInput.value = todayString();
+
     function addRow() {
         const row = document.createElement('div');
         row.className = 'data-row';
@@ -66,11 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             defaultDateStr = lastRow.querySelector('.input-date').value;
         } else {
             // 最初の行の場合は当日の日付
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            defaultDateStr = `${yyyy}-${mm}-${dd}`;
+            defaultDateStr = todayString();
         }
 
         row.innerHTML = `
@@ -201,12 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dataForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('gh_token');
-        if (!token) {
-            showStatus('GitHub トークンを設定し、「保存」を押してください。', 'error');
-            return;
-        }
-
         const rows = document.querySelectorAll('.data-row');
         let issueBody = "### 追加データリスト\n\n";
         let hasError = false;
@@ -232,6 +248,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const submitBtn = document.getElementById('submit-btn');
+        if (await createIssue('Add day-data', issueBody, ['AddDayData'], submitBtn)) {
+            // Reset form
+            rowsContainer.innerHTML = '';
+            addRow();
+        }
+    });
+
+    // 日記の送信 (Issueテンプレート「日記データの追加」と同じ本文形式で作成する)
+    diaryForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const date = diaryDateInput.value.trim();
+        const text = diaryTextInput.value.trim();
+        if (!date || !text) {
+            showStatus('日付と日記の内容を入力してください。', 'error');
+            return;
+        }
+
+        const issueBody = `### 日付\n\n${date}\n\n### 追加の日記データ\n\n${text}`;
+        const submitBtn = document.getElementById('diary-submit-btn');
+        if (await createIssue('Add diary-data', issueBody, ['AddDiaryData'], submitBtn)) {
+            diaryTextInput.value = '';
+        }
+    });
+
+    // 日記の本文では Enter で改行し、Ctrl+Enter で送信する
+    diaryTextInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            diaryForm.requestSubmit();
+        }
+    });
+
+    // GitHub API で Issue を作成する。成功したら true を返す
+    async function createIssue(title, body, labels, submitBtn) {
+        const token = localStorage.getItem('gh_token');
+        if (!token) {
+            showStatus('GitHub トークンを設定し、「保存」を押してください。', 'error');
+            return false;
+        }
+
+        const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
         submitBtn.textContent = '送信中...';
 
@@ -243,30 +301,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    title: 'Add day-data',
-                    body: issueBody,
-                    labels: ['AddDayData']
-                })
+                body: JSON.stringify({ title, body, labels })
             });
 
             if (response.ok) {
                 const data = await response.json();
                 showStatus('Issueが正常に作成されました！ 数分後にサイトへ反映されます。', 'success', data.html_url);
-                // Reset form
-                rowsContainer.innerHTML = '';
-                addRow();
-            } else {
-                const errData = await response.json();
-                showStatus(`エラーが発生しました: ${errData.message}`, 'error');
+                return true;
             }
+            const errData = await response.json();
+            showStatus(`エラーが発生しました: ${errData.message}`, 'error');
         } catch (error) {
             showStatus(`ネットワークエラー: ${error.message}`, 'error');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Issueを作成して送信';
+            submitBtn.textContent = originalText;
         }
-    });
+        return false;
+    }
 
     function showStatus(message, type, linkUrl) {
         // APIのエラーメッセージなどがHTMLとして解釈されないよう、textContentで表示する

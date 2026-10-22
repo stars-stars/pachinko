@@ -1,294 +1,406 @@
 {
     "total_profit": -927600,
+    "last_updated": "2026-10-17",
     "num_of_sessions": 492,
+    "num_of_days": 208,
+    "stats": {
+        "session_win_rate": 0.315,
+        "day_win_rate": 0.3942,
+        "avg_investment": 12725,
+        "avg_profit_per_day": -4460,
+        "max_day_win": {
+            "date": "2025-12-23",
+            "profit": 202600
+        },
+        "max_day_loss": {
+            "date": "2023-12-14",
+            "profit": -150000
+        }
+    },
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
             "investment": 1083400,
             "return": 1477400,
-            "profit": 394000
+            "profit": 394000,
+            "sessions": 51,
+            "win_rate": 0.4314
         },
         {
             "machine": "ビッグドリーム",
             "investment": 104000,
             "return": 217200,
-            "profit": 113200
+            "profit": 113200,
+            "sessions": 3,
+            "win_rate": 0.6667
         },
         {
             "machine": "L南国育ちスペシャル",
             "investment": 48000,
             "return": 140000,
-            "profit": 92000
+            "profit": 92000,
+            "sessions": 1,
+            "win_rate": 1.0
         },
         {
             "machine": "リオエース2",
             "investment": 13000,
             "return": 86000,
-            "profit": 73000
+            "profit": 73000,
+            "sessions": 3,
+            "win_rate": 0.6667
         },
         {
             "machine": "リコリコ",
             "investment": 107000,
             "return": 175800,
-            "profit": 68800
+            "profit": 68800,
+            "sessions": 11,
+            "win_rate": 0.3636
         },
         {
             "machine": "マギレコ",
             "investment": 451000,
             "return": 507400,
-            "profit": 56400
+            "profit": 56400,
+            "sessions": 18,
+            "win_rate": 0.3889
         },
         {
             "machine": "ブルーロック",
             "investment": 28000,
             "return": 51000,
-            "profit": 23000
+            "profit": 23000,
+            "sessions": 3,
+            "win_rate": 0.3333
         },
         {
             "machine": "炎炎ノ消防隊",
             "investment": 37000,
             "return": 46000,
-            "profit": 9000
+            "profit": 9000,
+            "sessions": 3,
+            "win_rate": 0.3333
         },
         {
             "machine": "モンキーターン",
             "investment": 6000,
             "return": 13000,
-            "profit": 7000
+            "profit": 7000,
+            "sessions": 1,
+            "win_rate": 1.0
         },
         {
             "machine": "もののがたり",
             "investment": 14000,
             "return": 18000,
-            "profit": 4000
+            "profit": 4000,
+            "sessions": 2,
+            "win_rate": 0.5
         },
         {
             "machine": "無職転生",
             "investment": 7000,
             "return": 7500,
-            "profit": 500
+            "profit": 500,
+            "sessions": 1,
+            "win_rate": 1.0
         },
         {
             "machine": "北斗の拳",
             "investment": 11000,
             "return": 11000,
-            "profit": 0
+            "profit": 0,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "インデックス",
             "investment": 1000,
             "return": 0,
-            "profit": -1000
+            "profit": -1000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "戦国乙女5",
             "investment": 143500,
             "return": 140800,
-            "profit": -2700
+            "profit": -2700,
+            "sessions": 5,
+            "win_rate": 0.4
         },
         {
             "machine": "真打吉宗",
             "investment": 6000,
             "return": 3000,
-            "profit": -3000
+            "profit": -3000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "eアズールレーン",
             "investment": 51500,
             "return": 48000,
-            "profit": -3500
+            "profit": -3500,
+            "sessions": 7,
+            "win_rate": 0.1429
         },
         {
             "machine": "p戦国乙女",
             "investment": 5000,
             "return": 0,
-            "profit": -5000
+            "profit": -5000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "ガンダムSEED",
             "investment": 5000,
             "return": 0,
-            "profit": -5000
+            "profit": -5000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "モンハン",
             "investment": 5000,
             "return": 0,
-            "profit": -5000
+            "profit": -5000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "ブラックジャック",
             "investment": 8000,
             "return": 1500,
-            "profit": -6500
+            "profit": -6500,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "東京リベンジャーズ",
             "investment": 8000,
             "return": 0,
-            "profit": -8000
+            "profit": -8000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "秘宝伝",
             "investment": 12000,
             "return": 3600,
-            "profit": -8400
+            "profit": -8400,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "沖ドキ",
             "investment": 10000,
             "return": 0,
-            "profit": -10000
+            "profit": -10000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "eエヴァンゲリオン",
             "investment": 15000,
             "return": 0,
-            "profit": -15000
+            "profit": -15000,
+            "sessions": 2,
+            "win_rate": 0.0
         },
         {
             "machine": "ヴァルヴレイヴ",
             "investment": 161000,
             "return": 146000,
-            "profit": -15000
+            "profit": -15000,
+            "sessions": 17,
+            "win_rate": 0.3529
         },
         {
             "machine": "Lカバネリ",
             "investment": 16000,
             "return": 0,
-            "profit": -16000
+            "profit": -16000,
+            "sessions": 2,
+            "win_rate": 0.0
         },
         {
             "machine": "eからくりサーカス2",
             "investment": 17000,
             "return": 0,
-            "profit": -17000
+            "profit": -17000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "化物語",
             "investment": 17000,
             "return": 0,
-            "profit": -17000
+            "profit": -17000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "ゾンビランドサガ",
             "investment": 37000,
             "return": 15000,
-            "profit": -22000
+            "profit": -22000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "牙狼",
             "investment": 23000,
             "return": 0,
-            "profit": -23000
+            "profit": -23000,
+            "sessions": 3,
+            "win_rate": 0.0
         },
         {
             "machine": "e無職転生",
             "investment": 28000,
             "return": 0,
-            "profit": -28000
+            "profit": -28000,
+            "sessions": 2,
+            "win_rate": 0.0
         },
         {
             "machine": "カバネリ",
             "investment": 28000,
             "return": 0,
-            "profit": -28000
+            "profit": -28000,
+            "sessions": 2,
+            "win_rate": 0.0
         },
         {
             "machine": "Lアズールレーン",
             "investment": 30000,
             "return": 0,
-            "profit": -30000
+            "profit": -30000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "ゴッドイーター",
             "investment": 33000,
             "return": 0,
-            "profit": -33000
+            "profit": -33000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "ミリオンゴッド",
             "investment": 33000,
             "return": 0,
-            "profit": -33000
+            "profit": -33000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "pエヴァンゲリオン",
             "investment": 35000,
             "return": 0,
-            "profit": -35000
+            "profit": -35000,
+            "sessions": 3,
+            "win_rate": 0.0
         },
         {
             "machine": "チバリヨ2",
             "investment": 35000,
             "return": 0,
-            "profit": -35000
+            "profit": -35000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "海物語",
             "investment": 53500,
             "return": 13000,
-            "profit": -40500
+            "profit": -40500,
+            "sessions": 12,
+            "win_rate": 0.1667
         },
         {
             "machine": "L東京喰種",
             "investment": 57000,
             "return": 10000,
-            "profit": -47000
+            "profit": -47000,
+            "sessions": 3,
+            "win_rate": 0.0
         },
         {
             "machine": "東京喰種",
             "investment": 54000,
             "return": 2000,
-            "profit": -52000
+            "profit": -52000,
+            "sessions": 5,
+            "win_rate": 0.0
         },
         {
             "machine": "かぐや様",
             "investment": 93000,
             "return": 30000,
-            "profit": -63000
+            "profit": -63000,
+            "sessions": 6,
+            "win_rate": 0.1667
         },
         {
             "machine": "リゼロ鬼がかり",
             "investment": 375500,
             "return": 294900,
-            "profit": -80600
+            "profit": -80600,
+            "sessions": 46,
+            "win_rate": 0.1957
         },
         {
             "machine": "南国育ち",
             "investment": 118000,
             "return": 26000,
-            "profit": -92000
+            "profit": -92000,
+            "sessions": 9,
+            "win_rate": 0.1111
         },
         {
             "machine": "SAO2",
             "investment": 105000,
             "return": 3000,
-            "profit": -102000
+            "profit": -102000,
+            "sessions": 1,
+            "win_rate": 0.0
         },
         {
             "machine": "トラブル",
             "investment": 562000,
             "return": 414200,
-            "profit": -147800
+            "profit": -147800,
+            "sessions": 21,
+            "win_rate": 0.381
         },
         {
             "machine": "リゼロ強欲",
             "investment": 376500,
             "return": 204800,
-            "profit": -171700
+            "profit": -171700,
+            "sessions": 36,
+            "win_rate": 0.1389
         },
         {
             "machine": "ノリ打ち収支",
             "investment": 483500,
             "return": 269700,
-            "profit": -213800
+            "profit": -213800,
+            "sessions": 31,
+            "win_rate": 0.3548
         },
         {
             "machine": "ジャグラー",
             "investment": 1310300,
             "return": 957300,
-            "profit": -353000
+            "profit": -353000,
+            "sessions": 165,
+            "win_rate": 0.4
         }
     ],
     "monthly_profits": [
@@ -423,6 +535,1074 @@
             "investment": 196000,
             "return": 95500,
             "profit": -100500
+        }
+    ],
+    "yearly_profits": [
+        {
+            "year": 2023,
+            "investment": 223500,
+            "return": 61000,
+            "profit": -162500
+        },
+        {
+            "year": 2024,
+            "investment": 1248000,
+            "return": 772300,
+            "profit": -475700
+        },
+        {
+            "year": 2025,
+            "investment": 1051400,
+            "return": 903800,
+            "profit": -147600
+        },
+        {
+            "year": 2026,
+            "investment": 3737800,
+            "return": 3596000,
+            "profit": -141800
+        }
+    ],
+    "daily_cumulative": [
+        {
+            "date": "2023-12-14",
+            "profit": -150000,
+            "cumulative": -150000
+        },
+        {
+            "date": "2023-12-15",
+            "profit": -25000,
+            "cumulative": -175000
+        },
+        {
+            "date": "2023-12-20",
+            "profit": 30000,
+            "cumulative": -145000
+        },
+        {
+            "date": "2023-12-21",
+            "profit": -5000,
+            "cumulative": -150000
+        },
+        {
+            "date": "2023-12-23",
+            "profit": 10000,
+            "cumulative": -140000
+        },
+        {
+            "date": "2023-12-24",
+            "profit": -500,
+            "cumulative": -140500
+        },
+        {
+            "date": "2023-12-25",
+            "profit": -1000,
+            "cumulative": -141500
+        },
+        {
+            "date": "2023-12-27",
+            "profit": -6000,
+            "cumulative": -147500
+        },
+        {
+            "date": "2023-12-28",
+            "profit": -5000,
+            "cumulative": -152500
+        },
+        {
+            "date": "2023-12-30",
+            "profit": -10000,
+            "cumulative": -162500
+        },
+        {
+            "date": "2024-01-01",
+            "profit": 1000,
+            "cumulative": -161500
+        },
+        {
+            "date": "2024-01-02",
+            "profit": -5000,
+            "cumulative": -166500
+        },
+        {
+            "date": "2024-01-04",
+            "profit": -5000,
+            "cumulative": -171500
+        },
+        {
+            "date": "2024-01-05",
+            "profit": -9000,
+            "cumulative": -180500
+        },
+        {
+            "date": "2024-01-06",
+            "profit": 4000,
+            "cumulative": -176500
+        },
+        {
+            "date": "2024-01-07",
+            "profit": 3000,
+            "cumulative": -173500
+        },
+        {
+            "date": "2024-01-09",
+            "profit": -3000,
+            "cumulative": -176500
+        },
+        {
+            "date": "2024-01-10",
+            "profit": 8000,
+            "cumulative": -168500
+        },
+        {
+            "date": "2024-01-13",
+            "profit": -1000,
+            "cumulative": -169500
+        },
+        {
+            "date": "2024-01-15",
+            "profit": -4000,
+            "cumulative": -173500
+        },
+        {
+            "date": "2024-01-16",
+            "profit": -1000,
+            "cumulative": -174500
+        },
+        {
+            "date": "2024-01-18",
+            "profit": -3000,
+            "cumulative": -177500
+        },
+        {
+            "date": "2024-01-20",
+            "profit": 13500,
+            "cumulative": -164000
+        },
+        {
+            "date": "2024-01-21",
+            "profit": -4500,
+            "cumulative": -168500
+        },
+        {
+            "date": "2024-01-25",
+            "profit": -10000,
+            "cumulative": -178500
+        },
+        {
+            "date": "2024-01-27",
+            "profit": -5000,
+            "cumulative": -183500
+        },
+        {
+            "date": "2024-01-29",
+            "profit": 13000,
+            "cumulative": -170500
+        },
+        {
+            "date": "2024-01-30",
+            "profit": 2500,
+            "cumulative": -168000
+        },
+        {
+            "date": "2024-01-31",
+            "profit": -9000,
+            "cumulative": -177000
+        },
+        {
+            "date": "2024-02-01",
+            "profit": 3000,
+            "cumulative": -174000
+        },
+        {
+            "date": "2024-02-03",
+            "profit": -3500,
+            "cumulative": -177500
+        },
+        {
+            "date": "2024-02-04",
+            "profit": -11500,
+            "cumulative": -189000
+        },
+        {
+            "date": "2024-02-05",
+            "profit": -8000,
+            "cumulative": -197000
+        },
+        {
+            "date": "2024-02-08",
+            "profit": -6000,
+            "cumulative": -203000
+        },
+        {
+            "date": "2024-02-10",
+            "profit": 5000,
+            "cumulative": -198000
+        },
+        {
+            "date": "2024-02-11",
+            "profit": -40000,
+            "cumulative": -238000
+        },
+        {
+            "date": "2024-02-12",
+            "profit": -500,
+            "cumulative": -238500
+        },
+        {
+            "date": "2024-02-13",
+            "profit": 9500,
+            "cumulative": -229000
+        },
+        {
+            "date": "2024-02-14",
+            "profit": 2500,
+            "cumulative": -226500
+        },
+        {
+            "date": "2024-02-15",
+            "profit": 8500,
+            "cumulative": -218000
+        },
+        {
+            "date": "2024-02-16",
+            "profit": 8000,
+            "cumulative": -210000
+        },
+        {
+            "date": "2024-02-17",
+            "profit": -54000,
+            "cumulative": -264000
+        },
+        {
+            "date": "2024-02-19",
+            "profit": -23000,
+            "cumulative": -287000
+        },
+        {
+            "date": "2024-02-20",
+            "profit": 12000,
+            "cumulative": -275000
+        },
+        {
+            "date": "2024-02-22",
+            "profit": -600,
+            "cumulative": -275600
+        },
+        {
+            "date": "2024-02-23",
+            "profit": 3500,
+            "cumulative": -272100
+        },
+        {
+            "date": "2024-02-24",
+            "profit": -500,
+            "cumulative": -272600
+        },
+        {
+            "date": "2024-02-25",
+            "profit": -500,
+            "cumulative": -273100
+        },
+        {
+            "date": "2024-02-27",
+            "profit": 16000,
+            "cumulative": -257100
+        },
+        {
+            "date": "2024-02-28",
+            "profit": -15000,
+            "cumulative": -272100
+        },
+        {
+            "date": "2024-03-01",
+            "profit": 2000,
+            "cumulative": -270100
+        },
+        {
+            "date": "2024-03-02",
+            "profit": -23000,
+            "cumulative": -293100
+        },
+        {
+            "date": "2024-03-05",
+            "profit": -2000,
+            "cumulative": -295100
+        },
+        {
+            "date": "2024-03-07",
+            "profit": -13000,
+            "cumulative": -308100
+        },
+        {
+            "date": "2024-03-09",
+            "profit": -40000,
+            "cumulative": -348100
+        },
+        {
+            "date": "2024-03-10",
+            "profit": 7500,
+            "cumulative": -340600
+        },
+        {
+            "date": "2024-03-11",
+            "profit": -13000,
+            "cumulative": -353600
+        },
+        {
+            "date": "2024-03-12",
+            "profit": 9000,
+            "cumulative": -344600
+        },
+        {
+            "date": "2024-03-13",
+            "profit": 3000,
+            "cumulative": -341600
+        },
+        {
+            "date": "2024-03-15",
+            "profit": -10000,
+            "cumulative": -351600
+        },
+        {
+            "date": "2024-03-16",
+            "profit": -30000,
+            "cumulative": -381600
+        },
+        {
+            "date": "2024-03-17",
+            "profit": 9200,
+            "cumulative": -372400
+        },
+        {
+            "date": "2024-05-01",
+            "profit": 5000,
+            "cumulative": -367400
+        },
+        {
+            "date": "2024-05-03",
+            "profit": -5000,
+            "cumulative": -372400
+        },
+        {
+            "date": "2024-05-07",
+            "profit": -10000,
+            "cumulative": -382400
+        },
+        {
+            "date": "2024-05-09",
+            "profit": 10000,
+            "cumulative": -372400
+        },
+        {
+            "date": "2024-05-12",
+            "profit": -8000,
+            "cumulative": -380400
+        },
+        {
+            "date": "2024-05-13",
+            "profit": 12000,
+            "cumulative": -368400
+        },
+        {
+            "date": "2024-05-17",
+            "profit": -18000,
+            "cumulative": -386400
+        },
+        {
+            "date": "2024-05-18",
+            "profit": 8000,
+            "cumulative": -378400
+        },
+        {
+            "date": "2024-05-19",
+            "profit": -33000,
+            "cumulative": -411400
+        },
+        {
+            "date": "2024-05-20",
+            "profit": -8000,
+            "cumulative": -419400
+        },
+        {
+            "date": "2024-05-22",
+            "profit": -33000,
+            "cumulative": -452400
+        },
+        {
+            "date": "2024-05-24",
+            "profit": 2000,
+            "cumulative": -450400
+        },
+        {
+            "date": "2024-05-30",
+            "profit": -19000,
+            "cumulative": -469400
+        },
+        {
+            "date": "2024-05-31",
+            "profit": -22000,
+            "cumulative": -491400
+        },
+        {
+            "date": "2024-06-20",
+            "profit": 17000,
+            "cumulative": -474400
+        },
+        {
+            "date": "2024-06-21",
+            "profit": -9000,
+            "cumulative": -483400
+        },
+        {
+            "date": "2024-06-22",
+            "profit": -31000,
+            "cumulative": -514400
+        },
+        {
+            "date": "2024-06-27",
+            "profit": -3000,
+            "cumulative": -517400
+        },
+        {
+            "date": "2024-06-29",
+            "profit": 31200,
+            "cumulative": -486200
+        },
+        {
+            "date": "2024-06-30",
+            "profit": -70000,
+            "cumulative": -556200
+        },
+        {
+            "date": "2024-07-04",
+            "profit": 7000,
+            "cumulative": -549200
+        },
+        {
+            "date": "2024-07-05",
+            "profit": -15000,
+            "cumulative": -564200
+        },
+        {
+            "date": "2024-07-07",
+            "profit": -20000,
+            "cumulative": -584200
+        },
+        {
+            "date": "2024-07-15",
+            "profit": -5000,
+            "cumulative": -589200
+        },
+        {
+            "date": "2024-07-19",
+            "profit": -13000,
+            "cumulative": -602200
+        },
+        {
+            "date": "2024-07-30",
+            "profit": -1000,
+            "cumulative": -603200
+        },
+        {
+            "date": "2024-08-08",
+            "profit": -10000,
+            "cumulative": -613200
+        },
+        {
+            "date": "2024-08-09",
+            "profit": 3000,
+            "cumulative": -610200
+        },
+        {
+            "date": "2024-08-13",
+            "profit": -28000,
+            "cumulative": -638200
+        },
+        {
+            "date": "2025-09-19",
+            "profit": 15000,
+            "cumulative": -623200
+        },
+        {
+            "date": "2025-09-30",
+            "profit": 50500,
+            "cumulative": -572700
+        },
+        {
+            "date": "2025-10-01",
+            "profit": -5000,
+            "cumulative": -577700
+        },
+        {
+            "date": "2025-10-02",
+            "profit": 5000,
+            "cumulative": -572700
+        },
+        {
+            "date": "2025-10-03",
+            "profit": -10000,
+            "cumulative": -582700
+        },
+        {
+            "date": "2025-10-04",
+            "profit": -11000,
+            "cumulative": -593700
+        },
+        {
+            "date": "2025-10-07",
+            "profit": -22000,
+            "cumulative": -615700
+        },
+        {
+            "date": "2025-10-10",
+            "profit": -11000,
+            "cumulative": -626700
+        },
+        {
+            "date": "2025-10-14",
+            "profit": 5000,
+            "cumulative": -621700
+        },
+        {
+            "date": "2025-10-17",
+            "profit": -13000,
+            "cumulative": -634700
+        },
+        {
+            "date": "2025-10-20",
+            "profit": 26000,
+            "cumulative": -608700
+        },
+        {
+            "date": "2025-10-21",
+            "profit": -3000,
+            "cumulative": -611700
+        },
+        {
+            "date": "2025-10-23",
+            "profit": -21000,
+            "cumulative": -632700
+        },
+        {
+            "date": "2025-10-24",
+            "profit": -42000,
+            "cumulative": -674700
+        },
+        {
+            "date": "2025-10-31",
+            "profit": -25000,
+            "cumulative": -699700
+        },
+        {
+            "date": "2025-11-02",
+            "profit": 3000,
+            "cumulative": -696700
+        },
+        {
+            "date": "2025-11-04",
+            "profit": -45000,
+            "cumulative": -741700
+        },
+        {
+            "date": "2025-11-06",
+            "profit": -1800,
+            "cumulative": -743500
+        },
+        {
+            "date": "2025-11-08",
+            "profit": 3400,
+            "cumulative": -740100
+        },
+        {
+            "date": "2025-11-09",
+            "profit": -6000,
+            "cumulative": -746100
+        },
+        {
+            "date": "2025-11-10",
+            "profit": -10000,
+            "cumulative": -756100
+        },
+        {
+            "date": "2025-11-11",
+            "profit": 50500,
+            "cumulative": -705600
+        },
+        {
+            "date": "2025-11-14",
+            "profit": -33000,
+            "cumulative": -738600
+        },
+        {
+            "date": "2025-11-16",
+            "profit": -40000,
+            "cumulative": -778600
+        },
+        {
+            "date": "2025-11-20",
+            "profit": -16200,
+            "cumulative": -794800
+        },
+        {
+            "date": "2025-11-21",
+            "profit": 44000,
+            "cumulative": -750800
+        },
+        {
+            "date": "2025-11-25",
+            "profit": -53000,
+            "cumulative": -803800
+        },
+        {
+            "date": "2025-11-27",
+            "profit": 2000,
+            "cumulative": -801800
+        },
+        {
+            "date": "2025-11-28",
+            "profit": -29800,
+            "cumulative": -831600
+        },
+        {
+            "date": "2025-12-01",
+            "profit": 5000,
+            "cumulative": -826600
+        },
+        {
+            "date": "2025-12-02",
+            "profit": -32000,
+            "cumulative": -858600
+        },
+        {
+            "date": "2025-12-05",
+            "profit": 4500,
+            "cumulative": -854100
+        },
+        {
+            "date": "2025-12-09",
+            "profit": -44800,
+            "cumulative": -898900
+        },
+        {
+            "date": "2025-12-12",
+            "profit": 2500,
+            "cumulative": -896400
+        },
+        {
+            "date": "2025-12-14",
+            "profit": -1800,
+            "cumulative": -898200
+        },
+        {
+            "date": "2025-12-15",
+            "profit": 6000,
+            "cumulative": -892200
+        },
+        {
+            "date": "2025-12-16",
+            "profit": -28000,
+            "cumulative": -920200
+        },
+        {
+            "date": "2025-12-18",
+            "profit": -7000,
+            "cumulative": -927200
+        },
+        {
+            "date": "2025-12-22",
+            "profit": 1800,
+            "cumulative": -925400
+        },
+        {
+            "date": "2025-12-23",
+            "profit": 202600,
+            "cumulative": -722800
+        },
+        {
+            "date": "2025-12-24",
+            "profit": -29000,
+            "cumulative": -751800
+        },
+        {
+            "date": "2025-12-26",
+            "profit": -33000,
+            "cumulative": -784800
+        },
+        {
+            "date": "2025-12-27",
+            "profit": 42000,
+            "cumulative": -742800
+        },
+        {
+            "date": "2025-12-28",
+            "profit": -43000,
+            "cumulative": -785800
+        },
+        {
+            "date": "2026-01-02",
+            "profit": 2800,
+            "cumulative": -783000
+        },
+        {
+            "date": "2026-01-08",
+            "profit": -10000,
+            "cumulative": -793000
+        },
+        {
+            "date": "2026-01-11",
+            "profit": -41000,
+            "cumulative": -834000
+        },
+        {
+            "date": "2026-01-13",
+            "profit": -19000,
+            "cumulative": -853000
+        },
+        {
+            "date": "2026-01-16",
+            "profit": -38000,
+            "cumulative": -891000
+        },
+        {
+            "date": "2026-01-17",
+            "profit": 2600,
+            "cumulative": -888400
+        },
+        {
+            "date": "2026-01-18",
+            "profit": 33100,
+            "cumulative": -855300
+        },
+        {
+            "date": "2026-01-19",
+            "profit": -38000,
+            "cumulative": -893300
+        },
+        {
+            "date": "2026-01-20",
+            "profit": 33400,
+            "cumulative": -859900
+        },
+        {
+            "date": "2026-01-23",
+            "profit": 32000,
+            "cumulative": -827900
+        },
+        {
+            "date": "2026-01-26",
+            "profit": -44000,
+            "cumulative": -871900
+        },
+        {
+            "date": "2026-01-27",
+            "profit": 35200,
+            "cumulative": -836700
+        },
+        {
+            "date": "2026-01-30",
+            "profit": -1000,
+            "cumulative": -837700
+        },
+        {
+            "date": "2026-02-03",
+            "profit": -96000,
+            "cumulative": -933700
+        },
+        {
+            "date": "2026-02-13",
+            "profit": 33000,
+            "cumulative": -900700
+        },
+        {
+            "date": "2026-02-14",
+            "profit": 41800,
+            "cumulative": -858900
+        },
+        {
+            "date": "2026-02-15",
+            "profit": -1000,
+            "cumulative": -859900
+        },
+        {
+            "date": "2026-02-16",
+            "profit": -82000,
+            "cumulative": -941900
+        },
+        {
+            "date": "2026-02-19",
+            "profit": -119400,
+            "cumulative": -1061300
+        },
+        {
+            "date": "2026-02-21",
+            "profit": -12000,
+            "cumulative": -1073300
+        },
+        {
+            "date": "2026-02-23",
+            "profit": 120000,
+            "cumulative": -953300
+        },
+        {
+            "date": "2026-02-24",
+            "profit": -13000,
+            "cumulative": -966300
+        },
+        {
+            "date": "2026-02-26",
+            "profit": 17000,
+            "cumulative": -949300
+        },
+        {
+            "date": "2026-03-03",
+            "profit": -112000,
+            "cumulative": -1061300
+        },
+        {
+            "date": "2026-03-06",
+            "profit": 15000,
+            "cumulative": -1046300
+        },
+        {
+            "date": "2026-03-13",
+            "profit": 49200,
+            "cumulative": -997100
+        },
+        {
+            "date": "2026-03-15",
+            "profit": -12000,
+            "cumulative": -1009100
+        },
+        {
+            "date": "2026-03-16",
+            "profit": 8700,
+            "cumulative": -1000400
+        },
+        {
+            "date": "2026-03-18",
+            "profit": 31000,
+            "cumulative": -969400
+        },
+        {
+            "date": "2026-03-19",
+            "profit": -51000,
+            "cumulative": -1020400
+        },
+        {
+            "date": "2026-03-23",
+            "profit": 8300,
+            "cumulative": -1012100
+        },
+        {
+            "date": "2026-03-28",
+            "profit": -4000,
+            "cumulative": -1016100
+        },
+        {
+            "date": "2026-03-29",
+            "profit": 57400,
+            "cumulative": -958700
+        },
+        {
+            "date": "2026-03-30",
+            "profit": 0,
+            "cumulative": -958700
+        },
+        {
+            "date": "2026-04-01",
+            "profit": 46600,
+            "cumulative": -912100
+        },
+        {
+            "date": "2026-04-05",
+            "profit": -19000,
+            "cumulative": -931100
+        },
+        {
+            "date": "2026-04-10",
+            "profit": -22400,
+            "cumulative": -953500
+        },
+        {
+            "date": "2026-04-12",
+            "profit": -4300,
+            "cumulative": -957800
+        },
+        {
+            "date": "2026-04-13",
+            "profit": -42400,
+            "cumulative": -1000200
+        },
+        {
+            "date": "2026-04-15",
+            "profit": -43000,
+            "cumulative": -1043200
+        },
+        {
+            "date": "2026-04-20",
+            "profit": 1800,
+            "cumulative": -1041400
+        },
+        {
+            "date": "2026-04-25",
+            "profit": -27000,
+            "cumulative": -1068400
+        },
+        {
+            "date": "2026-04-27",
+            "profit": -13000,
+            "cumulative": -1081400
+        },
+        {
+            "date": "2026-04-29",
+            "profit": 30000,
+            "cumulative": -1051400
+        },
+        {
+            "date": "2026-04-30",
+            "profit": 51500,
+            "cumulative": -999900
+        },
+        {
+            "date": "2026-05-01",
+            "profit": 43000,
+            "cumulative": -956900
+        },
+        {
+            "date": "2026-05-09",
+            "profit": 49500,
+            "cumulative": -907400
+        },
+        {
+            "date": "2026-05-11",
+            "profit": -34400,
+            "cumulative": -941800
+        },
+        {
+            "date": "2026-05-13",
+            "profit": -46800,
+            "cumulative": -988600
+        },
+        {
+            "date": "2026-05-14",
+            "profit": 73900,
+            "cumulative": -914700
+        },
+        {
+            "date": "2026-05-19",
+            "profit": 60000,
+            "cumulative": -854700
+        },
+        {
+            "date": "2026-05-29",
+            "profit": -31400,
+            "cumulative": -886100
+        },
+        {
+            "date": "2026-06-03",
+            "profit": 46000,
+            "cumulative": -840100
+        },
+        {
+            "date": "2026-06-06",
+            "profit": 1000,
+            "cumulative": -839100
+        },
+        {
+            "date": "2026-06-09",
+            "profit": 101200,
+            "cumulative": -737900
+        },
+        {
+            "date": "2026-06-13",
+            "profit": -28000,
+            "cumulative": -765900
+        },
+        {
+            "date": "2026-06-15",
+            "profit": -130000,
+            "cumulative": -895900
+        },
+        {
+            "date": "2026-06-16",
+            "profit": -10000,
+            "cumulative": -905900
+        },
+        {
+            "date": "2026-06-19",
+            "profit": 1000,
+            "cumulative": -904900
+        },
+        {
+            "date": "2026-06-25",
+            "profit": -34000,
+            "cumulative": -938900
+        },
+        {
+            "date": "2026-07-07",
+            "profit": 140000,
+            "cumulative": -798900
+        },
+        {
+            "date": "2026-07-11",
+            "profit": -4000,
+            "cumulative": -802900
+        },
+        {
+            "date": "2026-07-21",
+            "profit": 11000,
+            "cumulative": -791900
+        },
+        {
+            "date": "2026-07-30",
+            "profit": -56500,
+            "cumulative": -848400
+        },
+        {
+            "date": "2026-08-25",
+            "profit": -42000,
+            "cumulative": -890400
+        },
+        {
+            "date": "2026-09-07",
+            "profit": 29500,
+            "cumulative": -860900
+        },
+        {
+            "date": "2026-09-18",
+            "profit": 5800,
+            "cumulative": -855100
+        },
+        {
+            "date": "2026-09-20",
+            "profit": 30000,
+            "cumulative": -825100
+        },
+        {
+            "date": "2026-09-23",
+            "profit": -2000,
+            "cumulative": -827100
+        },
+        {
+            "date": "2026-10-09",
+            "profit": -1000,
+            "cumulative": -828100
+        },
+        {
+            "date": "2026-10-10",
+            "profit": -30000,
+            "cumulative": -858100
+        },
+        {
+            "date": "2026-10-11",
+            "profit": -20000,
+            "cumulative": -878100
+        },
+        {
+            "date": "2026-10-17",
+            "profit": -49500,
+            "cumulative": -927600
         }
     ]
 }

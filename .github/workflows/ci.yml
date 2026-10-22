@@ -42,12 +42,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          
+          cache: 'pip'
+
       # 必要なライブラリをインストール
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas matplotlib japanize_matplotlib pygithub
+          pip install -r requirements.txt
 
       # Issueからデータを読み取り、csvへ保存する
       - name: Extract Issue message
@@ -68,10 +69,16 @@ jobs:
           python scripts/create_namelist.py
           python scripts/sorting.py
           python scripts/summary_data.py
+      # 公開するファイルだけを _site にまとめる (scripts/ や past/ などは公開しない)
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+          cp *.html *.css *.js _site/
+          cp -r background data _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './'
+          path: './_site'
       # 変更があるかどうかを判定
       - name: Check for change
         # git status --porcelainで変更されたファイルの一覧を取得
