@@ -1,24 +1,18 @@
 {
-    "total_profit": -878100,
-    "num_of_sessions": 488,
+    "total_profit": -927600,
+    "num_of_sessions": 492,
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 1080400,
-            "return": 1384900,
-            "profit": 304500
+            "investment": 1083400,
+            "return": 1477400,
+            "profit": 394000
         },
         {
             "machine": "ビッグドリーム",
             "investment": 104000,
             "return": 217200,
             "profit": 113200
-        },
-        {
-            "machine": "リコリコ",
-            "investment": 75000,
-            "return": 175800,
-            "profit": 100800
         },
         {
             "machine": "L南国育ちスペシャル",
@@ -31,6 +25,12 @@
             "investment": 13000,
             "return": 86000,
             "profit": 73000
+        },
+        {
+            "machine": "リコリコ",
+            "investment": 107000,
+            "return": 175800,
+            "profit": 68800
         },
         {
             "machine": "マギレコ",
@@ -261,6 +261,12 @@
             "profit": -92000
         },
         {
+            "machine": "SAO2",
+            "investment": 105000,
+            "return": 3000,
+            "profit": -102000
+        },
+        {
             "machine": "トラブル",
             "investment": 562000,
             "return": 414200,
@@ -280,9 +286,9 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1305300,
+            "investment": 1310300,
             "return": 957300,
-            "profit": -348000
+            "profit": -353000
         }
     ],
     "monthly_profits": [
@@ -414,9 +420,9 @@
         },
         {
             "month": "2026-10",
-            "investment": 51000,
-            "return": 0,
-            "profit": -51000
+            "investment": 196000,
+            "return": 95500,
+            "profit": -100500
         }
     ]
 }
