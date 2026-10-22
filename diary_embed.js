@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('diary-container');
     const statusElement = document.getElementById('loading-status');
 
-    fetch(jsonPath)
+    // ブラウザのキャッシュで古いデータが表示されないようにする
+    fetch(jsonPath, { cache: 'no-cache' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -18,16 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const lines = text.split('\n').filter(Boolean);
 
             // JSONオブジェクトを配列に変換 (日付キーもデータとして含める)
+            // 壊れた行があっても他の日記は表示できるように、行ごとにパースする
             const diaryEntries = lines.map(line => {
-                return JSON.parse(line);
-            }).filter(entry => entry && entry.date && entry.text); // 無効なエントリーを除外;
+                try {
+                    return JSON.parse(line);
+                } catch (e) {
+                    console.error('日記データの行をパースできませんでした:', line, e);
+                    return null;
+                }
+            }).filter(entry => entry && entry.date && entry.text); // 無効なエントリーを除外
 
             if (diaryEntries.length === 0) {
                 container.innerHTML = '<p>まだ日記がありません。</p>';
                 return;
             }
 
-            // 日付で降順ソート (新しい日付が上に来るように)
+            // 日付で昇順ソート (月の中では古い日付が上、月は新しい順に並ぶ)
             diaryEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             // データを年月でグループ化し、HTMLを生成
@@ -39,6 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
             statusElement.textContent = `データの読み込みに失敗しました (${e.message})`;
         });
 });
+
+// HTMLとして解釈されないように特殊文字をエスケープするヘルパー関数
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
 /**
  * 日記エントリーを年月でグループ化し、HTML文字列を生成する
@@ -84,8 +101,8 @@ function groupAndRenderDiaries(entries) {
             htmlOutput += `<div class="section">`;
             htmlOutput += `<h3>${monthDisplay}/${dayDisplay}</h3>`;
 
-            // 日記本文
-            htmlOutput += `<p>${entry.text}</p>`;
+            // 日記本文 (HTMLをエスケープし、改行を<br>に変換)
+            htmlOutput += `<p>${escapeHtml(entry.text).replace(/\n/g, '<br>')}</p>`;
 
             htmlOutput += `</div>`; // .section 終了
         });

@@ -17,18 +17,26 @@ permissions:
   id-token: write
   issues: write
 
+# 同時に複数のIssueが投稿された場合でも、順番に処理してpushの競合を防ぐ
+concurrency:
+  group: data-processing
+  cancel-in-progress: false
+
 jobs:
   build:
+    # Issueはリポジトリオーナーが作成したものだけを処理する（第三者によるデータ改ざん防止）
     if: >
-      github.event_name == 'issues' || 
-      github.event_name == 'workflow_dispatch' || 
-      github.event_name == 'push'
+      github.event_name != 'issues' ||
+      github.event.issue.user.login == github.repository_owner
     runs-on: ubuntu-latest
     steps:
       # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+        with:
+          # トリガー時点のコミットではなくブランチの最新を取得する（直前の実行の結果を取り込むため）
+          ref: ${{ github.ref }}
+
       # Python環境をセットアップ (3.11を使用)
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -60,7 +68,6 @@ jobs:
           python scripts/create_namelist.py
           python scripts/sorting.py
           python scripts/summary_data.py
-          python scripts/insert_namelist.py
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -85,6 +92,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "update all with GitHub Actions"
+          git pull --rebase
           git push
       # 変更内容をブランチに反映する(Issueからのトリガー)
       - name: commit change(issue trigger)
@@ -96,6 +104,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "update all with GitHub Actions close #${ISSUE_NUMBER}"
+          git pull --rebase
           git push
 
   # デプロイ

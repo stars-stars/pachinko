@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         maximumFractionDigits: 1
     });
 
-    fetch(jsonPath)
+    // ブラウザのキャッシュで古いデータが表示されないようにする
+    fetch(jsonPath, { cache: 'no-cache' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -64,10 +65,9 @@ function embedOverallSummary(data, numberFormatter) {
         }
     };
 
-    // 日付の埋め込み
-    const today = new Date();
-    const dateOnly = today.toLocaleDateString('ja-JP');
-    if (document.getElementById('today')) {
+    // 最新データの日付の埋め込み (閲覧日ではなくデータの日付を表示する)
+    if (document.getElementById('today') && data.last_updated) {
+        const dateOnly = data.last_updated.replace(/-0?/g, '/');
         document.getElementById('today').textContent = `${dateOnly}更新`;
     }
 }

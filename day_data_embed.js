@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 【メイン処理】CSVデータの取得と処理
     // ----------------------------------------------------
-    fetch(csvPath)
+    // ブラウザのキャッシュで古いデータが表示されないようにする
+    fetch(csvPath, { cache: 'no-cache' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -40,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const records = [];
             for (let i = 1; i < lines.length; i++) {
                 const values = lines[i].split(',');
+                // 列数が合わない行（空行など）はスキップ
+                if (values.length < headers.length) continue;
                 let record = {};
                 headers.forEach((header, index) => {
                     record[header] = values[index].trim();
@@ -130,6 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// HTMLとして解釈されないように特殊文字をエスケープするヘルパー関数
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 // YYYY/MM/DD形式から YYYY/MM を抽出し、月の情報を取得するヘルパー関数
 function getYearMonth(dateString) {
     // 例: '2024-07-07' から '2024-07' を取得
@@ -202,7 +215,7 @@ function groupAndRenderTables(records) {
                 }
 
                 // データの挿入（千円単位に変換）
-                htmlOutput += `<td>${record.machine_name}</td>`;
+                htmlOutput += `<td>${escapeHtml(record.machine_name)}</td>`;
                 htmlOutput += `<td style="text-align: right">${(parseInt(record.investment) / 1000).toFixed(1)}k</td>`;
                 htmlOutput += `<td style="text-align: right">${(parseInt(record.return) / 1000).toFixed(1)}k</td>`;
 

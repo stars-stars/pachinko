@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let machineOptions = [];
 
     // Load machine list
-    fetch('data/machine_name_list.txt')
+    fetch('data/machine_name_list.txt', { cache: 'no-cache' })
         .then(response => response.text())
         .then(text => {
             machineOptions = text.split('\n')
@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // Create datalist for autocomplete
             const datalist = document.createElement('datalist');
             datalist.id = 'machine-list';
-            datalist.innerHTML = machineOptions.map(m => `<option value="${m}">`).join('');
+            machineOptions.forEach(m => {
+                const option = document.createElement('option');
+                option.value = m;
+                datalist.appendChild(option);
+            });
             datalistContainer.appendChild(datalist);
 
             addRow(); // add initial row after loading machines
@@ -213,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const investment = row.querySelector('.input-investment').value.trim();
             const returned = row.querySelector('.input-return').value.trim();
 
-            if (!date || !machine || investment === '' || returned === '') {
+            if (!date || !machine || !/^\d+$/.test(investment) || !/^\d+$/.test(returned)) {
                 hasError = true;
             }
 
@@ -223,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (hasError) {
-            showStatus('すべての項目を正しく入力してください。', 'error');
+            showStatus('すべての項目を正しく入力してください（金額は0以上の整数）。', 'error');
             return;
         }
 
@@ -248,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 const data = await response.json();
-                showStatus(`Issueが正常に作成されました！ <a href="${data.html_url}" target="_blank" style="color:var(--accent)">リンクを開く</a>`, 'success');
+                showStatus('Issueが正常に作成されました！ 数分後にサイトへ反映されます。', 'success', data.html_url);
                 // Reset form
                 rowsContainer.innerHTML = '';
                 addRow();
@@ -264,8 +268,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    function showStatus(message, type) {
-        statusMessage.innerHTML = message;
+    function showStatus(message, type, linkUrl) {
+        // APIのエラーメッセージなどがHTMLとして解釈されないよう、textContentで表示する
+        statusMessage.textContent = message;
+        if (linkUrl) {
+            const link = document.createElement('a');
+            link.href = linkUrl;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.style.color = 'var(--accent)';
+            link.textContent = 'リンクを開く';
+            statusMessage.append(' ', link);
+        }
         statusMessage.className = type;
         statusMessage.style.display = 'block';
         if (type === 'success') {

@@ -49,6 +49,8 @@ machine_data_list.sort(key=lambda x: x['profit'], reverse=True)
 # 集計結果をJSONファイルとして出力
 summary_data = {
     'total_profit': int(total_profit),
+    'last_updated': df['date'].max().strftime('%Y-%m-%d'), # 最新データの日付
+
     'num_of_sessions': len(df),
     'machine_profits': machine_data_list,
     'monthly_profits': monthly_data_list
