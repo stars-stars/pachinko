@@ -1,64 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const csvPath = './data/day_datas.csv';
     const dataContainer = document.getElementById('data-container');
     const statusElement = document.getElementById('loading-status');
 
     // フィルター用要素の取得
     const startDateInput = document.getElementById('start-date');
     const endDateInput = document.getElementById('end-date');
+    const machineSelect = document.getElementById('machine-filter');
     const filterBtn = document.getElementById('filter-btn');
     const clearBtn = document.getElementById('clear-btn');
     const periodSummary = document.getElementById('period-summary');
     const periodTotalSpan = document.getElementById('period-total');
+    const periodDetailSpan = document.getElementById('period-detail');
 
     let allRecords = []; // すべてのデータを保持する変数
+    let diaryDates = new Set(); // 日記がある日付
 
     // ----------------------------------------------------
-    // 【メイン処理】CSVデータの取得と処理
+    // 【メイン処理】CSVデータと日記データの取得と処理
     // ----------------------------------------------------
-    fetch(csvPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(csvText => {
+    // 日記の読み込みに失敗しても表は表示できるようにする
+    const diariesPromise = fetchDiaries().catch(e => {
+        console.error('日記データの読み込み中にエラーが発生しました:', e);
+        return [];
+    });
+
+    Promise.all([fetchDayRecords(), diariesPromise])
+        .then(([records, diaries]) => {
             statusElement.textContent = ''; // 読み込みメッセージをクリア
 
-            // CSVテキストを行と列にパース (手動パース)
-            const lines = csvText.trim().split('\n');
-            if (lines.length <= 1) {
+            if (records.length === 0) {
                 statusElement.textContent = 'データがありません。';
                 return;
             }
 
-            // 最初の行（ヘッダー）を取得
-            const headers = lines[0].split(',').map(h => h.trim());
-
-            // データ行をオブジェクトの配列に変換
-            const records = [];
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',');
-                let record = {};
-                headers.forEach((header, index) => {
-                    record[header] = values[index].trim();
-                });
-                records.push(record);
-            }
-
+            diaryDates = new Set(diaries.map(entry => entry.date));
             allRecords = records;
-            renderData(allRecords);
+            populateMachineSelect(allRecords);
+
+            // 日記ページからのリンク (?date=YYYY-MM-DD) の場合はその日で絞り込む
+            const linkedDate = new URLSearchParams(location.search).get('date');
+            if (linkedDate) {
+                startDateInput.value = linkedDate;
+                endDateInput.value = linkedDate;
+                filterBtn.click();
+            } else {
+                renderData(allRecords);
+            }
         })
         .catch(e => {
             console.error('CSVデータの読み込み中にエラーが発生しました:', e);
             statusElement.textContent = `データの読み込みに失敗しました (${e.message})`;
         });
 
+    // 機種の選択肢を、打った回数の多い順に作成する
+    function populateMachineSelect(records) {
+        const counts = {};
+        records.forEach(r => counts[r.machine_name] = (counts[r.machine_name] || 0) + 1);
+        Object.keys(counts)
+            .sort((a, b) => counts[b] - counts[a])
+            .forEach(name => {
+                const option = document.createElement('option');
+                option.value = name;
+                option.textContent = `${name} (${counts[name]})`;
+                machineSelect.appendChild(option);
+            });
+    }
+
     // データを画面に描画する関数
     function renderData(recordsToRender) {
         if (recordsToRender.length === 0) {
-            dataContainer.innerHTML = '<p style="text-align:center;">指定された期間のデータはありません。</p>';
+            dataContainer.innerHTML = '<p class="no-data">指定された条件のデータはありません。</p>';
             updatePeriodSummary(recordsToRender);
             return;
         }
@@ -67,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recordsToRender.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         // データを年月でグループ化し、表を生成
-        const groupedData = groupAndRenderTables(recordsToRender);
+        const groupedData = groupAndRenderTables(recordsToRender, diaryDates);
         dataContainer.innerHTML = groupedData;
 
         // 縞模様のスタイルを適用
@@ -80,21 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 期間合計を計算して表示する関数
     function updatePeriodSummary(recordsToRender) {
         // フィルターが指定されている場合のみ合計を表示する
-        if (!startDateInput.value && !endDateInput.value) {
+        if (!startDateInput.value && !endDateInput.value && !machineSelect.value) {
             periodSummary.style.display = 'none';
             return;
         }
 
         periodSummary.style.display = 'block';
         let totalProfit = 0;
+        let wins = 0;
         recordsToRender.forEach(record => {
-            const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
-            totalProfit += profit;
+            totalProfit += record.profit / 1000;
+            if (record.profit > 0) wins++;
         });
 
-        const color = totalProfit < 0 ? 'red' : (totalProfit > 0 ? 'blue' : 'black');
         periodTotalSpan.textContent = totalProfit.toFixed(1);
-        periodTotalSpan.style.color = color;
+        periodTotalSpan.style.color = profitColor(totalProfit);
+
+        // 回数と勝率の表示
+        const count = recordsToRender.length;
+        const winRate = count > 0 ? `${(wins / count * 100).toFixed(1)}%` : '-';
+        periodDetailSpan.textContent = `(${count}回 / 勝率 ${winRate})`;
     }
 
     // 開始日が入力されたら、終了日が空の場合は同じ日付を自動セットする（カレンダーを同じ月から開かせるためのUX向上）
@@ -108,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterBtn.addEventListener('click', () => {
         const start = startDateInput.value;
         const end = endDateInput.value;
+        const machine = machineSelect.value;
 
         let filtered = allRecords;
 
@@ -117,14 +134,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (end) {
             filtered = filtered.filter(r => r.date <= end);
         }
+        if (machine) {
+            filtered = filtered.filter(r => r.machine_name === machine);
+        }
 
         renderData(filtered);
     });
+
+    // 機種を選んだらすぐに絞り込む
+    machineSelect.addEventListener('change', () => filterBtn.click());
 
     // 「クリア」ボタンのイベント
     clearBtn.addEventListener('click', () => {
         startDateInput.value = '';
         endDateInput.value = '';
+        machineSelect.value = '';
         renderData(allRecords);
     });
 
@@ -139,9 +163,8 @@ function getYearMonth(dateString) {
 // ----------------------------------------------------
 // 【関数 1】データ処理とHTML生成
 // ----------------------------------------------------
-function groupAndRenderTables(records) {
+function groupAndRenderTables(records, diaryDates) {
     let htmlOutput = '';
-    let currentMonth = null;
     let recordsByMonth = {};
 
     // 1. レコードを年月でグループ化 (例: {'2024-07': [record1, record2, ...], ...})
@@ -161,8 +184,8 @@ function groupAndRenderTables(records) {
 
         // 年月タイトルとテーブルの開始
         htmlOutput += `<div class="${yearMonth.replace('-', '/')}">`;
-        htmlOutput += `<h2 style="text-align: center">${yearMonth.replace('-', '年')}月</h2>`;
-        htmlOutput += `<div class="table-responsive"><table style="width: 100%; max-width: 1200px; margin: 0 auto;" border="3">`;
+        htmlOutput += `<h2 class="month-title">${yearMonth.replace('-', '年')}月</h2>`;
+        htmlOutput += `<div class="table-responsive"><table class="data-table" border="3">`;
         htmlOutput += `<thead><tr><th>日付</th><th>機種</th><th>投資額</th><th>回収額</th><th>収支</th><th>日別合計</th></tr></thead>`;
         htmlOutput += `<tbody>`;
 
@@ -183,37 +206,37 @@ function groupAndRenderTables(records) {
             // 日別合計収支を事前に計算
             let dailyTotalProfit = 0;
             dayRecords.forEach(record => {
-                const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
-                dailyTotalProfit += profit;
+                dailyTotalProfit += record.profit / 1000;
             })
 
             dayRecords.forEach((record, index) => {
                 const isFirstRow = index === 0;
-                const profit = (parseInt(record.return) - parseInt(record.investment)) / 1000;
+                const profit = record.profit / 1000;
 
                 // 行の開始
                 const rowClasses = isFirstRow ? 'day day-group-start' : 'day';
                 htmlOutput += `<tr class="${rowClasses}">`;
 
                 if (isFirstRow) {
-                    // 最初の行のみ日付セルを挿入
+                    // 最初の行のみ日付セルを挿入 (日記がある日は日記へのリンクを付ける)
                     const dateDisplay = yearMonth.substring(5) + '/' + day; // 例: 07/07
-                    htmlOutput += `<td rowspan="${rowSpanCount}">${dateDisplay}</td>`;
+                    const diaryLink = diaryDates.has(record.date)
+                        ? ` <a class="diary-link" href="diary.html#d-${record.date}" title="この日の日記を見る">📖</a>`
+                        : '';
+                    htmlOutput += `<td rowspan="${rowSpanCount}">${dateDisplay}${diaryLink}</td>`;
                 }
 
                 // データの挿入（千円単位に変換）
-                htmlOutput += `<td>${record.machine_name}</td>`;
-                htmlOutput += `<td style="text-align: right">${(parseInt(record.investment) / 1000).toFixed(1)}k</td>`;
-                htmlOutput += `<td style="text-align: right">${(parseInt(record.return) / 1000).toFixed(1)}k</td>`;
+                htmlOutput += `<td>${escapeHtml(record.machine_name)}</td>`;
+                htmlOutput += `<td class="amount">${formatK(parseInt(record.investment))}</td>`;
+                htmlOutput += `<td class="amount">${formatK(parseInt(record.return))}</td>`;
 
                 // 収支セル (色付け対応)
-                const profitColor = profit < 0 ? 'red' : (profit > 0 ? 'blue' : 'black');
-                htmlOutput += `<td style="font-weight: bold; text-align: right"><span style="color: ${profitColor};">${profit.toFixed(1)}k</span></td>`;
+                htmlOutput += `<td class="amount profit"><span style="color: ${profitColor(profit)};">${profit.toFixed(1)}k</span></td>`;
 
                 // 日別合計収支セル
                 if (isFirstRow) {
-                    const dailyTotalColor = dailyTotalProfit < 0 ? 'red' : (dailyTotalProfit > 0 ? 'blue' : 'black');
-                    htmlOutput += `<td rowspan="${rowSpanCount}" style="font-weight: bold; text-align: center; vertical-align: middle;"><span style="color: ${dailyTotalColor};">${dailyTotalProfit.toFixed(1)}k</span></td>`;
+                    htmlOutput += `<td rowspan="${rowSpanCount}" class="profit daily-total"><span style="color: ${profitColor(dailyTotalProfit)};">${dailyTotalProfit.toFixed(1)}k</span></td>`;
                 }
 
                 htmlOutput += `</tr>`;

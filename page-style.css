@@ -1,5 +1,5 @@
 body{
-    background-image: url(background/gold.png);
+    background-image: url(background/gold.webp);
 }
 
 header{
@@ -37,6 +37,10 @@ header a:link, header a:visited {
 header a:hover{
     color: yellow;
 }
+/* 現在表示中のページ */
+header a[aria-current="page"]{
+    color: black;
+}
 
 .contents{
     margin-top: 250px;
@@ -72,9 +76,46 @@ header a:hover{
     padding-bottom: 100px;
 }
 
-.sum img{
-    text-align: center;
-    padding-bottom: 40px;
+/* 統計カード */
+.stats-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.stat-card{
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.stat-label{
+    font-size: 16px;
+    color: #555;
+}
+
+.stat-value{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.stat-note{
+    font-size: 14px;
+    color: #555;
+}
+
+/* グラフ (Chart.js) */
+.chart-box{
+    position: relative;
+    height: 450px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
 }
 
 .days table{
@@ -86,6 +127,110 @@ header a:hover{
 
 .days h1{
     text-align: center;
+}
+
+.data-table{
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* 全体収支の表のタイトルと並び替え */
+.table-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.sort-controls{
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 15px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+.sort-controls select{
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.month-title{
+    text-align: center;
+}
+
+.amount{
+    text-align: right;
+}
+
+.profit{
+    font-weight: bold;
+}
+
+.daily-total{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.diary-link{
+    text-decoration: none;
+}
+
+.no-data{
+    text-align: center;
+}
+
+/* 日ごと収支の絞り込みフィルター */
+.filter-wrapper{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-container{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.filter-row{
+    margin-bottom: 15px;
+}
+
+.filter-separator{
+    margin: 0 10px;
+}
+
+.btn-clear, .btn-filter{
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-clear{
+    margin-left: 15px;
+    padding: 5px 15px;
+    background-color: #dc3545;
+}
+
+.btn-filter{
+    padding: 8px 40px;
+    background-color: #007bff;
+    font-size: 1.1em;
+}
+
+.period-summary{
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: none;
+}
+
+.period-detail{
+    margin-left: 10px;
+    font-size: 0.85em;
 }
 
 td{
@@ -124,6 +269,27 @@ td{
     padding-left: 10px;
     padding-right: 10px;
     border: solid #32a1ce;
+    /* 固定ヘッダーに隠れないように、リンクで移動したときの位置をずらす */
+    scroll-margin-top: 200px;
+}
+
+/* 日記に表示するその日の収支 */
+.profit-badges{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.profit-badge{
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #32a1ce;
+    border-radius: 999px;
+    padding: 2px 12px;
+}
+
+.profit-badge.total{
+    border-width: 2px;
 }
 
 .profile{
@@ -163,7 +329,9 @@ td{
     .sum h1 { font-size: 50px; }
     .sum h2 { font-size: 30px; }
     .sum h3 { font-size: 20px; padding-bottom: 30px; }
-    .sum img { max-width: 100%; height: auto; }
+    .stat-value { font-size: 20px; }
+    .chart-box { height: 320px; }
+    .section { scroll-margin-top: 10px; }
     
     .profile h1 { font-size: 40px; }
     .profile p { font-size: 20px; }

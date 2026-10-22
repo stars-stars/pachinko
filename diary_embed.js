@@ -1,38 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const jsonPath = './data/diaries.jsonl';
     const container = document.getElementById('diary-container');
     const statusElement = document.getElementById('loading-status');
 
-    fetch(jsonPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(text => {
+    // 収支データの読み込みに失敗しても日記は表示できるようにする
+    const recordsPromise = fetchDayRecords().catch(e => {
+        console.error('収支データの読み込み中にエラーが発生しました:', e);
+        return [];
+    });
+
+    Promise.all([fetchDiaries(), recordsPromise])
+        .then(([diaryEntries, records]) => {
             statusElement.textContent = ''; // 読み込みメッセージをクリア
-
-            // 文字列を改行で分割し、各行をJSONオブジェクトにパースする
-            // 空行や改行のみの行を除外するために filter(Boolean) を使用
-            const lines = text.split('\n').filter(Boolean);
-
-            // JSONオブジェクトを配列に変換 (日付キーもデータとして含める)
-            const diaryEntries = lines.map(line => {
-                return JSON.parse(line);
-            }).filter(entry => entry && entry.date && entry.text); // 無効なエントリーを除外;
 
             if (diaryEntries.length === 0) {
                 container.innerHTML = '<p>まだ日記がありません。</p>';
                 return;
             }
 
-            // 日付で降順ソート (新しい日付が上に来るように)
+            // 日付で昇順ソート (月の中では古い日付が上、月は新しい順に並ぶ)
             diaryEntries.sort((a, b) => new Date(a.date) - new Date(b.date));
 
+            // 収支データを日付ごとにまとめる
+            const recordsByDate = {};
+            records.forEach(record => {
+                if (!recordsByDate[record.date]) recordsByDate[record.date] = [];
+                recordsByDate[record.date].push(record);
+            });
+
             // データを年月でグループ化し、HTMLを生成
-            const groupedHtml = groupAndRenderDiaries(diaryEntries);
+            const groupedHtml = groupAndRenderDiaries(diaryEntries, recordsByDate);
             container.innerHTML = groupedHtml;
+
+            // 日記は非同期で描画されるため、URLの #d-YYYY-MM-DD への移動は描画後に行う
+            if (location.hash) {
+                const target = document.getElementById(decodeURIComponent(location.hash.substring(1)));
+                if (target) target.scrollIntoView();
+            }
         })
         .catch(e => {
             console.error('日記データの読み込み中にエラーが発生しました:', e);
@@ -41,11 +44,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * その日の収支をバッジのHTMLとして生成する
+ * @param {Array<Object>} dayRecords - その日の収支データ
+ * @returns {string} 生成されたHTML文字列 (データがなければ空文字)
+ */
+function renderProfitBadges(dayRecords) {
+    if (!dayRecords || dayRecords.length === 0) return '';
+
+    let total = 0;
+    let html = '<div class="profit-badges">';
+    dayRecords.forEach(record => {
+        total += record.profit;
+        html += `<span class="profit-badge">${escapeHtml(record.machine_name)} `
+            + `<b style="color: ${profitColor(record.profit)};">${formatK(record.profit)}</b></span>`;
+    });
+    // 複数機種打った日は合計も表示する
+    if (dayRecords.length > 1) {
+        html += `<span class="profit-badge total">合計 <b style="color: ${profitColor(total)};">${formatK(total)}</b></span>`;
+    }
+    html += '</div>';
+    return html;
+}
+
+/**
  * 日記エントリーを年月でグループ化し、HTML文字列を生成する
  * @param {Array<Object>} entries - 整形済みの日記エントリー配列
+ * @param {Object} recordsByDate - 日付をキーにした収支データ
  * @returns {string} 生成されたHTML文字列
  */
-function groupAndRenderDiaries(entries) {
+function groupAndRenderDiaries(entries, recordsByDate) {
     const grouped = {};
 
     // 年月でグループ化
@@ -80,12 +107,19 @@ function groupAndRenderDiaries(entries) {
             const monthDisplay = yearMonthDisplay.substring(5).replace(/^0/, '')
             const dayDisplay = entry.date.substring(8).replace(/^0/, '');
 
-            // 日記セクション
-            htmlOutput += `<div class="section">`;
-            htmlOutput += `<h3>${monthDisplay}/${dayDisplay}</h3>`;
+            // 日記セクション (日ごと収支ページからリンクできるようにIDを付ける)
+            htmlOutput += `<div class="section" id="d-${escapeHtml(entry.date)}">`;
+            // 収支データがある日は日ごと収支ページへのリンクにする
+            const dateText = `${monthDisplay}/${dayDisplay}`;
+            htmlOutput += recordsByDate[entry.date]
+                ? `<h3><a href="days.html?date=${escapeHtml(entry.date)}" title="この日の収支を見る">${dateText}</a></h3>`
+                : `<h3>${dateText}</h3>`;
 
-            // 日記本文
-            htmlOutput += `<p>${entry.text}</p>`;
+            // その日の収支のバッジ
+            htmlOutput += renderProfitBadges(recordsByDate[entry.date]);
+
+            // 日記本文 (HTMLをエスケープし、改行を<br>に変換)
+            htmlOutput += `<p>${escapeHtml(entry.text).replace(/\n/g, '<br>')}</p>`;
 
             htmlOutput += `</div>`; // .section 終了
         });

@@ -1,45 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <meta charset="utf-8" lang="ja">
         <title>スターのパチンコレポート/日ごと収支</title>
         <link rel="stylesheet" href="page-style.css">
     </head>
     <body>
         <div class="pachinko">
-            <header>
-                <ul>
-                    <li><a href="home.html">ホーム</a></li>
-                    <li><a href="sum.html">全体収支</a></li>
-                    <li><a href="days.html" style="color: black;">日ごと収支</a></li>
-                    <li><a href="add_data.html">データ追加</a></li>
-                    <li><a href="diary.html">日記</a></li>
-                    <li><a href="profile.html">プロフィール</a></li>
-                </ul>
-            </header>
+            <header></header>
             <div class="contents">
                 <div class="days">
                     <h1>日別収支一覧</h1>
-                    
-                    <!-- 期間指定フィルター -->
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div class="filter-container" style="background-color: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 10px; display: inline-block;">
-                            <div style="margin-bottom: 15px;">
+
+                    <!-- 期間・機種指定フィルター -->
+                    <div class="filter-wrapper">
+                        <div class="filter-container">
+                            <div class="filter-row">
                                 <label for="start-date">開始日:</label>
                                 <input type="date" id="start-date">
-                                <span style="margin: 0 10px;">〜</span>
+                                <span class="filter-separator">〜</span>
                                 <label for="end-date">終了日:</label>
                                 <input type="date" id="end-date">
-                                <button id="clear-btn" style="margin-left: 15px; padding: 5px 15px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">クリア</button>
+                            </div>
+                            <div class="filter-row">
+                                <label for="machine-filter">機種:</label>
+                                <select id="machine-filter">
+                                    <option value="">すべて</option>
+                                </select>
+                                <button id="clear-btn" class="btn-clear">クリア</button>
                             </div>
                             <div>
-                                <button id="filter-btn" style="padding: 8px 40px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1.1em;">絞り込み</button>
+                                <button id="filter-btn" class="btn-filter">絞り込み</button>
                             </div>
-                            
-                            <div id="period-summary" style="margin-top: 15px; font-size: 1.2em; font-weight: bold; display: none;">
+
+                            <div id="period-summary" class="period-summary">
                                 期間合計収支: <span id="period-total">0.0</span>k
+                                <span id="period-detail" class="period-detail"></span>
                             </div>
                         </div>
                     </div>
@@ -49,6 +46,7 @@
                 </div>
             </div>
         </div>
+        <script src="common.js"></script>
         <script src="day_data_embed.js"></script>
     </body>
 </html>
