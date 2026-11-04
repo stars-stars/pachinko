@@ -5,12 +5,93 @@ document.addEventListener("DOMContentLoaded", () => {
     const tokenInput = document.getElementById('gh-token');
     const saveTokenBtn = document.getElementById('save-token-btn');
     const statusMessage = document.getElementById('status-message');
-    const datalistContainer = document.getElementById('datalist-container');
     const diaryForm = document.getElementById('diary-form');
     const diaryDateInput = document.getElementById('diary-date');
     const diaryTextInput = document.getElementById('diary-text');
 
     let machineOptions = [];
+
+    // 機種名の接頭辞（L / e / p / CR など）: 先頭1〜2文字の半角英字で、直後が全角文字のもの
+    const MACHINE_PREFIX_RE = /^[A-Za-z]{1,2}(?=[^\x00-\x7F])/;
+
+    // ひらがなをカタカナに変換（比較用）。1文字→1文字なので文字数は変わらない
+    function toKatakana(str) {
+        return str.replace(/[ぁ-ゖ]/g, ch =>
+            String.fromCharCode(ch.charCodeAt(0) + 0x60));
+    }
+
+    // 入力値に前方一致する候補 + 接頭辞を除いた名前が前方一致する候補を返す
+    // ひらがな・カタカナは区別せずに比較する
+    // offset は候補名のうち入力値が始まる位置（接頭辞の長さ）
+    function findMachineMatches(prefix) {
+        const key = toKatakana(prefix);
+        const direct = [];
+        const variants = [];
+        machineOptions.forEach(m => {
+            const normalized = toKatakana(m);
+            if (normalized.startsWith(key)) {
+                direct.push({ name: m, offset: 0 });
+            } else {
+                const head = m.match(MACHINE_PREFIX_RE);
+                if (head && normalized.slice(head[0].length).startsWith(key)) {
+                    variants.push({ name: m, offset: head[0].length });
+                }
+            }
+        });
+        return [...direct, ...variants];
+    }
+
+    // 候補ポップアップに出す機種名: Tab補完の候補（前方一致）→ 部分一致の順。空なら全機種
+    function findSuggestions(value) {
+        if (!value) return [...machineOptions];
+        const names = findMachineMatches(value).map(m => m.name);
+        const key = toKatakana(value);
+        machineOptions.forEach(m => {
+            if (!names.includes(m) && toKatakana(m).includes(key)) {
+                names.push(m);
+            }
+        });
+        return names;
+    }
+
+    // 候補ポップアップを表示する（activeIndex の項目をハイライト、-1 ならハイライトなし）
+    function renderSuggest(input, items, activeIndex = -1) {
+        const list = input.closest('.machine-field').querySelector('.machine-suggest');
+        if (items.length === 0) {
+            hideSuggest(input);
+            return;
+        }
+        list.replaceChildren(...items.map((name, i) => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            li.setAttribute('role', 'option');
+            li.dataset.index = i;
+            if (i === activeIndex) {
+                li.className = 'is-active';
+                li.setAttribute('aria-selected', 'true');
+            }
+            return li;
+        }));
+        list.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+        input._suggestItems = items;
+        input._suggestIndex = activeIndex;
+        const active = list.children[activeIndex];
+        if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function hideSuggest(input) {
+        const list = input.closest('.machine-field').querySelector('.machine-suggest');
+        list.hidden = true;
+        list.replaceChildren();
+        input.setAttribute('aria-expanded', 'false');
+        input._suggestItems = null;
+        input._suggestIndex = -1;
+    }
+
+    function isSuggestOpen(input) {
+        return Array.isArray(input._suggestItems);
+    }
 
     // Load machine list
     fetch('data/machine_name_list.txt', { cache: 'no-cache' })
@@ -20,22 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 .map(m => m.trim())
                 .filter(m => m && !m.startsWith('<') && !m.startsWith('=') && !m.startsWith('>'));
 
-            // Create datalist for autocomplete
-            const datalist = document.createElement('datalist');
-            datalist.id = 'machine-list';
-            machineOptions.forEach(m => {
-                const option = document.createElement('option');
-                option.value = m;
-                datalist.appendChild(option);
-            });
-            datalistContainer.appendChild(datalist);
-
             addRow(); // add initial row after loading machines
         })
         .catch(err => {
             console.error("Failed to load machine list", err);
-            // fallback empty datalist
-            datalistContainer.innerHTML = `<datalist id="machine-list"></datalist>`;
             addRow(); // add initial row anyway
         });
 
@@ -174,9 +243,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <label>日付</label>
                 <input type="date" class="input-date" value="${defaultDateStr}" required>
             </div>
-            <div class="field">
+            <div class="field machine-field">
                 <label>機種名</label>
-                <input type="text" list="machine-list" class="input-machine" placeholder="機種を選択または入力" required>
+                <input type="text" class="input-machine" placeholder="機種を選択または入力" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" required>
+                <ul class="machine-suggest" role="listbox" hidden></ul>
+                <small class="machine-hint" aria-live="polite"></small>
             </div>
             <div class="field">
                 <label>投資額</label>
@@ -199,6 +270,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // 候補のクリック/タップで選択（mousedown でフォーカスが外れないようにする）
+        const machineInput = row.querySelector('.input-machine');
+        row.querySelector('.machine-suggest').addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            const li = e.target.closest('li');
+            if (!li) return;
+            machineInput.value = machineInput._suggestItems[parseInt(li.dataset.index, 10)];
+            confirmMachine(machineInput);
+        });
+
         rowsContainer.appendChild(row);
 
         // Trigger CSS animation
@@ -213,15 +294,107 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 入力変更時にオートコンプリートの状態をリセット
+    // 機種名入力欄の補完状態（未確定 / 確定 / リスト外）を枠線とヒントに反映する
+    function renderMachineState(input) {
+        const hint = input.closest('.data-row').querySelector('.machine-hint');
+        const value = input.value.trim();
+        const pending = input.dataset.searchPrefix !== undefined;
+        const confirmed = !pending && input.dataset.confirmed !== undefined && value !== '';
+        const known = machineOptions.includes(value);
+
+        let state = '';
+        let text = '';
+        if (pending) {
+            state = 'is-pending';
+            const idx = parseInt(input.dataset.matchIndex, 10) + 1;
+            text = `候補 ${idx}/${input.dataset.matchCount} ｜ Tab: 次の候補　Enter: 確定`;
+        } else if (confirmed && known) {
+            state = 'is-confirmed';
+            text = '✓ 確定';
+        } else if (confirmed) {
+            state = 'is-unknown';
+            text = 'リストにない機種名です';
+        }
+
+        input.classList.toggle('is-pending', state === 'is-pending');
+        input.classList.toggle('is-confirmed', state === 'is-confirmed');
+        hint.className = `machine-hint ${state}`.trim();
+        hint.textContent = text;
+    }
+
+    // 補完の候補切り替えを終了し、表示中の値で確定する
+    function confirmMachine(input) {
+        delete input.dataset.searchPrefix;
+        delete input.dataset.matchIndex;
+        delete input.dataset.matchCount;
+        if (input.value.trim() !== '') {
+            input.dataset.confirmed = '1';
+        } else {
+            delete input.dataset.confirmed;
+        }
+        if (document.activeElement === input) {
+            input.setSelectionRange(input.value.length, input.value.length);
+        }
+        hideSuggest(input);
+        renderMachineState(input);
+    }
+
+    // 入力変更時にオートコンプリートの状態をリセットし、候補ポップアップを更新
     dataForm.addEventListener('input', (e) => {
         if (e.target.classList.contains('input-machine')) {
             delete e.target.dataset.searchPrefix;
             delete e.target.dataset.matchIndex;
+            delete e.target.dataset.matchCount;
+            delete e.target.dataset.confirmed;
+            renderMachineState(e.target);
+            if (e.target.value) {
+                renderSuggest(e.target, findSuggestions(e.target.value));
+            } else {
+                hideSuggest(e.target);
+            }
+        }
+    });
+
+    // 機種名欄での ↓ / ↑ / Esc（候補ポップアップの操作）
+    function handleSuggestKeys(e) {
+        const input = e.target;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (!isSuggestOpen(input)) {
+                renderSuggest(input, findSuggestions(input.value), e.key === 'ArrowDown' ? 0 : -1);
+                return;
+            }
+            const count = input._suggestItems.length;
+            let idx = input._suggestIndex;
+            if (e.key === 'ArrowDown') {
+                idx = idx + 1 >= count ? 0 : idx + 1;
+            } else {
+                idx = idx - 1 < 0 ? count - 1 : idx - 1;
+            }
+            renderSuggest(input, input._suggestItems, idx);
+        } else if (e.key === 'Escape' && isSuggestOpen(input)) {
+            e.preventDefault();
+            hideSuggest(input);
+        }
+    }
+
+    // 機種名欄からフォーカスが外れたら、表示中の値で確定する
+    dataForm.addEventListener('focusout', (e) => {
+        if (e.target.classList.contains('input-machine')) {
+            confirmMachine(e.target);
         }
     });
 
     dataForm.addEventListener('keydown', (e) => {
+        const isMachine = e.target.classList.contains('input-machine');
+        // IME変換中のキー操作（変換確定のEnterなど）は機種名欄では扱わない
+        if (isMachine && e.isComposing) {
+            return;
+        }
+        if (isMachine) {
+            handleSuggestKeys(e);
+        }
+
         // Enterキーでの送信防止（Ctrl+Enterで送信）
         if (e.key === 'Enter') {
             e.preventDefault(); // デフォルトの送信をキャンセル
@@ -230,13 +403,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!submitBtn.disabled) {
                     dataForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
                 }
-            } else if (e.target.classList.contains('input-machine')) {
-                // Enterキーでオートコンプリートを確定
-                if (e.target.dataset.searchPrefix !== undefined) {
-                    delete e.target.dataset.searchPrefix;
-                    delete e.target.dataset.matchIndex;
-                    e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+            } else if (isMachine) {
+                // ポップアップでハイライト中の候補があればそれを、なければ表示中の値で確定
+                const input = e.target;
+                if (isSuggestOpen(input) && input._suggestIndex >= 0) {
+                    input.value = input._suggestItems[input._suggestIndex];
                 }
+                confirmMachine(input);
             }
         }
 
@@ -248,6 +421,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentRow.querySelector('.input-machine').focus();
                 return;
             } else if (e.target.classList.contains('input-machine')) {
+                // 確定済みなら補完せず、通常どおり次の欄へ移動
+                if (e.target.dataset.confirmed !== undefined) {
+                    return;
+                }
+
                 let prefix = e.target.dataset.searchPrefix;
                 let isCycling = true;
                 
@@ -257,10 +435,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 if (prefix) {
-                    const matches = machineOptions.filter(m => m.startsWith(prefix));
+                    const matches = findMachineMatches(prefix);
                     if (matches.length > 0) {
                         // 完全に一致していて候補が1つだけなら通常のTab移動を許可
-                        if (!isCycling && matches.length === 1 && matches[0] === prefix) {
+                        if (!isCycling && matches.length === 1 && matches[0].name === prefix) {
                             return; 
                         }
                         
@@ -273,12 +451,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         
                         const match = matches[idx];
-                        e.target.value = match;
-                        // 補完された部分をハイライト（選択状態）にする
-                        e.target.setSelectionRange(prefix.length, match.length);
+                        e.target.value = match.name;
+                        // 補完された部分（入力済み部分より後ろ）をハイライト（選択状態）にする
+                        e.target.setSelectionRange(match.offset + prefix.length, match.name.length);
                         
                         e.target.dataset.searchPrefix = prefix;
                         e.target.dataset.matchIndex = idx;
+                        e.target.dataset.matchCount = matches.length;
+                        renderMachineState(e.target);
+                        // ポップアップの先頭はTab補完の候補と同じ並びなので、同じ位置をハイライト
+                        renderSuggest(e.target, findSuggestions(prefix), idx);
                         return;
                     }
                 }
