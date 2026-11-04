@@ -259,6 +259,56 @@ button {
     margin-top: 2rem;
 }
 
+/* 日付ごとの総合収支 */
+#daily-summary {
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    animation: fadeIn 0.3s;
+}
+
+#daily-summary[hidden] {
+    display: none;
+}
+
+#daily-summary h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#daily-summary table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#daily-summary th,
+#daily-summary td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+    white-space: nowrap;
+}
+
+#daily-summary th {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+#daily-summary .num {
+    text-align: right;
+}
+
+#daily-summary .summary-note {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
 #status-message {
     margin-top: 1.5rem;
     padding: 1rem;
