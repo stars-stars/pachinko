@@ -43,20 +43,20 @@
             "win_rate": 1.0
         },
         {
+            "machine": "eリコリコ",
+            "investment": 76000,
+            "return": 153800,
+            "profit": 77800,
+            "sessions": 10,
+            "win_rate": 0.3
+        },
+        {
             "machine": "リオエース2",
             "investment": 13000,
             "return": 86000,
             "profit": 73000,
             "sessions": 3,
             "win_rate": 0.6667
-        },
-        {
-            "machine": "リコリコ",
-            "investment": 107000,
-            "return": 175800,
-            "profit": 68800,
-            "sessions": 11,
-            "win_rate": 0.3636
         },
         {
             "machine": "マギレコ",
@@ -203,14 +203,6 @@
             "win_rate": 0.0
         },
         {
-            "machine": "eリコリコ",
-            "investment": 11000,
-            "return": 0,
-            "profit": -11000,
-            "sessions": 1,
-            "win_rate": 0.0
-        },
-        {
             "machine": "eエヴァンゲリオン",
             "investment": 15000,
             "return": 0,
@@ -239,14 +231,6 @@
             "investment": 17000,
             "return": 0,
             "profit": -17000,
-            "sessions": 1,
-            "win_rate": 0.0
-        },
-        {
-            "machine": "Lリコリコ",
-            "investment": 34000,
-            "return": 16000,
-            "profit": -18000,
             "sessions": 1,
             "win_rate": 0.0
         },
@@ -321,6 +305,14 @@
             "profit": -35000,
             "sessions": 1,
             "win_rate": 0.0
+        },
+        {
+            "machine": "Lリコリコ",
+            "investment": 76000,
+            "return": 38000,
+            "profit": -38000,
+            "sessions": 3,
+            "win_rate": 0.3333
         },
         {
             "machine": "pエヴァンゲリオン",
