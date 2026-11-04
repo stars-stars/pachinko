@@ -57,6 +57,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addRowBtn.addEventListener('click', addRow);
 
+    const summaryBtn = document.getElementById('summary-btn');
+    const dailySummary = document.getElementById('daily-summary');
+    summaryBtn.addEventListener('click', renderDailySummary);
+
+    // 入力中の行を日付ごとに集計し、総合収支を表示する
+    function renderDailySummary() {
+        const totals = new Map();
+        let skipped = 0;
+
+        rowsContainer.querySelectorAll('.data-row').forEach(row => {
+            const date = row.querySelector('.input-date').value.trim();
+            const investment = row.querySelector('.input-investment').value.trim();
+            const returned = row.querySelector('.input-return').value.trim();
+
+            if (!date || !/^\d+$/.test(investment) || !/^\d+$/.test(returned)) {
+                skipped++;
+                return;
+            }
+
+            const entry = totals.get(date) || { count: 0, investment: 0, returned: 0 };
+            entry.count++;
+            entry.investment += parseInt(investment, 10);
+            entry.returned += parseInt(returned, 10);
+            totals.set(date, entry);
+        });
+
+        if (totals.size === 0) {
+            dailySummary.hidden = true;
+            showStatus('集計できる行がありません（日付と金額を入力してください）。', 'error');
+            return;
+        }
+
+        const yen = value => `${value.toLocaleString()}円`;
+        const makeRow = (cells, profit, tag = 'td') => {
+            const tr = document.createElement('tr');
+            cells.forEach((text, i) => {
+                const cell = document.createElement(tag);
+                cell.textContent = text;
+                if (i > 0) cell.className = 'num';
+                if (i === cells.length - 1 && profit !== undefined) {
+                    cell.style.color = profitColor(profit);
+                }
+                tr.appendChild(cell);
+            });
+            return tr;
+        };
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        thead.appendChild(makeRow(['日付', '件数', '投資', '回収', '収支'], undefined, 'th'));
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        [...totals.keys()].sort().forEach(date => {
+            const t = totals.get(date);
+            const profit = t.returned - t.investment;
+            tbody.appendChild(makeRow([date, String(t.count), yen(t.investment), yen(t.returned), yen(profit)], profit));
+        });
+        table.appendChild(tbody);
+
+        const heading = document.createElement('h2');
+        heading.textContent = '日付ごとの総合収支';
+        dailySummary.replaceChildren(heading, table);
+
+        if (skipped > 0) {
+            const note = document.createElement('p');
+            note.className = 'summary-note';
+            note.textContent = `※ 日付または金額が未入力・不正な ${skipped} 行は集計から除外しています。`;
+            dailySummary.appendChild(note);
+        }
+
+        dailySummary.hidden = false;
+    }
+
     // 当日の日付を YYYY-MM-DD 形式で返す
     function todayString() {
         const today = new Date();
@@ -252,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Reset form
             rowsContainer.innerHTML = '';
             addRow();
+            dailySummary.hidden = true;
         }
     });
 
