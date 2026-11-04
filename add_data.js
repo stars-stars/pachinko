@@ -15,17 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // 機種名の接頭辞（L / e / p / CR など）: 先頭1〜2文字の半角英字で、直後が全角文字のもの
     const MACHINE_PREFIX_RE = /^[A-Za-z]{1,2}(?=[^\x00-\x7F])/;
 
+    // ひらがなをカタカナに変換（比較用）。1文字→1文字なので文字数は変わらない
+    function toKatakana(str) {
+        return str.replace(/[ぁ-ゖ]/g, ch =>
+            String.fromCharCode(ch.charCodeAt(0) + 0x60));
+    }
+
     // 入力値に前方一致する候補 + 接頭辞を除いた名前が前方一致する候補を返す
+    // ひらがな・カタカナは区別せずに比較する
     // offset は候補名のうち入力値が始まる位置（接頭辞の長さ）
     function findMachineMatches(prefix) {
+        const key = toKatakana(prefix);
         const direct = [];
         const variants = [];
         machineOptions.forEach(m => {
-            if (m.startsWith(prefix)) {
+            const normalized = toKatakana(m);
+            if (normalized.startsWith(key)) {
                 direct.push({ name: m, offset: 0 });
             } else {
                 const head = m.match(MACHINE_PREFIX_RE);
-                if (head && m.slice(head[0].length).startsWith(prefix)) {
+                if (head && normalized.slice(head[0].length).startsWith(key)) {
                     variants.push({ name: m, offset: head[0].length });
                 }
             }
