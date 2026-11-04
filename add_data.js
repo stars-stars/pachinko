@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tokenInput = document.getElementById('gh-token');
     const saveTokenBtn = document.getElementById('save-token-btn');
     const statusMessage = document.getElementById('status-message');
-    const datalistContainer = document.getElementById('datalist-container');
     const diaryForm = document.getElementById('diary-form');
     const diaryDateInput = document.getElementById('diary-date');
     const diaryTextInput = document.getElementById('diary-text');
@@ -42,6 +41,58 @@ document.addEventListener("DOMContentLoaded", () => {
         return [...direct, ...variants];
     }
 
+    // 候補ポップアップに出す機種名: Tab補完の候補（前方一致）→ 部分一致の順。空なら全機種
+    function findSuggestions(value) {
+        if (!value) return [...machineOptions];
+        const names = findMachineMatches(value).map(m => m.name);
+        const key = toKatakana(value);
+        machineOptions.forEach(m => {
+            if (!names.includes(m) && toKatakana(m).includes(key)) {
+                names.push(m);
+            }
+        });
+        return names;
+    }
+
+    // 候補ポップアップを表示する（activeIndex の項目をハイライト、-1 ならハイライトなし）
+    function renderSuggest(input, items, activeIndex = -1) {
+        const list = input.closest('.machine-field').querySelector('.machine-suggest');
+        if (items.length === 0) {
+            hideSuggest(input);
+            return;
+        }
+        list.replaceChildren(...items.map((name, i) => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            li.setAttribute('role', 'option');
+            li.dataset.index = i;
+            if (i === activeIndex) {
+                li.className = 'is-active';
+                li.setAttribute('aria-selected', 'true');
+            }
+            return li;
+        }));
+        list.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+        input._suggestItems = items;
+        input._suggestIndex = activeIndex;
+        const active = list.children[activeIndex];
+        if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+
+    function hideSuggest(input) {
+        const list = input.closest('.machine-field').querySelector('.machine-suggest');
+        list.hidden = true;
+        list.replaceChildren();
+        input.setAttribute('aria-expanded', 'false');
+        input._suggestItems = null;
+        input._suggestIndex = -1;
+    }
+
+    function isSuggestOpen(input) {
+        return Array.isArray(input._suggestItems);
+    }
+
     // Load machine list
     fetch('data/machine_name_list.txt', { cache: 'no-cache' })
         .then(response => response.text())
@@ -50,22 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 .map(m => m.trim())
                 .filter(m => m && !m.startsWith('<') && !m.startsWith('=') && !m.startsWith('>'));
 
-            // Create datalist for autocomplete
-            const datalist = document.createElement('datalist');
-            datalist.id = 'machine-list';
-            machineOptions.forEach(m => {
-                const option = document.createElement('option');
-                option.value = m;
-                datalist.appendChild(option);
-            });
-            datalistContainer.appendChild(datalist);
-
             addRow(); // add initial row after loading machines
         })
         .catch(err => {
             console.error("Failed to load machine list", err);
-            // fallback empty datalist
-            datalistContainer.innerHTML = `<datalist id="machine-list"></datalist>`;
             addRow(); // add initial row anyway
         });
 
@@ -206,7 +245,8 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="field machine-field">
                 <label>機種名</label>
-                <input type="text" list="machine-list" class="input-machine" placeholder="機種を選択または入力" required>
+                <input type="text" class="input-machine" placeholder="機種を選択または入力" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" required>
+                <ul class="machine-suggest" role="listbox" hidden></ul>
                 <small class="machine-hint" aria-live="polite"></small>
             </div>
             <div class="field">
@@ -228,6 +268,16 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 showStatus('最低1行は必要です。', 'error');
             }
+        });
+
+        // 候補のクリック/タップで選択（mousedown でフォーカスが外れないようにする）
+        const machineInput = row.querySelector('.input-machine');
+        row.querySelector('.machine-suggest').addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            const li = e.target.closest('li');
+            if (!li) return;
+            machineInput.value = machineInput._suggestItems[parseInt(li.dataset.index, 10)];
+            confirmMachine(machineInput);
         });
 
         rowsContainer.appendChild(row);
@@ -285,10 +335,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.activeElement === input) {
             input.setSelectionRange(input.value.length, input.value.length);
         }
+        hideSuggest(input);
         renderMachineState(input);
     }
 
-    // 入力変更時にオートコンプリートの状態をリセット
+    // 入力変更時にオートコンプリートの状態をリセットし、候補ポップアップを更新
     dataForm.addEventListener('input', (e) => {
         if (e.target.classList.contains('input-machine')) {
             delete e.target.dataset.searchPrefix;
@@ -296,8 +347,36 @@ document.addEventListener("DOMContentLoaded", () => {
             delete e.target.dataset.matchCount;
             delete e.target.dataset.confirmed;
             renderMachineState(e.target);
+            if (e.target.value) {
+                renderSuggest(e.target, findSuggestions(e.target.value));
+            } else {
+                hideSuggest(e.target);
+            }
         }
     });
+
+    // 機種名欄での ↓ / ↑ / Esc（候補ポップアップの操作）
+    function handleSuggestKeys(e) {
+        const input = e.target;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (!isSuggestOpen(input)) {
+                renderSuggest(input, findSuggestions(input.value), e.key === 'ArrowDown' ? 0 : -1);
+                return;
+            }
+            const count = input._suggestItems.length;
+            let idx = input._suggestIndex;
+            if (e.key === 'ArrowDown') {
+                idx = idx + 1 >= count ? 0 : idx + 1;
+            } else {
+                idx = idx - 1 < 0 ? count - 1 : idx - 1;
+            }
+            renderSuggest(input, input._suggestItems, idx);
+        } else if (e.key === 'Escape' && isSuggestOpen(input)) {
+            e.preventDefault();
+            hideSuggest(input);
+        }
+    }
 
     // 機種名欄からフォーカスが外れたら、表示中の値で確定する
     dataForm.addEventListener('focusout', (e) => {
@@ -307,6 +386,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     dataForm.addEventListener('keydown', (e) => {
+        const isMachine = e.target.classList.contains('input-machine');
+        // IME変換中のキー操作（変換確定のEnterなど）は機種名欄では扱わない
+        if (isMachine && e.isComposing) {
+            return;
+        }
+        if (isMachine) {
+            handleSuggestKeys(e);
+        }
+
         // Enterキーでの送信防止（Ctrl+Enterで送信）
         if (e.key === 'Enter') {
             e.preventDefault(); // デフォルトの送信をキャンセル
@@ -315,9 +403,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!submitBtn.disabled) {
                     dataForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
                 }
-            } else if (e.target.classList.contains('input-machine')) {
-                // Enterキーでオートコンプリートを確定
-                confirmMachine(e.target);
+            } else if (isMachine) {
+                // ポップアップでハイライト中の候補があればそれを、なければ表示中の値で確定
+                const input = e.target;
+                if (isSuggestOpen(input) && input._suggestIndex >= 0) {
+                    input.value = input._suggestItems[input._suggestIndex];
+                }
+                confirmMachine(input);
             }
         }
 
@@ -367,6 +459,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         e.target.dataset.matchIndex = idx;
                         e.target.dataset.matchCount = matches.length;
                         renderMachineState(e.target);
+                        // ポップアップの先頭はTab補完の候補と同じ並びなので、同じ位置をハイライト
+                        renderSuggest(e.target, findSuggestions(prefix), idx);
                         return;
                     }
                 }

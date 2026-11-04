@@ -231,6 +231,48 @@ button {
     box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
 }
 
+/* 機種名の候補ポップアップ（ひらがな・カタカナを区別せず絞り込む） */
+.machine-suggest {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0.25rem 0 0;
+    padding: 0.25rem 0;
+    list-style: none;
+    max-height: 240px;
+    overflow-y: auto;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.machine-suggest li {
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.machine-suggest li:hover {
+    background: rgba(44, 83, 100, 0.08);
+}
+
+.machine-suggest li.is-active {
+    background: rgba(44, 83, 100, 0.16);
+    color: var(--accent-hover);
+    font-weight: 600;
+}
+
+/* 各行に transform があるため、後ろの行がポップアップに重ならないよう入力中の行を前面に出す */
+.data-row:focus-within {
+    position: relative;
+    z-index: 5;
+}
+
 /* 行の高さや他の欄の位置を変えないよう、入力欄の下(行の余白部分)に重ねて表示 */
 .machine-hint {
     position: absolute;
