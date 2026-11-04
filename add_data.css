@@ -8,6 +8,7 @@
     --accent: #2c5364; 
     --accent-hover: #1e3c4a;
     --success: #28a745;
+    --pending: #e8890c;
     --error: #dc3545;
     --input-bg: #ffffff;
     --input-border: #cccccc;
@@ -206,6 +207,56 @@ button {
     color: var(--text-secondary);
 }
 
+/* 機種名のTab補完: 未確定 / 確定 の表示 */
+.machine-field {
+    position: relative;
+}
+
+.input-machine.is-pending {
+    border: 1px dashed var(--pending);
+    background: rgba(232, 137, 12, 0.08);
+}
+
+.input-machine.is-pending:focus {
+    border-color: var(--pending);
+    box-shadow: 0 0 0 2px rgba(232, 137, 12, 0.25);
+}
+
+.input-machine.is-confirmed,
+.input-machine.is-confirmed:focus {
+    border-color: var(--success);
+}
+
+.input-machine.is-confirmed:focus {
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+}
+
+/* 行の高さや他の欄の位置を変えないよう、入力欄の下(行の余白部分)に重ねて表示 */
+.machine-hint {
+    position: absolute;
+    top: 100%;
+    left: 0.25rem;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+.machine-hint:empty {
+    display: none;
+}
+
+.machine-hint.is-pending {
+    color: var(--pending);
+    font-weight: 600;
+}
+
+.machine-hint.is-confirmed {
+    color: var(--success);
+    font-weight: 600;
+}
+
 .btn-remove {
     background: transparent;
     color: var(--error);
@@ -356,6 +407,12 @@ button {
 @media (max-width: 768px) {
     .data-row {
         grid-template-columns: 1fr;
+    }
+    /* 1列レイアウトでは次の欄と重ならないよう通常の配置にする */
+    .machine-hint {
+        position: static;
+        margin-top: 0;
+        white-space: normal;
     }
     .btn-remove {
         margin-top: 1rem;

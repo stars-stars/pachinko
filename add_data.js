@@ -12,6 +12,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let machineOptions = [];
 
+    // 機種名の接頭辞（L / e / p / CR など）: 先頭1〜2文字の半角英字で、直後が全角文字のもの
+    const MACHINE_PREFIX_RE = /^[A-Za-z]{1,2}(?=[^\x00-\x7F])/;
+
+    // 入力値に前方一致する候補 + 接頭辞を除いた名前が前方一致する候補を返す
+    // offset は候補名のうち入力値が始まる位置（接頭辞の長さ）
+    function findMachineMatches(prefix) {
+        const direct = [];
+        const variants = [];
+        machineOptions.forEach(m => {
+            if (m.startsWith(prefix)) {
+                direct.push({ name: m, offset: 0 });
+            } else {
+                const head = m.match(MACHINE_PREFIX_RE);
+                if (head && m.slice(head[0].length).startsWith(prefix)) {
+                    variants.push({ name: m, offset: head[0].length });
+                }
+            }
+        });
+        return [...direct, ...variants];
+    }
+
     // Load machine list
     fetch('data/machine_name_list.txt', { cache: 'no-cache' })
         .then(response => response.text())
@@ -174,9 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <label>日付</label>
                 <input type="date" class="input-date" value="${defaultDateStr}" required>
             </div>
-            <div class="field">
+            <div class="field machine-field">
                 <label>機種名</label>
                 <input type="text" list="machine-list" class="input-machine" placeholder="機種を選択または入力" required>
+                <small class="machine-hint" aria-live="polite"></small>
             </div>
             <div class="field">
                 <label>投資額</label>
@@ -213,11 +235,65 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // 機種名入力欄の補完状態（未確定 / 確定 / リスト外）を枠線とヒントに反映する
+    function renderMachineState(input) {
+        const hint = input.closest('.data-row').querySelector('.machine-hint');
+        const value = input.value.trim();
+        const pending = input.dataset.searchPrefix !== undefined;
+        const confirmed = !pending && input.dataset.confirmed !== undefined && value !== '';
+        const known = machineOptions.includes(value);
+
+        let state = '';
+        let text = '';
+        if (pending) {
+            state = 'is-pending';
+            const idx = parseInt(input.dataset.matchIndex, 10) + 1;
+            text = `候補 ${idx}/${input.dataset.matchCount} ｜ Tab: 次の候補　Enter: 確定`;
+        } else if (confirmed && known) {
+            state = 'is-confirmed';
+            text = '✓ 確定';
+        } else if (confirmed) {
+            state = 'is-unknown';
+            text = 'リストにない機種名です';
+        }
+
+        input.classList.toggle('is-pending', state === 'is-pending');
+        input.classList.toggle('is-confirmed', state === 'is-confirmed');
+        hint.className = `machine-hint ${state}`.trim();
+        hint.textContent = text;
+    }
+
+    // 補完の候補切り替えを終了し、表示中の値で確定する
+    function confirmMachine(input) {
+        delete input.dataset.searchPrefix;
+        delete input.dataset.matchIndex;
+        delete input.dataset.matchCount;
+        if (input.value.trim() !== '') {
+            input.dataset.confirmed = '1';
+        } else {
+            delete input.dataset.confirmed;
+        }
+        if (document.activeElement === input) {
+            input.setSelectionRange(input.value.length, input.value.length);
+        }
+        renderMachineState(input);
+    }
+
     // 入力変更時にオートコンプリートの状態をリセット
     dataForm.addEventListener('input', (e) => {
         if (e.target.classList.contains('input-machine')) {
             delete e.target.dataset.searchPrefix;
             delete e.target.dataset.matchIndex;
+            delete e.target.dataset.matchCount;
+            delete e.target.dataset.confirmed;
+            renderMachineState(e.target);
+        }
+    });
+
+    // 機種名欄からフォーカスが外れたら、表示中の値で確定する
+    dataForm.addEventListener('focusout', (e) => {
+        if (e.target.classList.contains('input-machine')) {
+            confirmMachine(e.target);
         }
     });
 
@@ -232,11 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else if (e.target.classList.contains('input-machine')) {
                 // Enterキーでオートコンプリートを確定
-                if (e.target.dataset.searchPrefix !== undefined) {
-                    delete e.target.dataset.searchPrefix;
-                    delete e.target.dataset.matchIndex;
-                    e.target.setSelectionRange(e.target.value.length, e.target.value.length);
-                }
+                confirmMachine(e.target);
             }
         }
 
@@ -248,6 +320,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentRow.querySelector('.input-machine').focus();
                 return;
             } else if (e.target.classList.contains('input-machine')) {
+                // 確定済みなら補完せず、通常どおり次の欄へ移動
+                if (e.target.dataset.confirmed !== undefined) {
+                    return;
+                }
+
                 let prefix = e.target.dataset.searchPrefix;
                 let isCycling = true;
                 
@@ -257,10 +334,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 if (prefix) {
-                    const matches = machineOptions.filter(m => m.startsWith(prefix));
+                    const matches = findMachineMatches(prefix);
                     if (matches.length > 0) {
                         // 完全に一致していて候補が1つだけなら通常のTab移動を許可
-                        if (!isCycling && matches.length === 1 && matches[0] === prefix) {
+                        if (!isCycling && matches.length === 1 && matches[0].name === prefix) {
                             return; 
                         }
                         
@@ -273,12 +350,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         
                         const match = matches[idx];
-                        e.target.value = match;
-                        // 補完された部分をハイライト（選択状態）にする
-                        e.target.setSelectionRange(prefix.length, match.length);
+                        e.target.value = match.name;
+                        // 補完された部分（入力済み部分より後ろ）をハイライト（選択状態）にする
+                        e.target.setSelectionRange(match.offset + prefix.length, match.name.length);
                         
                         e.target.dataset.searchPrefix = prefix;
                         e.target.dataset.matchIndex = idx;
+                        e.target.dataset.matchCount = matches.length;
+                        renderMachineState(e.target);
                         return;
                     }
                 }
