@@ -1,13 +1,13 @@
 {
-    "total_profit": -978100,
-    "last_updated": "2026-11-03",
-    "num_of_sessions": 502,
-    "num_of_days": 210,
+    "total_profit": -975100,
+    "last_updated": "2026-11-06",
+    "num_of_sessions": 503,
+    "num_of_days": 211,
     "stats": {
-        "session_win_rate": 0.3127,
-        "day_win_rate": 0.3952,
-        "avg_investment": 12700,
-        "avg_profit_per_day": -4658,
+        "session_win_rate": 0.3141,
+        "day_win_rate": 0.3981,
+        "avg_investment": 12676,
+        "avg_profit_per_day": -4621,
         "max_day_win": {
             "date": "2025-12-23",
             "profit": 202600
@@ -404,11 +404,11 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1320300,
-            "return": 957300,
-            "profit": -363000,
-            "sessions": 167,
-            "win_rate": 0.3952
+            "investment": 1321300,
+            "return": 961300,
+            "profit": -360000,
+            "sessions": 168,
+            "win_rate": 0.3988
         }
     ],
     "monthly_profits": [
@@ -546,9 +546,9 @@
         },
         {
             "month": "2026-11",
-            "investment": 22500,
-            "return": 28000,
-            "profit": 5500
+            "investment": 23500,
+            "return": 32000,
+            "profit": 8500
         }
     ],
     "yearly_profits": [
@@ -572,9 +572,9 @@
         },
         {
             "year": 2026,
-            "investment": 3852300,
-            "return": 3660000,
-            "profit": -192300
+            "investment": 3853300,
+            "return": 3664000,
+            "profit": -189300
         }
     ],
     "daily_cumulative": [
@@ -1627,6 +1627,11 @@
             "date": "2026-11-03",
             "profit": 5500,
             "cumulative": -978100
+        },
+        {
+            "date": "2026-11-06",
+            "profit": 3000,
+            "cumulative": -975100
         }
     ]
 }
