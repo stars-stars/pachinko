@@ -1,13 +1,13 @@
 {
-    "total_profit": -975100,
-    "last_updated": "2026-11-06",
-    "num_of_sessions": 503,
-    "num_of_days": 211,
+    "total_profit": -982900,
+    "last_updated": "2026-11-11",
+    "num_of_sessions": 505,
+    "num_of_days": 212,
     "stats": {
-        "session_win_rate": 0.3141,
-        "day_win_rate": 0.3981,
-        "avg_investment": 12676,
-        "avg_profit_per_day": -4621,
+        "session_win_rate": 0.3129,
+        "day_win_rate": 0.3962,
+        "avg_investment": 12650,
+        "avg_profit_per_day": -4636,
         "max_day_win": {
             "date": "2025-12-23",
             "profit": 202600
@@ -20,11 +20,11 @@
     "machine_profits": [
         {
             "machine": "ヴァルヴレイヴ2",
-            "investment": 1112400,
-            "return": 1477400,
-            "profit": 365000,
-            "sessions": 52,
-            "win_rate": 0.4231
+            "investment": 1117900,
+            "return": 1481600,
+            "profit": 363700,
+            "sessions": 53,
+            "win_rate": 0.4151
         },
         {
             "machine": "ビッグドリーム",
@@ -404,11 +404,11 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1321300,
+            "investment": 1327800,
             "return": 961300,
-            "profit": -360000,
-            "sessions": 168,
-            "win_rate": 0.3988
+            "profit": -366500,
+            "sessions": 169,
+            "win_rate": 0.3964
         }
     ],
     "monthly_profits": [
@@ -546,9 +546,9 @@
         },
         {
             "month": "2026-11",
-            "investment": 23500,
-            "return": 32000,
-            "profit": 8500
+            "investment": 35500,
+            "return": 36200,
+            "profit": 700
         }
     ],
     "yearly_profits": [
@@ -572,9 +572,9 @@
         },
         {
             "year": 2026,
-            "investment": 3853300,
-            "return": 3664000,
-            "profit": -189300
+            "investment": 3865300,
+            "return": 3668200,
+            "profit": -197100
         }
     ],
     "daily_cumulative": [
@@ -1632,6 +1632,11 @@
             "date": "2026-11-06",
             "profit": 3000,
             "cumulative": -975100
+        },
+        {
+            "date": "2026-11-11",
+            "profit": -7800,
+            "cumulative": -982900
         }
     ]
 }
