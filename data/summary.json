@@ -1,13 +1,13 @@
 {
-    "total_profit": -1005900,
-    "last_updated": "2026-11-13",
-    "num_of_sessions": 509,
-    "num_of_days": 213,
+    "total_profit": -1004900,
+    "last_updated": "2026-11-19",
+    "num_of_sessions": 514,
+    "num_of_days": 214,
     "stats": {
-        "session_win_rate": 0.3124,
-        "day_win_rate": 0.3944,
-        "avg_investment": 12653,
-        "avg_profit_per_day": -4723,
+        "session_win_rate": 0.3113,
+        "day_win_rate": 0.3972,
+        "avg_investment": 12594,
+        "avg_profit_per_day": -4696,
         "max_day_win": {
             "date": "2025-12-23",
             "profit": 202600
@@ -43,20 +43,20 @@
             "win_rate": 1.0
         },
         {
-            "machine": "eリコリコ",
-            "investment": 76000,
-            "return": 153800,
-            "profit": 77800,
-            "sessions": 10,
-            "win_rate": 0.3
-        },
-        {
             "machine": "リオエース2",
             "investment": 13000,
             "return": 86000,
             "profit": 73000,
             "sessions": 3,
             "win_rate": 0.6667
+        },
+        {
+            "machine": "eリコリコ",
+            "investment": 86000,
+            "return": 153800,
+            "profit": 67800,
+            "sessions": 11,
+            "win_rate": 0.2727
         },
         {
             "machine": "マギレコ",
@@ -75,14 +75,6 @@
             "win_rate": 0.3333
         },
         {
-            "machine": "炎炎ノ消防隊",
-            "investment": 37000,
-            "return": 46000,
-            "profit": 9000,
-            "sessions": 3,
-            "win_rate": 0.3333
-        },
-        {
             "machine": "モンキーターン",
             "investment": 6000,
             "return": 13000,
@@ -97,6 +89,14 @@
             "profit": 4000,
             "sessions": 2,
             "win_rate": 0.5
+        },
+        {
+            "machine": "炎炎ノ消防隊",
+            "investment": 45000,
+            "return": 46000,
+            "profit": 1000,
+            "sessions": 4,
+            "win_rate": 0.25
         },
         {
             "machine": "無職転生",
@@ -139,14 +139,6 @@
             "win_rate": 0.0
         },
         {
-            "machine": "eアズールレーン",
-            "investment": 51500,
-            "return": 48000,
-            "profit": -3500,
-            "sessions": 7,
-            "win_rate": 0.1429
-        },
-        {
             "machine": "p戦国乙女",
             "investment": 5000,
             "return": 0,
@@ -169,6 +161,14 @@
             "profit": -5000,
             "sessions": 1,
             "win_rate": 0.0
+        },
+        {
+            "machine": "eアズールレーン",
+            "investment": 53500,
+            "return": 48000,
+            "profit": -5500,
+            "sessions": 8,
+            "win_rate": 0.125
         },
         {
             "machine": "ブラックジャック",
@@ -299,6 +299,14 @@
             "win_rate": 0.0
         },
         {
+            "machine": "Lリコリコ",
+            "investment": 107000,
+            "return": 72000,
+            "profit": -35000,
+            "sessions": 5,
+            "win_rate": 0.4
+        },
+        {
             "machine": "チバリヨ2",
             "investment": 35000,
             "return": 0,
@@ -337,14 +345,6 @@
             "profit": -52000,
             "sessions": 5,
             "win_rate": 0.0
-        },
-        {
-            "machine": "Lリコリコ",
-            "investment": 97000,
-            "return": 38000,
-            "profit": -59000,
-            "sessions": 4,
-            "win_rate": 0.25
         },
         {
             "machine": "かぐや様",
@@ -404,11 +404,11 @@
         },
         {
             "machine": "ジャグラー",
-            "investment": 1340800,
+            "investment": 1343800,
             "return": 962300,
-            "profit": -378500,
-            "sessions": 170,
-            "win_rate": 0.3941
+            "profit": -381500,
+            "sessions": 171,
+            "win_rate": 0.3918
         }
     ],
     "monthly_profits": [
@@ -546,9 +546,9 @@
         },
         {
             "month": "2026-11",
-            "investment": 87500,
-            "return": 65200,
-            "profit": -22300
+            "investment": 120500,
+            "return": 99200,
+            "profit": -21300
         }
     ],
     "yearly_profits": [
@@ -572,9 +572,9 @@
         },
         {
             "year": 2026,
-            "investment": 3917300,
-            "return": 3697200,
-            "profit": -220100
+            "investment": 3950300,
+            "return": 3731200,
+            "profit": -219100
         }
     ],
     "daily_cumulative": [
@@ -1642,6 +1642,11 @@
             "date": "2026-11-13",
             "profit": -23000,
             "cumulative": -1005900
+        },
+        {
+            "date": "2026-11-19",
+            "profit": 1000,
+            "cumulative": -1004900
         }
     ]
 }
