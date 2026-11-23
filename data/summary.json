@@ -1,13 +1,13 @@
 {
-    "total_profit": -982900,
-    "last_updated": "2026-11-11",
-    "num_of_sessions": 505,
-    "num_of_days": 212,
+    "total_profit": -1005900,
+    "last_updated": "2026-11-13",
+    "num_of_sessions": 509,
+    "num_of_days": 213,
     "stats": {
-        "session_win_rate": 0.3129,
-        "day_win_rate": 0.3962,
-        "avg_investment": 12650,
-        "avg_profit_per_day": -4636,
+        "session_win_rate": 0.3124,
+        "day_win_rate": 0.3944,
+        "avg_investment": 12653,
+        "avg_profit_per_day": -4723,
         "max_day_win": {
             "date": "2025-12-23",
             "profit": 202600
@@ -60,11 +60,11 @@
         },
         {
             "machine": "マギレコ",
-            "investment": 459000,
-            "return": 507400,
-            "profit": 48400,
-            "sessions": 19,
-            "win_rate": 0.3684
+            "investment": 470000,
+            "return": 535400,
+            "profit": 65400,
+            "sessions": 20,
+            "win_rate": 0.4
         },
         {
             "machine": "ブルーロック",
@@ -307,14 +307,6 @@
             "win_rate": 0.0
         },
         {
-            "machine": "Lリコリコ",
-            "investment": 76000,
-            "return": 38000,
-            "profit": -38000,
-            "sessions": 3,
-            "win_rate": 0.3333
-        },
-        {
             "machine": "pエヴァンゲリオン",
             "investment": 40500,
             "return": 0,
@@ -345,6 +337,14 @@
             "profit": -52000,
             "sessions": 5,
             "win_rate": 0.0
+        },
+        {
+            "machine": "Lリコリコ",
+            "investment": 97000,
+            "return": 38000,
+            "profit": -59000,
+            "sessions": 4,
+            "win_rate": 0.25
         },
         {
             "machine": "かぐや様",
@@ -396,19 +396,19 @@
         },
         {
             "machine": "リゼロ強欲",
-            "investment": 376500,
+            "investment": 383500,
             "return": 204800,
-            "profit": -171700,
-            "sessions": 36,
-            "win_rate": 0.1389
+            "profit": -178700,
+            "sessions": 37,
+            "win_rate": 0.1351
         },
         {
             "machine": "ジャグラー",
-            "investment": 1327800,
-            "return": 961300,
-            "profit": -366500,
-            "sessions": 169,
-            "win_rate": 0.3964
+            "investment": 1340800,
+            "return": 962300,
+            "profit": -378500,
+            "sessions": 170,
+            "win_rate": 0.3941
         }
     ],
     "monthly_profits": [
@@ -546,9 +546,9 @@
         },
         {
             "month": "2026-11",
-            "investment": 35500,
-            "return": 36200,
-            "profit": 700
+            "investment": 87500,
+            "return": 65200,
+            "profit": -22300
         }
     ],
     "yearly_profits": [
@@ -572,9 +572,9 @@
         },
         {
             "year": 2026,
-            "investment": 3865300,
-            "return": 3668200,
-            "profit": -197100
+            "investment": 3917300,
+            "return": 3697200,
+            "profit": -220100
         }
     ],
     "daily_cumulative": [
@@ -1637,6 +1637,11 @@
             "date": "2026-11-11",
             "profit": -7800,
             "cumulative": -982900
+        },
+        {
+            "date": "2026-11-13",
+            "profit": -23000,
+            "cumulative": -1005900
         }
     ]
 }
